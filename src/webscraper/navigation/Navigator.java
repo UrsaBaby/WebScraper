@@ -45,7 +45,7 @@ public class Navigator {
         connectToThisSiteWithThisWebdriver(fondlistanAvanza(), driverFondListan); //öppnar avanza fondlista
         Thread.sleep(2000);
         WebElement fondlistanWebelement = driverFondListan.findElement(By.cssSelector("body > aza-app > div > main > div > aza-fund-list > aza-subpage > div > div > div > aza-card > table > tbody"));
-        WebElement listElement = getWebElementWithThisNumberFromThisList(1, fondlistanWebelement);
+        WebElement listElement = getWebElementWithThisNumberFromThisList(2, fondlistanWebelement);
         //  System.out.println(listElement.getText());
         clickThisElementWithThisDrive(listElement, driverFondListan);
         driverFondListan.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -103,7 +103,7 @@ public class Navigator {
 
     public WebElement getWebElementWithThisNumberFromThisList(int numberInList, WebElement list) { //TODO returns full list
 
-        WebElement returnWebelement = driverFondListan.findElement(By.cssSelector("body > aza-app > div > main > div > aza-fund-list > aza-subpage > div > div > div > aza-card > table > tbody > tr:nth-child(1) > td.name.is-neutral.ng-star-inserted > aza-fund-list-table-data > div > button > span"));
+        WebElement returnWebelement = driverFondListan.findElement(By.cssSelector("body > aza-app > div > main > div > aza-fund-list > aza-subpage > div > div > div > aza-card > table > tbody > tr:nth-child(" + numberInList+ ") > td.name.is-neutral.ng-star-inserted > aza-fund-list-table-data > div > button > span"));
         return returnWebelement;
     }
 
