@@ -7,7 +7,7 @@ package webscraper.interfaces;
 
 import java.awt.AWTException;
 import java.util.HashMap;
-import webscraper.navigation.Navigator;
+import webscraper.navigation.WebGetter;
 
 
 /**
@@ -15,10 +15,10 @@ import webscraper.navigation.Navigator;
  * @author Peter
  */
 public class LogicInterface {
-    private Navigator navigator;
+    private WebGetter navigator;
     
     public LogicInterface() throws AWTException{
-        navigator = new Navigator();
+        navigator = new WebGetter();
        
     }
 }

@@ -7,13 +7,9 @@ package webscraper;
 
 import java.awt.AWTException;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-import static org.openqa.grid.common.SeleniumProtocol.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import webscraper.navigation.Navigator;
+
+import webscraper.databases.WebAdreses.WebpageHTMLDatabase;
+import webscraper.navigation.WebGetter;
 
 /**
  *
@@ -26,8 +22,10 @@ public class WebScraper {
      */
     public static  void main(String[] args) throws IOException, InterruptedException, AWTException {
         
-        Navigator navigator = new Navigator();
-        navigator.run();
+      //  Navigator navigator = new Navigator();
+        WebpageHTMLDatabase webpageDatabase = new WebpageHTMLDatabase();
+        webpageDatabase.test();
+       // navigator.run();
         // TODO code application logic here
 
 //

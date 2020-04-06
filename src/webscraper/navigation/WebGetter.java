@@ -10,6 +10,7 @@ import static com.sun.glass.events.KeyEvent.VK_T;
 import java.awt.AWTException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import java.util.concurrent.TimeUnit;
 
@@ -26,19 +27,38 @@ import org.openqa.selenium.interactions.Actions;
  *
  * @author Peter
  */
-public class Navigator {
+public class WebGetter {
 
 
     WebDriver driverFondListan;
     WebDriver driverFondSida;
     ArrayList<String> listOfETFs;
+    WebDriver chromeDriver;
+    HashMap<String, WebElement> listOfElements;
 
-    public Navigator() throws AWTException {
+    public WebGetter() throws AWTException {
        
         listOfETFs = new ArrayList<String>();
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
         driverFondListan = new ChromeDriver();
         driverFondSida = new ChromeDriver();
+        listOfElements = new HashMap<String, WebElement>();
+    }
+    
+    public void runNewChromeDriverToThisHtmlAdress(String htmlAdress) throws InterruptedException{
+        chromeDriver = new ChromeDriver();
+        connectToThisSiteWithThisWebdriver(htmlAdress, chromeDriver);
+        Thread.sleep(1000);
+    }
+    
+    public void addThisWebElementByCssSelectorAndGiveItThisName(String cssSelector, String thisName){
+        WebElement thisElement = this.getWebDriver().findElement(By.cssSelector(cssSelector));
+        listOfElements.put(thisName, thisElement);
+        
+    }
+    
+    public WebDriver getWebDriver(){
+        return this.chromeDriver;
     }
 
     public void run() throws InterruptedException {
