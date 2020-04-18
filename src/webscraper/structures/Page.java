@@ -5,6 +5,7 @@
  */
 package webscraper.structures;
 
+import webscraper.structures.functions.Function;
 import java.util.ArrayList;
 
 /**

@@ -9,7 +9,9 @@ import java.awt.AWTException;
 import java.io.IOException;
 
 import webscraper.databases.WebAdreses.WebpageHTMLDatabase;
+import webscraper.interfaces.StructuresInterface;
 import webscraper.navigation.WebGetter;
+import webscraper.structures.functions.Function;
 
 /**
  *
@@ -22,11 +24,19 @@ public class WebScraper {
      */
     public static  void main(String[] args) throws IOException, InterruptedException, AWTException {
         
-      //  Navigator navigator = new Navigator();
-        WebpageHTMLDatabase webpageDatabase = new WebpageHTMLDatabase();
-        webpageDatabase.test();
+        StructuresInterface testStructuresInterface = new StructuresInterface();
+        Function testFunction = testStructuresInterface.createFunction("AXA");
+        
+        testFunction.addPrimeElementWithThisName(testStructuresInterface.createPrimeElement("XYZ", "ZYX"));
+      //  System.out.println(testFunction.getPrimeElementWithThisName("XYZ"));
+        System.out.println(testFunction);
+        
+//  Navigator navigator = new Navigator();
+      //  WebpageHTMLDatabase webpageDatabase = new WebpageHTMLDatabase();
+     //   webpageDatabase.test();
        // navigator.run();
-        // TODO code application logic here
+        // Test navigator
+        //TE
 
 //
 //WebDriver driver = null;

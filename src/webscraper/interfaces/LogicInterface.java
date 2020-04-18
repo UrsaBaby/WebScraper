@@ -7,7 +7,9 @@ package webscraper.interfaces;
 
 import java.awt.AWTException;
 import java.util.HashMap;
+import org.openqa.selenium.WebElement;
 import webscraper.navigation.WebGetter;
+import webscraper.structures.Elements.PrimeWebElement;
 
 
 /**
@@ -19,6 +21,8 @@ public class LogicInterface {
     
     public LogicInterface() throws AWTException{
         navigator = new WebGetter();
-       
+            
     }
+    
+
 }
