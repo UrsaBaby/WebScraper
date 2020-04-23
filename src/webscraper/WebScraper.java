@@ -5,13 +5,10 @@
  */
 package webscraper;
 
-import java.awt.AWTException;
-import java.io.IOException;
 
-import webscraper.databases.WebAdreses.WebpageHTMLDatabase;
-import webscraper.interfaces.StructuresInterface;
-import webscraper.navigation.WebGetter;
-import webscraper.structures.functions.Function;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 
 /**
  *
@@ -22,14 +19,27 @@ public class WebScraper {
     /**
      * @param args the command line arguments
      */
-    public static  void main(String[] args) throws IOException, InterruptedException, AWTException {
+    public static  void main(String[] args)  {
         
-        StructuresInterface testStructuresInterface = new StructuresInterface();
-        Function testFunction = testStructuresInterface.createFunction("AXA");
+     //   StructuresInterface testStructuresInterface = new StructuresInterface();
+     //   Functions testFunction = testStructuresInterface.createFunction("AXA");
         
-        testFunction.addPrimeElementWithThisName(testStructuresInterface.createPrimeElement("XYZ", "ZYX"));
+     //   testFunction.addPrimeElement(testStructuresInterface.createPrimeElement("XYZ", "ZYX"));
       //  System.out.println(testFunction.getPrimeElementWithThisName("XYZ"));
-        System.out.println(testFunction);
+    //    System.out.println(testFunction);
+      //  Page testPage = new Page("TestPage");
+      //  testPage.addFunction(testFunction);
+      //  System.out.println(testPage.toStringFull());
+        //testFunction.connectToThisHtml("https://www.avanza.se/fonder/lista.html?fundType=Blandfond|Aktiefond&sortField=name&sortDirection=ASCENDING&selectedTab=overview");
+      //  Thread.sleep(2000);
+        //System.out.println(testFunction.getTextFromElementAtThisCss("body > aza-app > div > main > div > aza-fund-list > aza-subpage > div > div > div > aza-card > table > tbody"));
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
+        WebDriver testDriver;
+        testDriver= new ChromeDriver();
+      
+        System.out.println(testDriver.getCurrentUrl());
+        testDriver.close();
+        
         
 //  Navigator navigator = new Navigator();
       //  WebpageHTMLDatabase webpageDatabase = new WebpageHTMLDatabase();

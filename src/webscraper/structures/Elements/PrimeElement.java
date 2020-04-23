@@ -12,6 +12,7 @@ package webscraper.structures.Elements;
 public class PrimeElement {
       String name;
       String origin; //Where it came from, maybe html adress?
+      String navigatedBy;
       
       public PrimeElement(String name, String origin){
           this.name = name;

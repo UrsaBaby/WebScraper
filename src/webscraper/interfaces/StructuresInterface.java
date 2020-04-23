@@ -5,10 +5,12 @@
  */
 package webscraper.interfaces;
 
+import java.awt.AWTException;
 import org.openqa.selenium.WebElement;
 import webscraper.structures.Elements.PrimeElement;
 import webscraper.structures.Elements.PrimeWebElement;
-import webscraper.structures.functions.Function;
+import webscraper.structures.Page;
+import webscraper.structures.functions.Functions;
 
 /**
  *
@@ -27,8 +29,15 @@ public class StructuresInterface {
         return returnElement;
     }
 
-    public Function createFunction(String name) {
-        Function returnFunction = new Function(name);
+    public Functions createFunction(String name) throws AWTException {
+        Functions returnFunction = new Functions(name);
         return returnFunction;
     }
+    
+    public Page createPage(String name){
+        Page returnPage = new Page(name);
+        return returnPage;
+    }
+    
+    
 }

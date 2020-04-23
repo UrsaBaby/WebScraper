@@ -5,7 +5,7 @@
  */
 package webscraper.structures;
 
-import webscraper.structures.functions.Function;
+import webscraper.structures.functions.Functions;
 import java.util.ArrayList;
 
 /**
@@ -15,12 +15,12 @@ import java.util.ArrayList;
 public class Page {
 
     String siteName; //IE News, Economy, Social
-    ArrayList<Function> listOfAvailableFunctions;
-    ArrayList<Function> listOfUsedFunctions;
+    ArrayList<Functions> listOfAvailableFunctions;
+    ArrayList<Functions> listOfUsedFunctions;
 
     public Page(String name) {
         siteName = name;
-
+        listOfAvailableFunctions = new ArrayList<Functions>();
     }
 
     public void setSiteName(String siteName) {
@@ -31,12 +31,12 @@ public class Page {
         return this.siteName;
     }
 
-    public void addFunction(Function addThisFunction) {
-        listOfAvailableFunctions.add(addThisFunction);
+    public void addFunction(Functions addThisFunction) {
+        this.listOfAvailableFunctions.add(addThisFunction);
     }
 
     public boolean containsFunctionWithThisName(String name) {
-        for (Function checker : listOfAvailableFunctions) {
+        for (Functions checker : listOfAvailableFunctions) {
             if (checker.getName().equals(name)) {
                 return true;
             }
@@ -44,13 +44,20 @@ public class Page {
         return false;
     }
 
-    public Function getFunctionWithThisName(String name) {
-        for (Function checker : listOfAvailableFunctions) {
+    public Functions getFunctionWithThisName(String name) {
+        for (Functions checker : listOfAvailableFunctions) {
             if (checker.getName().equals(name)) {
                 return checker;
             }
         }
         return null;
     }
+
+    public String toString() {
+        return "Page name: " + this.getSiteName();
+    }
+
+
+  
 
 }
