@@ -17,6 +17,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
 
 import org.openqa.selenium.interactions.Actions;
 
@@ -30,22 +31,27 @@ public class WebGetter {
     WebDriver driverFondSida;
     ArrayList<String> listOfETFs;
     ArrayList<WebDriver> listOfWebDrivers;
+    WebDriver webDriver;
     HashMap<String, WebElement> listOfElements;
+    private boolean isUnused;
 
     public WebGetter() throws AWTException {
 
         listOfETFs = new ArrayList<String>();
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
-        driverFondListan = new ChromeDriver();
-        driverFondSida = new ChromeDriver();
+       // driverFondListan = new ChromeDriver();
+       // driverFondSida = new ChromeDriver();
         listOfElements = new HashMap<String, WebElement>();
         listOfWebDrivers = new ArrayList<WebDriver>();
-
+        isUnused = true;
+        webDriver = new ChromeDriver();
+        isUnused = false;
+        //TODO change listOfWebdriver to single webdriver
     }
 
     public void openHttmlWithThisWebdriver(String htmlAdress, WebDriver thisDriver) throws InterruptedException {
 
-        connectToThisSiteWithThisWebdriver(htmlAdress, thisDriver);
+      //  connectToThisSite(htmlAdress, thisDriver);
         Thread.sleep(1000); // TODO? How Much sleep and where to put it?
     }
 
@@ -56,11 +62,11 @@ public class WebGetter {
     }
 
     public WebDriver getWebDriver() {
-        return this.listOfWebDrivers;
+        return this.webDriver;
     }
 
-    public void run() throws InterruptedException {
-        connectToThisSiteWithThisWebdriver(fondlistanAvanza(), driverFondListan); //öppnar avanza fondlista
+   /* public void run() throws InterruptedException {
+        connectToThisSite(fondlistanAvanza(), driverFondListan); //öppnar avanza fondlista
         Thread.sleep(2000);
         WebElement fondlistanWebelement = driverFondListan.findElement(By.cssSelector("body > aza-app > div > main > div > aza-fund-list > aza-subpage > div > div > div > aza-card > table > tbody"));
         WebElement listElement = getWebElementWithThisNumberFromThisList(2, fondlistanWebelement);
@@ -70,7 +76,7 @@ public class WebGetter {
         Thread.sleep(2000);
         WebElement buttonToETFPage = driverFondListan.findElement(By.cssSelector("body > aza-app > aza-right-overlay-area > aside > ng-component > aza-fund-guide-sidebar > aza-fund-guide-sidebar-container > aza-right-overlay-template > main > aza-fund-guide-embedded > div.fund-guide-button-wrapper > a.hidden-wv.aza-button.size-small.cta-discreet"));
         String ETFPageHTML = buttonToETFPage.getAttribute("href");
-        connectToThisSiteWithThisWebdriver(ETFPageHTML, driverFondSida);
+        connectToThisSite(ETFPageHTML, driverFondSida);
         Thread.sleep(2000);
         WebElement fondName = driverFondSida.findElement(By.tagName("h1"));
         System.out.println(fondName.getText());
@@ -93,11 +99,10 @@ public class WebGetter {
 
         // nextElement = driver.findElement(By.cssSelector("body > aza-app > div > main > div > aza-fund-guide > aza-subpage > div > div > div > aza-fund-sustainability-card > aza-card > div > div.sustainability-allocations > div > aza-responsive-overlay-button:nth-child(2) > button"));
         // clickThisElementWithThisDrive(nextElement, driver);
-    }
+    }*/
 
-    public void connectToThisSiteWithThisWebdriver(String site, WebDriver thisDriver) {
-        thisDriver.navigate().to(site);
-
+    public void connectToThisSite(String url) {
+        webDriver.navigate().to(url);
     }
 
     public String fondlistanAvanza() {
@@ -120,76 +125,29 @@ public class WebGetter {
         return returnWebelement;
     }
 
-    private WebElement getWebElementFromThisCss(String url, String css) {
-        if (isAWebDriverConnectedToThisSite(url)) {
-            return this.getWebDriverConnectedToThisSite(url).findElement(By.cssSelector(css));
-        } else {
-            this.addNewWebDriver();
-        }
-        WebElement elementToGetTextFrom = listOfWebDrivers.findElement(By.cssSelector(css));
-        return elementToGetTextFrom;
-    }
+  
 
     ////////////////////////////////////////////
-    public void connectWebDriverCurrentlyConnectedToThisSiteToThisSite(String urlCurrentlyConnectedTo, String urlToConnectTo) {
-        this.getWebDriverConnectedToThisSite(urlToConnectTo).navigate().to(urlToConnectTo);
+    public String getSiteCurrentlyConnectedTo() {
+        return getWebDriver().getCurrentUrl();
     }
 
-    public void connectUnusedWebDriverToThisSite(String url) {
-        this.getUnusedWebDriver().navigate().to(url);
+    public void closeWebGetter() {
+        this.getWebDriver().close();
     }
 
-    public boolean isAWebDriverConnectedToThisSite(String url) {
-        for (WebDriver checker : listOfWebDrivers) {
-            if (checker.getCurrentUrl().equals(url)) {
-                return true;
-            }
-        }
-        return false;
+    public WebElement getElementAtThisCss(String cssSelector) throws InterruptedException {
+        WebElement returnelement = null;
+        returnelement = getWebDriver().findElement(By.cssSelector(cssSelector));
+        return returnelement;
     }
 
-    private WebDriver getWebDriverConnectedToThisSite(String url) {
-        for (WebDriver checker : listOfWebDrivers) {
-            if (checker.getCurrentUrl().equals(url)) {
-                return checker;
-            }
-        }
-        return null;
+    public boolean isUnused() {
+        return isUnused; //TODO
     }
-
-    public void closeWebDriverConnectedToThisSite(String url) {
-        this.getWebDriverConnectedToThisSite(url).close();
-    }
-
-    private WebDriver getUnusedWebDriver() {
-        if (isThereAnUnusedWebDriver()) {
-            for (WebDriver checker : listOfWebDrivers) {
-                if (checker.getCurrentUrl().equals("data:,")) {
-                    return checker;
-                }
-            }
-
-        }
-        WebDriver returndriver = new ChromeDriver();
-        return returndriver;
-    }
-
-    public void closeWebDrivers() {
-        for (WebDriver checker : listOfWebDrivers) {
-            checker.close();
-        }
-    }
-
-    private void addNewWebDriver() {
-        listOfWebDrivers.add(new ChromeDriver());
-    }
-
-    private boolean isThereAnUnusedWebDriver() {
-        for (WebDriver checker : listOfWebDrivers) {
-            if (checker.getCurrentUrl().equals("data:,")) {
-                return true;
-            }
-        }
-        return false;
+    
+    public void clickElementAtThisCss(String cssSelector){
+        Actions action = new Actions(webDriver);
+        action.click(webDriver.findElement(By.cssSelector(cssSelector)));
     }
 }

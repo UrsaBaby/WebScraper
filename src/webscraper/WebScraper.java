@@ -6,8 +6,11 @@
 package webscraper;
 
 
+import java.awt.AWTException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import webscraper.interfaces.StructuresInterface;
+import webscraper.structures.functions.Functions;
 
 
 /**
@@ -19,10 +22,15 @@ public class WebScraper {
     /**
      * @param args the command line arguments
      */
-    public static  void main(String[] args)  {
+    public static  void main(String[] args) throws AWTException  {
+  
+    
         
-     //   StructuresInterface testStructuresInterface = new StructuresInterface();
-     //   Functions testFunction = testStructuresInterface.createFunction("AXA");
+   StructuresInterface testStructuresInterface = new StructuresInterface();
+    System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
+        Functions testFunction = testStructuresInterface.createFunction("Connect");
+        testFunction.connectWebGetterToThisSite("https://www.youtube.com/");
+        
         
      //   testFunction.addPrimeElement(testStructuresInterface.createPrimeElement("XYZ", "ZYX"));
       //  System.out.println(testFunction.getPrimeElementWithThisName("XYZ"));
@@ -33,12 +41,8 @@ public class WebScraper {
         //testFunction.connectToThisHtml("https://www.avanza.se/fonder/lista.html?fundType=Blandfond|Aktiefond&sortField=name&sortDirection=ASCENDING&selectedTab=overview");
       //  Thread.sleep(2000);
         //System.out.println(testFunction.getTextFromElementAtThisCss("body > aza-app > div > main > div > aza-fund-list > aza-subpage > div > div > div > aza-card > table > tbody"));
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
-        WebDriver testDriver;
-        testDriver= new ChromeDriver();
-      
-        System.out.println(testDriver.getCurrentUrl());
-        testDriver.close();
+       
+     
         
         
 //  Navigator navigator = new Navigator();

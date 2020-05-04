@@ -6,13 +6,9 @@
 package webscraper.structures.functions;
 
 import java.awt.AWTException;
-import java.util.ArrayList;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+
 import webscraper.interfaces.NavigationInterface;
-import webscraper.structures.Elements.PrimeElement;
-import webscraper.structures.Elements.PrimeWebElement;
 
 /**
  *
@@ -26,34 +22,40 @@ public class Functions {
     public Functions(String name) throws AWTException {
         this.name = name;
         navInterface = new NavigationInterface();
-
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
     }
 
-    public String getTextFromElementAtThisCss(String cssSelector) throws InterruptedException {
-        return navInterface.getWebGetter().getWebElementFromThisCss(cssSelector).getText();
+    public void connectWebGetterToThisSite(String url) throws AWTException {
+        navInterface.getWebGetter().connectToThisSite(url);
     }
 
-    public void connectToThisHtml(String html) {
-        navInterface.getWebGetter().connectWebGetterToThisSite(html);
+    public String getTextFromElementAtThisCssOnThisSite(String cssSelector, String url) throws InterruptedException, AWTException {
+        return navInterface.getWebGetterConnectedToThisSite(url).getElementAtThisCss(cssSelector).getText();
+    }
+
+    public void clickElementAtThisCssOnThisSite(String cssSelector, String url) throws AWTException {
+        if (navInterface.isAWebGetterAtThisSite(url)) {
+            navInterface.getWebGetterConnectedToThisSite(url).clickElementAtThisCss(cssSelector);
+        } else {
+            navInterface.getWebGetter().clickElementAtThisCss(cssSelector);
+        }
+    }
+    
+
+
+    public String getName() {
+        return this.name;
     }
 
     public void closeFunction() {
-        navInterface.getWebGetter().close();
+        navInterface.closeNavInterface();
     }
-    
-    public String getName(){
-        return this.name;
-    }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
 
     public String toString() {
         return "Function name: " + this.getName();
     }
-
-
 
 }
