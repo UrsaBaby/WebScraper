@@ -28,16 +28,14 @@ public class Functions {
         navInterface.getWebGetter().connectToThisSite(url);
     }
 
-    public String getTextFromElementAtThisCssOnThisSite(String cssSelector, String url) throws InterruptedException, AWTException {
-        return navInterface.getWebGetterConnectedToThisSite(url).getElementAtThisCss(cssSelector).getText();
+    public String getTextFromElementAtThisCss(String cssSelector) throws InterruptedException, AWTException {
+        return navInterface.getWebGetter().getElementAtThisCss(cssSelector).getText();
     }
 
-    public void clickElementAtThisCssOnThisSite(String cssSelector, String url) throws AWTException {
-        if (navInterface.isAWebGetterAtThisSite(url)) {
-            navInterface.getWebGetterConnectedToThisSite(url).clickElementAtThisCss(cssSelector);
-        } else {
+    public void clickElementAtThisCss(String cssSelector) throws AWTException {
+      
             navInterface.getWebGetter().clickElementAtThisCss(cssSelector);
-        }
+        
     }
     
 

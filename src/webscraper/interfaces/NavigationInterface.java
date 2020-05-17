@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.WebDriver;
 
-import webscraper.navigation.WebGetter;
+import webscraper.structures.navigation.WebGetter;
 import webscraper.structures.Elements.PrimeElement;
 
 /**
@@ -19,54 +19,34 @@ import webscraper.structures.Elements.PrimeElement;
  */
 public class NavigationInterface {
 
-    ArrayList<WebGetter> listOfWebGetters;
+    WebGetter webGetter; //TODO maybe only should be 1 webgetter?
 
     public NavigationInterface() throws AWTException {
-        listOfWebGetters = new ArrayList<WebGetter>();
-  
+        webGetter = new WebGetter();
+
     }
 
     public WebGetter getWebGetter() throws AWTException {
 
-        WebGetter returnGetter = new WebGetter();
-        listOfWebGetters.add(returnGetter);
-        return returnGetter;
+        return this.webGetter;
     }
 
     public void closeWebGetters() {
-        for (WebGetter checker : listOfWebGetters) {
-            checker.closeWebGetter();
-        }
+        webGetter.close();
     }
 
-    public boolean isAWebGetterAtThisSite(String url) {
-        for (WebGetter checker : listOfWebGetters) {
-            if (checker.getSiteCurrentlyConnectedTo().equals(url)) {
-                return true;
-            }
+    public boolean isWebGetterConnectedToThisSite(String url) {
+
+        if (webGetter.getSiteCurrentlyConnectedTo().equals(url)) {
+            return true;
         }
         return false;
     }
 
-    public WebGetter getWebGetterConnectedToThisSite(String url) {
-        WebGetter returnGetter = null;
-        for (WebGetter checker : listOfWebGetters) {
-            if (checker.getSiteCurrentlyConnectedTo().equals(url)) {
-                returnGetter = checker;
-            }
-        }
-        return returnGetter;
-    }
 
-    public void closeWebGetterConnectedToThisSite(String url) {
-        for (WebGetter checker : listOfWebGetters) {
-            if (checker.getSiteCurrentlyConnectedTo().equals(url)) {
-                checker.closeWebGetter();
-            }
-        }
-    }
-    
-    public void closeNavInterface(){
+
+
+    public void closeNavInterface() {
         this.closeWebGetters();
     }
 

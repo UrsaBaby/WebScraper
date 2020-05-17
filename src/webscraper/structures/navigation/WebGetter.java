@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.navigation;
+package webscraper.structures.navigation;
 
 import java.awt.AWTException;
 
@@ -132,7 +132,7 @@ public class WebGetter {
         return getWebDriver().getCurrentUrl();
     }
 
-    public void closeWebGetter() {
+    public void close() {
         this.getWebDriver().close();
     }
 

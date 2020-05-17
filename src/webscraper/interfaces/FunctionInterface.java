@@ -5,23 +5,58 @@
  */
 package webscraper.interfaces;
 
+import java.awt.AWTException;
 import java.util.ArrayList;
-import webscraper.structures.FunctionInstruction;
-import webscraper.structures.ListOfFunctionInstructions;
+import webscraper.structures.functions.Functions;
+import webscraper.structures.functions.FunctionsInstruction;
+import webscraper.structures.functions.FunctionsInstructionCommand;
+import webscraper.structures.functions.ListOfFunctionInstructions;
 
 /**
  *
  * @author Peter
  */
 public class FunctionInterface {
-    
-    public FunctionInterface(){
-        
+
+    public FunctionInterface()  {
+       
     }
-    
-    public void run(ListOfFunctionInstructions listOfFunctionInstruction){
-        for(FunctionInstruction checker : listOfFunctionInstruction.getListOfFunctionInstruction()){
-            
-        }
+
+ 
+
+    public ListOfFunctionInstructions createListOfFunctionsInstructions() {
+        return new ListOfFunctionInstructions();
+    }
+
+    public Functions createFunction(String name) throws AWTException {
+        Functions returnFunction = new Functions(name);
+        return returnFunction;
+    }
+
+    public FunctionsInstruction createFunctionInstructionConnectToThisSite(String url) {
+        FunctionsInstruction returnFI = new FunctionsInstruction();
+        returnFI.addStringValue(url);
+        returnFI.setCommand(FunctionsInstructionCommand.CONNECTTOTHISITE);
+        return returnFI;
+    }
+
+    public FunctionsInstruction createFunctionInstructionClickThisWebElement(String cssSelector) {
+        FunctionsInstruction returnFI = new FunctionsInstruction();
+        returnFI.addStringValue(cssSelector);
+        returnFI.setCommand(FunctionsInstructionCommand.CLICKWEBELEMENT);
+        return returnFI;
+    }
+
+    public FunctionsInstruction createFunctionInstructionGetTextFromWebElement(String cssSelector) {
+        FunctionsInstruction returnFI = new FunctionsInstruction();
+        returnFI.addStringValue(cssSelector);
+        returnFI.setCommand(FunctionsInstructionCommand.GETTEXTFROMWEBELEMENT);
+        return returnFI;
+    }
+
+    public FunctionsInstruction createFunctionInstructionCloseFunctions() {
+        FunctionsInstruction returnFI = new FunctionsInstruction();
+        returnFI.setCommand(FunctionsInstructionCommand.CLOSE);
+        return returnFI;
     }
 }

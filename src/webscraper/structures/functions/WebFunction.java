@@ -8,19 +8,19 @@ package webscraper.structures.functions;
 import java.awt.AWTException;
 import org.openqa.selenium.WebElement;
 import webscraper.interfaces.NavigationInterface;
-import webscraper.navigation.WebGetter;
+import webscraper.structures.navigation.WebGetter;
 import webscraper.structures.Elements.PrimeWebElement;
 
 
 /**
  *
- * @author Peter
+ * @author Peter Meisel
  */
-public class WebFunction extends Functions{
+public class WebFunction {
     
     private NavigationInterface NavInterface;
     public WebFunction(String name) throws AWTException {
-        super(name);
+      
         NavInterface = new NavigationInterface();           
     }
     

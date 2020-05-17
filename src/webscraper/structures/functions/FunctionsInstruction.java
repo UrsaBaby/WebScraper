@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures;
+package webscraper.structures.functions;
 
 import java.util.ArrayList;
 
@@ -11,27 +11,29 @@ import java.util.ArrayList;
  *
  * @author Peter
  */
-public class FunctionInstruction {
+public class FunctionsInstruction {
    ArrayList<String> listOfStringValues;
     ArrayList<Integer> listOfIntValues;
-    InstructionCommand command;
+    FunctionsInstructionCommand command;
     //TODO ENUM or someway to check instruction (String?) and ListOfStringValues and listOfIntValues
-    public FunctionInstruction(){
+    public FunctionsInstruction(){
         listOfStringValues = new ArrayList<String>();
         listOfIntValues = new ArrayList<Integer>();             
     }
     
-    public void setCommand(InstructionCommand command){
+    public void setCommand(FunctionsInstructionCommand command){
         this.command = command;
     }
     
-    public InstructionCommand getCommand(){
+    public FunctionsInstructionCommand getCommand(){
         return this.command;
     }
     
-    public void addStringValue(String addValue){
-        this.getStringValues().add(addValue);
+    public void addStringValue(String stringValue){
+        this.getStringValues().add(stringValue);
     }
+    
+ 
     
     private ArrayList<String> getStringValues(){
         return this.listOfStringValues;
@@ -43,6 +45,14 @@ public class FunctionInstruction {
     
     private ArrayList<Integer> getIntValues(){
         return this.listOfIntValues;
+    }
+    
+    public void addIntValues(int intValue){
+        this.getIntValues().add(intValue);
+    }
+    
+    public int getIntValueWithIndex(int index){
+        return this.getIntValues().get(index);
     }
     
     public void addIntValue(int intValue){

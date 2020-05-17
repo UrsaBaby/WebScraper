@@ -29,10 +29,7 @@ public class StructuresInterface {
         return returnElement;
     }
 
-    public Functions createFunction(String name) throws AWTException {
-        Functions returnFunction = new Functions(name);
-        return returnFunction;
-    }
+
     
     public Page createPage(String name){
         Page returnPage = new Page(name);

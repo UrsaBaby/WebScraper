@@ -9,8 +9,12 @@ package webscraper;
 import java.awt.AWTException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import webscraper.interfaces.FunctionInterface;
+import webscraper.interfaces.LogicInterface;
 import webscraper.interfaces.StructuresInterface;
 import webscraper.structures.functions.Functions;
+import webscraper.structures.functions.FunctionsInstruction;
+import webscraper.structures.functions.FunctionsInstructionCommand;
 
 
 /**
@@ -22,14 +26,20 @@ public class WebScraper {
     /**
      * @param args the command line arguments
      */
-    public static  void main(String[] args) throws AWTException  {
+    public static  void main(String[] args) throws AWTException, InterruptedException  {
   
     
         
-   StructuresInterface testStructuresInterface = new StructuresInterface();
+  FunctionInterface testFI = new FunctionInterface();
     System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
-        Functions testFunction = testStructuresInterface.createFunction("Connect");
-        testFunction.connectWebGetterToThisSite("https://www.youtube.com/");
+       // Functions testFunction = testFI.createFunction("Connect");
+      //  testFunction.connectWebGetterToThisSite("https://www.youtube.com/");
+        LogicInterface testLI;
+        
+        testLI = new LogicInterface();
+        FunctionsInstruction testFInstruc = testFI.createFunctionInstructionConnectToThisSite("https://www.youtube.com/");
+  
+        testLI.runFunctionInstruction(testFInstruc);
         
         
      //   testFunction.addPrimeElement(testStructuresInterface.createPrimeElement("XYZ", "ZYX"));
