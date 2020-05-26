@@ -6,28 +6,49 @@
 package webscraper.interfaces;
 
 import java.awt.AWTException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import webscraper.structures.functions.Functions;
 import webscraper.structures.functions.FunctionsInstruction;
+import webscraper.structures.functions.FunctionsInstructionListRunner;
 import webscraper.structures.functions.ListOfFunctionInstructions;
 
 /**
  *
  * @author Peter
  */
-public class LogicInterface {
+public class LogicInterface { //Merge with FunctionInstructionListRunner?
 
     Functions functions;
+    ArrayList<Thread> threadList; //remove?
 
     public LogicInterface() throws AWTException {
         functions = new Functions("LogicInterfaceFunctions");
+        threadList = new ArrayList<Thread>();
     }
-    
-    public void runListOfFunctionInstructions(ListOfFunctionInstructions listOfFunctionInstruction) throws AWTException, InterruptedException {
-        for (FunctionsInstruction checker : listOfFunctionInstruction.getListOfFunctionInstruction()) {
-            this.runFunctionInstruction(checker);
+
+    public void runListOfFunctionInstructionsInThisThread(ListOfFunctionInstructions listOfFunctionsInstructions) {
+        for (FunctionsInstruction checker : listOfFunctionsInstructions.getListOfFunctionInstruction()) {
+            try {
+                runFunctionInstruction(checker);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LogicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Couldnt run FunctionsInstruction InterreptedException");
+            } catch (AWTException ex) {
+                Logger.getLogger(LogicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Couldnt run FunctionsInstruction AWTEexception");
+            }
         }
     }
-    
+
+    public void runListOfFunctionInstructionsInNewThread(ListOfFunctionInstructions listOfFunctionInstruction) throws AWTException, InterruptedException {
+        FunctionsInstructionListRunner listRunner = new FunctionsInstructionListRunner(listOfFunctionInstruction);
+        Thread thread = new Thread(listRunner);
+        thread.start();
+
+    }
+
     public void runFunctionInstruction(FunctionsInstruction runThis) throws InterruptedException, AWTException {
         switch (runThis.getCommand()) {
             case CLICKWEBELEMENT:
@@ -42,7 +63,11 @@ public class LogicInterface {
             case CLOSE:
                 functions.closeFunction();
                 break;
-            
+            case STARTWEBGETTER:
+                functions.startWebGetter();
+                break;
+
         }
     }
+
 }

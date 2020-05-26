@@ -14,5 +14,6 @@ public enum FunctionsInstructionCommand {
     GETTEXTFROMWEBELEMENT,
     CLICKWEBELEMENT,
     CLOSE,
+    STARTWEBGETTER,
     
 }

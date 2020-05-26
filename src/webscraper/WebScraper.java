@@ -15,6 +15,8 @@ import webscraper.interfaces.StructuresInterface;
 import webscraper.structures.functions.Functions;
 import webscraper.structures.functions.FunctionsInstruction;
 import webscraper.structures.functions.FunctionsInstructionCommand;
+import webscraper.structures.functions.FunctionsInstructionListRunner;
+import webscraper.structures.functions.ListOfFunctionInstructions;
 
 
 /**
@@ -34,14 +36,21 @@ public class WebScraper {
     System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
        // Functions testFunction = testFI.createFunction("Connect");
       //  testFunction.connectWebGetterToThisSite("https://www.youtube.com/");
-        LogicInterface testLI;
+      LogicInterface testLI;
         
-        testLI = new LogicInterface();
-        FunctionsInstruction testFInstruc = testFI.createFunctionInstructionConnectToThisSite("https://www.youtube.com/");
-  
-        testLI.runFunctionInstruction(testFInstruc);
-        
-        
+      testLI = new LogicInterface();
+        FunctionsInstruction connect = testFI.createFunctionInstructionConnectToThisSite("https://www.youtube.com/");
+        FunctionsInstruction start = testFI.createFunctionStartWebGetter();
+       
+    //  testLI.runFunctionInstruction(testFInstruc);
+        ListOfFunctionInstructions listOfFI = new ListOfFunctionInstructions();
+        listOfFI.addFunctionsInstruction(start);
+        listOfFI.addFunctionsInstruction(connect);
+        testLI.runListOfFunctionInstructionsInNewThread(listOfFI);
+      //    FunctionsInstructionListRunner listRunner = new FunctionsInstructionListRunner(listOfFI);
+        //  Thread thread = new Thread(listRunner);
+         // thread.start();
+       
      //   testFunction.addPrimeElement(testStructuresInterface.createPrimeElement("XYZ", "ZYX"));
       //  System.out.println(testFunction.getPrimeElementWithThisName("XYZ"));
     //    System.out.println(testFunction);

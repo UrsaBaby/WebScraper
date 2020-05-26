@@ -23,7 +23,11 @@ public class Functions {
         this.name = name;
         navInterface = new NavigationInterface();
     }
-
+    
+    public void startWebGetter() throws AWTException{
+        navInterface.startWebGetter();
+    }
+    
     public void connectWebGetterToThisSite(String url) throws AWTException {
         navInterface.getWebGetter().connectToThisSite(url);
     }

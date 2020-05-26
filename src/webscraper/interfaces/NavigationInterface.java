@@ -19,13 +19,17 @@ import webscraper.structures.Elements.PrimeElement;
  */
 public class NavigationInterface {
 
-    WebGetter webGetter; //TODO maybe only should be 1 webgetter?
+    WebGetter webGetter;
 
     public NavigationInterface() throws AWTException {
-        webGetter = new WebGetter();
+       
 
     }
-
+    
+    public void startWebGetter() throws AWTException{
+         webGetter = new WebGetter();
+    }
+    
     public WebGetter getWebGetter() throws AWTException {
 
         return this.webGetter;

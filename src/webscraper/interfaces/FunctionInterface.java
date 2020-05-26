@@ -59,4 +59,10 @@ public class FunctionInterface {
         returnFI.setCommand(FunctionsInstructionCommand.CLOSE);
         return returnFI;
     }
+    
+    public FunctionsInstruction createFunctionStartWebGetter() {
+        FunctionsInstruction returnFI = new FunctionsInstruction();
+        returnFI.setCommand(FunctionsInstructionCommand.STARTWEBGETTER);
+        return returnFI;
+    }
 }

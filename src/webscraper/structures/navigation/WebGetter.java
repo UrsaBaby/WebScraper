@@ -25,27 +25,26 @@ import org.openqa.selenium.interactions.Actions;
  *
  * @author Peter
  */
-public class WebGetter {
+public class WebGetter { //TODO REFACTOR!
 
-    WebDriver driverFondListan;
-    WebDriver driverFondSida;
+
     ArrayList<String> listOfETFs;
-    ArrayList<WebDriver> listOfWebDrivers;
+   
     WebDriver webDriver;
     HashMap<String, WebElement> listOfElements;
     private boolean isUnused;
 
     public WebGetter() throws AWTException {
 
-        listOfETFs = new ArrayList<String>();
+        //listOfETFs = new ArrayList<String>();
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
-       // driverFondListan = new ChromeDriver();
-       // driverFondSida = new ChromeDriver();
+   
         listOfElements = new HashMap<String, WebElement>();
-        listOfWebDrivers = new ArrayList<WebDriver>();
+        //listOfWebDrivers = new ArrayList<WebDriver>();
         isUnused = true;
         webDriver = new ChromeDriver();
         isUnused = false;
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //TODO change listOfWebdriver to single webdriver
     }
 
@@ -102,28 +101,19 @@ public class WebGetter {
     }*/
 
     public void connectToThisSite(String url) {
+     
         webDriver.navigate().to(url);
     }
 
-    public String fondlistanAvanza() {
+   /* public String fondlistanAvanza() {
         return "https://www.avanza.se/fonder/lista.html?fundType=Blandfond|Aktiefond&sortField=name&sortDirection=ASCENDING&selectedTab=overview";
-    }
+    }*/
 
-    public void clickThisElementWithThisDrive(WebElement thisElement, WebDriver driver) throws InterruptedException {
-        Actions action = new Actions(driver);
+   
 
-        action.click(thisElement).perform();
-    }
+  
 
-    private void goThroughWebElementWithThisWebdriverAndAddValuesToThisStringArray(WebElement fondlistan, WebDriver thisDriver, ArrayList<String> thisStringList) {
-
-    }
-
-    public WebElement getWebElementWithThisNumberFromThisList(int numberInList, WebElement list) { //TODO returns full list
-
-        WebElement returnWebelement = driverFondListan.findElement(By.cssSelector("body > aza-app > div > main > div > aza-fund-list > aza-subpage > div > div > div > aza-card > table > tbody > tr:nth-child(" + numberInList + ") > td.name.is-neutral.ng-star-inserted > aza-fund-list-table-data > div > button > span"));
-        return returnWebelement;
-    }
+  
 
   
 

@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class ListOfFunctionInstructions {
      private ArrayList<FunctionsInstruction> listOfFunctionsInstructions;
+     String name;
      
      public ListOfFunctionInstructions(){
          listOfFunctionsInstructions = new ArrayList<FunctionsInstruction>();

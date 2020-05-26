@@ -16,14 +16,11 @@ import webscraper.structures.Elements.PrimeWebElement;
  *
  * @author Peter Meisel
  */
-public class WebFunction {
+public class WebFunction extends Functions{
     
-    private NavigationInterface NavInterface;
-    public WebFunction(String name) throws AWTException {
-      
-        NavInterface = new NavigationInterface();           
-    }
-    
+public WebFunction(String name) throws AWTException{
+  super(name);
+}
     
 
 }
