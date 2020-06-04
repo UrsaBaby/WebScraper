@@ -21,6 +21,24 @@ public class WebFunction extends Functions{
 public WebFunction(String name) throws AWTException{
   super(name);
 }
+
+  public void startWebGetter() throws AWTException{
+        navInterface.startWebGetter();
+    }
+    
+    public void connectWebGetterToThisSite(String url) throws AWTException {
+        navInterface.getWebGetter().connectToThisSite(url);
+    }
+
+    public String getTextFromElementAtThisCss(String cssSelector) throws InterruptedException, AWTException {
+        return navInterface.getWebGetter().getElementAtThisCss(cssSelector).getText();
+    }
+
+    public void clickElementAtThisCss(String cssSelector) throws AWTException {
+      
+            navInterface.getWebGetter().clickElementAtThisCss(cssSelector);
+        
+    }
     
 
 }
