@@ -5,13 +5,11 @@
  */
 package webscraper;
 
-
 import java.awt.AWTException;
 import webscraper.interfaces.FunctionInterface;
 import webscraper.interfaces.LogicInterface;
 import webscraper.structures.functions.FunctionsInstruction;
 import webscraper.structures.functions.ListOfFunctionInstructions;
-
 
 /**
  *
@@ -22,27 +20,21 @@ public class WebScraper {
     /**
      * @param args the command line arguments
      */
-    public static  void main(String[] args) throws AWTException, InterruptedException  {
-  
-    
-        
-  FunctionInterface testFI = new FunctionInterface();
-    System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
-   
-      LogicInterface testLI;
-        
-      testLI = new LogicInterface();
+    public static void main(String[] args) throws AWTException, InterruptedException {
+
+        FunctionInterface testFI = new FunctionInterface();
+        LogicInterface testLI;
+
+        testLI = new LogicInterface();
         FunctionsInstruction connect = testFI.createFunctionInstructionConnectToThisSite("https://www.youtube.com/");
         FunctionsInstruction start = testFI.createFunctionStartWebGetter();
-   
+
         ListOfFunctionInstructions listOfFI = new ListOfFunctionInstructions();
         listOfFI.addFunctionsInstruction(start);
         listOfFI.addFunctionsInstruction(connect);
         testLI.runListOfFunctionInstructionsInNewThread(listOfFI);
-     
+
 //
     }
-    
-    
 
 }
