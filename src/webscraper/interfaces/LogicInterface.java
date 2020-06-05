@@ -21,14 +21,14 @@ import webscraper.structures.functions.ListOfFunctionInstructions;
 public class LogicInterface { //Merge with FunctionInstructionListRunner?
 
     Functions functions;
-    ArrayList<Thread> threadList; //remove?
+
+    FunctionsInstructionListRunner listRunner;
 
     public LogicInterface() throws AWTException {
         functions = new Functions("LogicInterfaceFunctions");
-        threadList = new ArrayList<Thread>();
     }
 
-    public void runListOfFunctionInstructionsInThisThread(ListOfFunctionInstructions listOfFunctionsInstructions) {
+    public void runListOfFunctionInstructionsInMainThread(ListOfFunctionInstructions listOfFunctionsInstructions) {
         for (FunctionsInstruction checker : listOfFunctionsInstructions.getListOfFunctionInstruction()) {
             try {
                 runFunctionInstruction(checker);
@@ -44,9 +44,9 @@ public class LogicInterface { //Merge with FunctionInstructionListRunner?
 
     public void runListOfFunctionInstructionsInNewThread(ListOfFunctionInstructions listOfFunctionInstruction) throws AWTException, InterruptedException {
         FunctionsInstructionListRunner listRunner = new FunctionsInstructionListRunner(listOfFunctionInstruction);
-        Thread thread = new Thread(listRunner);
-        thread.start();
-
+        listRunner = new FunctionsInstructionListRunner(listOfFunctionInstruction);
+        Thread runThread = new Thread(listRunner);
+        runThread.start();
     }
 
     public void runFunctionInstruction(FunctionsInstruction runThis) throws InterruptedException, AWTException {
@@ -66,7 +66,6 @@ public class LogicInterface { //Merge with FunctionInstructionListRunner?
             case STARTWEBGETTER:
                 functions.startWebGetter();
                 break;
-
         }
     }
 

@@ -25,7 +25,7 @@ import org.openqa.selenium.interactions.Actions;
  *
  * @author Peter
  */
-public class WebGetter { //TODO REFACTOR!
+public class WebGetter {
 
     WebDriver webDriver;
 

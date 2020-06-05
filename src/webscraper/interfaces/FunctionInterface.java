@@ -11,6 +11,7 @@ import webscraper.structures.functions.Functions;
 import webscraper.structures.functions.FunctionsInstruction;
 import webscraper.structures.functions.FunctionsInstructionCommand;
 import webscraper.structures.functions.ListOfFunctionInstructions;
+import webscraper.structures.functions.WebFunction;
 
 /**
  *
@@ -31,6 +32,11 @@ public class FunctionInterface {
     public Functions createFunction(String name) throws AWTException {
         Functions returnFunction = new Functions(name);
         return returnFunction;
+    }
+    
+    public WebFunction createWebFunction(String name) throws AWTException{
+        WebFunction returnWebFunction = new WebFunction(name);
+        return returnWebFunction;
     }
 
     public FunctionsInstruction createFunctionInstructionConnectToThisSite(String url) {

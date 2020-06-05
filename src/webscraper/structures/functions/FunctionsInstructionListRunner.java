@@ -47,8 +47,7 @@ public class FunctionsInstructionListRunner implements Runnable {
 
                     case STARTWEBGETTER:
                         functions.startWebGetter();
-                        break;
-
+                        break;                       
                 }
             }
         } catch (Exception e) {
