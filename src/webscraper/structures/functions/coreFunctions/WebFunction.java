@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.functions;
+package webscraper.structures.functions.coreFunctions;
+
 
 import java.awt.AWTException;
-import org.openqa.selenium.WebElement;
 import webscraper.interfaces.NavigationInterface;
-import webscraper.structures.navigation.WebGetter;
-import webscraper.structures.Elements.PrimeWebElement;
+
 
 
 /**
@@ -20,6 +19,7 @@ public class WebFunction extends Functions{
     
 public WebFunction(String name) throws AWTException{
   super(name);
+  navInterface = new NavigationInterface();
 }
 
     public void startWebGetter() throws AWTException{

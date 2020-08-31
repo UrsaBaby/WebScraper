@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.functions;
+package webscraper.structures.functions.coreFunctions;
 
 import java.awt.AWTException;
+import webscraper.interfaces.FileFunctionInterface;
 
 
 import webscraper.interfaces.NavigationInterface;
@@ -18,10 +19,11 @@ public class Functions {
 
     String name;
     NavigationInterface navInterface;
+    FileFunctionInterface FileFuncInterface;
 
     public Functions(String name) throws AWTException {
         this.name = name;
-        navInterface = new NavigationInterface();
+        
     }
     
     public String getName() {
@@ -30,6 +32,7 @@ public class Functions {
 
     public void closeFunction() {
         navInterface.closeNavInterface();
+        FileFuncInterface.c
     }
 
     public void setName(String name) {

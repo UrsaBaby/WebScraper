@@ -7,20 +7,20 @@ package webscraper.interfaces;
 
 import java.awt.AWTException;
 import java.util.ArrayList;
-import webscraper.structures.functions.Functions;
-import webscraper.structures.functions.FunctionsInstruction;
-import webscraper.structures.functions.FunctionsInstructionCommand;
-import webscraper.structures.functions.ListOfFunctionInstructions;
-import webscraper.structures.functions.WebFunction;
+import webscraper.structures.functions.coreFunctions.Functions;
+import webscraper.structures.functions.functionInstruction.FunctionsInstruction;
+import webscraper.structures.functions.functionInstruction.FunctionsInstructionCommand;
+import webscraper.structures.functions.functionInstruction.ListOfFunctionInstructions;
+import webscraper.structures.functions.coreFunctions.WebFunction;
 
 /**
  *
  * @author Peter
  */
-public class FunctionInterface {
+public class WebFunctionInterface {
 
-    public FunctionInterface()  {
-       
+    public WebFunctionInterface() throws AWTException  {
+        
     }
 
  
@@ -29,10 +29,6 @@ public class FunctionInterface {
         return new ListOfFunctionInstructions();
     }
 
-    public Functions createFunction(String name) throws AWTException {
-        Functions returnFunction = new Functions(name);
-        return returnFunction;
-    }
     
     public WebFunction createWebFunction(String name) throws AWTException{
         WebFunction returnWebFunction = new WebFunction(name);
@@ -71,4 +67,6 @@ public class FunctionInterface {
         returnFI.setCommand(FunctionsInstructionCommand.STARTWEBGETTER);
         return returnFI;
     }
+    
+
 }

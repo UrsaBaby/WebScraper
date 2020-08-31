@@ -6,12 +6,7 @@
 package webscraper.interfaces;
 
 import java.awt.AWTException;
-import java.util.ArrayList;
-
-import org.openqa.selenium.WebDriver;
-
 import webscraper.structures.navigation.WebGetter;
-import webscraper.structures.Elements.PrimeElement;
 
 /**
  *
@@ -40,7 +35,6 @@ public class NavigationInterface {
     }
 
     public boolean isWebGetterConnectedToThisSite(String url) {
-
         if (webGetter.getSiteCurrentlyConnectedTo().equals(url)) {
             return true;
         }

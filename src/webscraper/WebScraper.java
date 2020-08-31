@@ -6,10 +6,12 @@
 package webscraper;
 
 import java.awt.AWTException;
-import webscraper.interfaces.FunctionInterface;
-import webscraper.interfaces.LogicInterface;
-import webscraper.structures.functions.FunctionsInstruction;
-import webscraper.structures.functions.ListOfFunctionInstructions;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import webscraper.structures.fileHandling.fileHandler;
+
 
 /**
  *
@@ -20,9 +22,9 @@ public class WebScraper {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws AWTException, InterruptedException {
+    public static void main(String[] args) throws AWTException, InterruptedException, IOException {
 
-        FunctionInterface testFI = new FunctionInterface();
+     /*   FunctionInterface testFI = new FunctionInterface();
         LogicInterface testLI;
 
         testLI = new LogicInterface();
@@ -32,9 +34,18 @@ public class WebScraper {
         ListOfFunctionInstructions listOfFI = new ListOfFunctionInstructions();
         listOfFI.addFunctionsInstruction(start);
         listOfFI.addFunctionsInstruction(connect);
-        testLI.runListOfFunctionInstructionsInNewThread(listOfFI);
+        testLI.runListOfFunctionInstructionsInNewThread(listOfFI);*/
 
-//
+        //fileHandler fileHandler = new fileHandler();
+      //  fileHandler.createNewFileWithThisNameAtThisLocationInThisFormat("nyttTest", "C:\\Users\\Peter\\Documents\\", ".txt");
+      File testFile = new File("jagindar.txt");
+     
+        FileWriter myWrite = new FileWriter(testFile);
+     
+        
+        myWrite.close();
+        testFile.createNewFile();
+   
     }
 
 }

@@ -5,12 +5,7 @@
  */
 package webscraper.interfaces;
 
-import java.awt.AWTException;
-import org.openqa.selenium.WebElement;
-import webscraper.structures.Elements.PrimeElement;
-import webscraper.structures.Elements.PrimeWebElement;
-import webscraper.structures.Page;
-import webscraper.structures.functions.Functions;
+
 
 /**
  *
@@ -18,23 +13,7 @@ import webscraper.structures.functions.Functions;
  */
 public class StructuresInterface {
 
-    public PrimeWebElement createPrimeWebElement(WebElement thisElement, String name, String origin) {
 
-        PrimeWebElement returnElement = new PrimeWebElement(name,origin,thisElement);
-        return returnElement;
-    }
-
-    public PrimeElement createPrimeElement(String name, String origin) {
-        PrimeElement returnElement = new PrimeElement(name, origin);
-        return returnElement;
-    }
-
-
-    
-    public Page createPage(String name){
-        Page returnPage = new Page(name);
-        return returnPage;
-    }
     
     
 }

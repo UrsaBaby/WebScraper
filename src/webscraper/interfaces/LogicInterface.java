@@ -9,10 +9,10 @@ import java.awt.AWTException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import webscraper.structures.functions.Functions;
-import webscraper.structures.functions.FunctionsInstruction;
-import webscraper.structures.functions.FunctionsInstructionListRunner;
-import webscraper.structures.functions.ListOfFunctionInstructions;
+import webscraper.structures.functions.coreFunctions.Functions;
+import webscraper.structures.functions.functionInstruction.FunctionsInstruction;
+import webscraper.structures.functions.functionInstruction.FunctionsInstructionListRunner;
+import webscraper.structures.functions.functionInstruction.ListOfFunctionInstructions;
 
 /**
  *

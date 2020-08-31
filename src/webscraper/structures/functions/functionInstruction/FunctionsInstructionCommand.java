@@ -3,17 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.functions;
+package webscraper.structures.functions.functionInstruction;
 
 /**
  *
  * @author Peter
  */
 public enum FunctionsInstructionCommand {
+   //WebFunctions
     CONNECTTOTHISITE,
     GETTEXTFROMWEBELEMENT,
-    CLICKWEBELEMENT,
-    CLOSEFUNCTION,
+    CLICKWEBELEMENT, 
     STARTWEBGETTER,
-    CLOSEWEBFUNCTION
+    CLOSEWEBFUNCTION,
+    
+   //All functions
+    CLOSEFUNCTION,
+    
+   //FileFunctions
+    CREATENEWFILE
 }
