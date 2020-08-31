@@ -60,9 +60,9 @@ public class FunctionInterface {
         return returnFI;
     }
 
-    public FunctionsInstruction createFunctionInstructionCloseFunctions() {
+    public FunctionsInstruction createFunctionInstructionCloseWebFunctions() {
         FunctionsInstruction returnFI = new FunctionsInstruction();
-        returnFI.setCommand(FunctionsInstructionCommand.CLOSE);
+        returnFI.setCommand(FunctionsInstructionCommand.CLOSEWEBFUNCTION);
         return returnFI;
     }
     

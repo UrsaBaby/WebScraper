@@ -70,7 +70,7 @@ public class FunctionsInstructionListRunner implements Runnable {
                     case GETTEXTFROMWEBELEMENT:
                         webFunctions.getTextFromElementAtThisCss(checker.getStringValueWithIndex(0));
                         break;
-                    case CLOSE:
+                    case CLOSEWEBFUNCTION:
                         webFunctions.closeFunction();
                         break;
                     case STARTWEBGETTER:

@@ -22,7 +22,7 @@ public WebFunction(String name) throws AWTException{
   super(name);
 }
 
-  public void startWebGetter() throws AWTException{
+    public void startWebGetter() throws AWTException{
         navInterface.startWebGetter();
     }
     
@@ -39,6 +39,7 @@ public WebFunction(String name) throws AWTException{
             navInterface.getWebGetter().clickElementAtThisCss(cssSelector);
         
     }
+    
     
 
 }

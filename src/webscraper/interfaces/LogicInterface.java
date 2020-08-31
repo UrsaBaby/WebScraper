@@ -28,7 +28,7 @@ public class LogicInterface { //Merge with FunctionInstructionListRunner?
         functions = new Functions("LogicInterfaceFunctions");
     }
 
-    public void runListOfFunctionInstructionsInMainThread(ListOfFunctionInstructions listOfFunctionsInstructions) {
+   /* public void runListOfFunctionInstructionsInMainThread(ListOfFunctionInstructions listOfFunctionsInstructions) {
         for (FunctionsInstruction checker : listOfFunctionsInstructions.getListOfFunctionInstruction()) {
             try {
                 runFunctionInstruction(checker);
@@ -40,7 +40,7 @@ public class LogicInterface { //Merge with FunctionInstructionListRunner?
                 System.out.println("Couldnt run FunctionsInstruction AWTEexception");
             }
         }
-    }
+    }*/
 
     public void runListOfFunctionInstructionsInNewThread(ListOfFunctionInstructions listOfFunctionInstruction) throws AWTException, InterruptedException {
         FunctionsInstructionListRunner listRunner = new FunctionsInstructionListRunner(listOfFunctionInstruction);
@@ -49,7 +49,7 @@ public class LogicInterface { //Merge with FunctionInstructionListRunner?
         runThread.start();
     }
 
-    public void runFunctionInstruction(FunctionsInstruction runThis) throws InterruptedException, AWTException {
+   /* public void runFunctionInstruction(FunctionsInstruction runThis) throws InterruptedException, AWTException {
         switch (runThis.getCommand()) {
             case CLICKWEBELEMENT:
                 functions.clickElementAtThisCss(runThis.getStringValueWithIndex(0));
@@ -60,13 +60,13 @@ public class LogicInterface { //Merge with FunctionInstructionListRunner?
             case GETTEXTFROMWEBELEMENT:
                 functions.getTextFromElementAtThisCss(runThis.getStringValueWithIndex(0));
                 break;
-            case CLOSE:
+            case CLOSEWEBFUNCTION:
                 functions.closeFunction();
                 break;
             case STARTWEBGETTER:
                 functions.startWebGetter();
                 break;
         }
-    }
+    }*/
 
 }
