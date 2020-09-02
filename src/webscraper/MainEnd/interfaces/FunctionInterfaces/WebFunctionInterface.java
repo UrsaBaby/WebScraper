@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.interfaces.FunctionInterfaces;
+package webscraper.MainEnd.interfaces.FunctionInterfaces;
 
 import java.awt.AWTException;
 import java.util.ArrayList;
-import webscraper.structures.functions.coreFunctions.Functions;
-import webscraper.structures.functions.functionInstruction.FunctionsInstruction;
-import webscraper.structures.functions.functionInstruction.FunctionsInstructionCommand;
-import webscraper.structures.functions.functionInstruction.ListOfFunctionInstructions;
-import webscraper.structures.functions.coreFunctions.WebFunction;
+import webscraper.MainEnd.Functions.functions.coreFunctions.Functions;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstructionCommand;
+import webscraper.MainEnd.Functions.functions.functionInstruction.ListOfFunctionInstructions;
+import webscraper.MainEnd.Functions.functions.coreFunctions.WebFunction;
 
 /**
  *

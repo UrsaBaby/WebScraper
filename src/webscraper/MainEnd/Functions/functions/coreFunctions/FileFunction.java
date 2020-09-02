@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.functions.coreFunctions;
+package webscraper.MainEnd.Functions.functions.coreFunctions;
 
 import java.awt.AWTException;
 import java.io.File;
 import java.io.IOException;
-import webscraper.interfaces.FilePortInterface;
-import webscraper.interfaces.FunctionInterfaces.FileFunctionInterface;
-
-import webscraper.structures.Handlers.FilePorting.FilePort;
+import webscraper.MainEnd.ports.FilePort.Interface.FilePortInterface;
+import webscraper.MainEnd.interfaces.FunctionInterfaces.FileFunctionInterface;
+import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
 
 /**
  *

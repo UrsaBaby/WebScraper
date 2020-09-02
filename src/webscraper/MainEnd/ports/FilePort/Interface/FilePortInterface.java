@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.interfaces;
+package webscraper.MainEnd.ports.FilePort.Interface;
 
 import java.io.IOException;
 
-import webscraper.structures.Handlers.FilePorting.FilePort;
+import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
+import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
 
 /**
  *

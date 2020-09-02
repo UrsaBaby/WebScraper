@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.functions.functionInstruction;
+package webscraper.MainEnd.Functions.functions.functionInstruction;
 
-import webscraper.structures.functions.functionInstruction.FunctionsInstruction;
-import webscraper.structures.functions.coreFunctions.WebFunction;
-import webscraper.structures.functions.coreFunctions.Functions;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
+import webscraper.MainEnd.Functions.functions.coreFunctions.WebFunction;
+import webscraper.MainEnd.Functions.functions.coreFunctions.Functions;
 import java.awt.AWTException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import webscraper.interfaces.LogicInterface;
+import webscraper.MainEnd.Logic.LogicInterface;
 
 /**
  *

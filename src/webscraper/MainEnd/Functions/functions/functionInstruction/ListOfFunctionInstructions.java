@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.functions.functionInstruction;
+package webscraper.MainEnd.Functions.functions.functionInstruction;
 
-import webscraper.structures.functions.functionInstruction.FunctionsInstruction;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
 import java.util.ArrayList;
 
 /**

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.functions.coreFunctions;
+package webscraper.MainEnd.Functions.functions.coreFunctions;
 
 
 import java.awt.AWTException;
-import webscraper.interfaces.NavigationPortInterface;
+import webscraper.MainEnd.ports.NavigationPort.Interface.NavigationPortInterface;
 
 
 

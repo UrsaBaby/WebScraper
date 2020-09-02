@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.interfaces.FunctionInterfaces;
+package webscraper.MainEnd.interfaces.FunctionInterfaces;
 
-import webscraper.structures.Handlers.FilePorting.FilePort;
-import webscraper.structures.functions.functionInstruction.FunctionsInstruction;
-import webscraper.structures.functions.functionInstruction.FunctionsInstructionCommand;
+import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstructionCommand;
 
 /**
  *

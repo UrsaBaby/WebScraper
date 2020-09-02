@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.Handlers.NavigationPort;
+package webscraper.MainEnd.ports.NavigationPort.Interface.Webport;
 
 import java.awt.AWTException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +15,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 
 import org.openqa.selenium.interactions.Actions;
 
