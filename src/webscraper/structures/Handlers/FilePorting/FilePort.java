@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.fileHandling;
+package webscraper.structures.Handlers.FilePorting;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,15 +13,16 @@ import java.io.IOException;
  *
  * @author Peter
  */
-public class fileHandler {
+public class FilePort {
     
-    public fileHandler(){
+    public FilePort(){
         
     }
     
-    public void createNewFileWithThisNameAtThisLocationInThisFormat(String name, String fileLocation, String fileFormat) throws IOException{
-        File newFile = new File(fileLocation + name + fileFormat);
+    public File createNewFileWithThisNameAtThisLocationInThisFormat(String pathName, String fileName, String fileFormat) throws IOException{
+        File newFile = new File(pathName+ fileName + fileFormat);
         newFile.createNewFile();
+        return newFile;
        
     }
     

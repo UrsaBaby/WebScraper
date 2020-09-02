@@ -25,7 +25,7 @@ public class LogicInterface { //Merge with FunctionInstructionListRunner?
     FunctionsInstructionListRunner listRunner;
 
     public LogicInterface() throws AWTException {
-        functions = new Functions("LogicInterfaceFunctions");
+        functions = new Functions();
     }
 
    /* public void runListOfFunctionInstructionsInMainThread(ListOfFunctionInstructions listOfFunctionsInstructions) {

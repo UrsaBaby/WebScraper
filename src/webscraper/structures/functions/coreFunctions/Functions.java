@@ -6,10 +6,11 @@
 package webscraper.structures.functions.coreFunctions;
 
 import java.awt.AWTException;
-import webscraper.interfaces.FileFunctionInterface;
+import webscraper.interfaces.FilePortInterface;
+import webscraper.interfaces.FunctionInterfaces.FileFunctionInterface;
 
 
-import webscraper.interfaces.NavigationInterface;
+import webscraper.interfaces.NavigationPortInterface;
 
 /**
  *
@@ -17,30 +18,29 @@ import webscraper.interfaces.NavigationInterface;
  */
 public class Functions {
 
-    String name;
-    NavigationInterface navInterface;
-    FileFunctionInterface FileFuncInterface;
+  
+    NavigationPortInterface navInterface;
+    FilePortInterface fileHandlerInterface;
 
-    public Functions(String name) throws AWTException {
-        this.name = name;
+    public Functions() throws AWTException {
+    
         
     }
     
-    public String getName() {
-        return this.name;
-    }
+  
 
     public void closeFunction() {
         navInterface.closeNavInterface();
-        FileFuncInterface.c
+    }
+    
+    protected NavigationPortInterface getNavInterface(){
+        return this.navInterface;
+    }
+    
+    protected FilePortInterface getFileHandlerInterface(){
+        return this.fileHandlerInterface;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+ }
 
-    public String toString() {
-        return "Function name: " + this.getName();
-    }
-
-}
+    

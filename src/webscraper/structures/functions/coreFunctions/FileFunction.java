@@ -6,21 +6,27 @@
 package webscraper.structures.functions.coreFunctions;
 
 import java.awt.AWTException;
+import java.io.File;
+import java.io.IOException;
+import webscraper.interfaces.FilePortInterface;
+import webscraper.interfaces.FunctionInterfaces.FileFunctionInterface;
 
-import webscraper.structures.fileHandling.fileHandler;
+import webscraper.structures.Handlers.FilePorting.FilePort;
 
 /**
  *
  * @author Peter
  */
-public class FileFunction extends Functions{
-    fileHandler fileHandler;
-    public FileFunction(String name) throws AWTException{
-        super(name);
-        fileHandler = new fileHandler();
+public class FileFunction extends Functions {
+
+    public FileFunction() throws AWTException, IOException {
+        super();
+   fileHandlerInterface = new FilePortInterface();
     }
-    
-    public createNewFile(String fileName, String fileFormat){
-        fileHandler.createNewFileWithThisNameAtThisLocationInThisFormat(fileName, fileLocation, fileFormat); //TODO, check how saving a file works. overwrite? no location specified.
+
+    public File createNewFile(String pathName, String fileName, String format) throws IOException { //TODO format maybe enum?
+     
+        return this.getFileHandlerInterface().getFilePort().createNewFileWithThisNameAtThisLocationInThisFormat(fileName, fileName, format);
+
     }
 }

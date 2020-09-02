@@ -58,7 +58,7 @@ public class FunctionsInstructionListRunner implements Runnable {
     }
 
     private void initiateWebFunctions() throws AWTException{
-        this.webFunctions = new WebFunction("WebFunctionListRunner");
+        this.webFunctions = new WebFunction();
     }
     
     private void runWebFunctions(ListOfFunctionInstructions listToRun) throws AWTException, InterruptedException{

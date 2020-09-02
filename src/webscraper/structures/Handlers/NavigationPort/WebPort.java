@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.structures.navigation;
+package webscraper.structures.Handlers.NavigationPort;
 
 import java.awt.AWTException;
 
@@ -25,11 +25,11 @@ import org.openqa.selenium.interactions.Actions;
  *
  * @author Peter
  */
-public class WebGetter {
+public class WebPort {
 
     WebDriver webDriver;
 
-    public WebGetter() throws AWTException {
+    public WebPort() throws AWTException {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
         webDriver = new ChromeDriver();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

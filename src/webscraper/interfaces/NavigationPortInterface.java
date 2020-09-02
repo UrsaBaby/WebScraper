@@ -6,35 +6,35 @@
 package webscraper.interfaces;
 
 import java.awt.AWTException;
-import webscraper.structures.navigation.WebGetter;
+import webscraper.structures.Handlers.NavigationPort.WebPort;
 
 /**
  *
  * @author Peter
  */
-public class NavigationInterface {
+public class NavigationPortInterface {
 
-    WebGetter webGetter;
+    WebPort webGetter;
 
-    public NavigationInterface() throws AWTException {
+    public NavigationPortInterface() throws AWTException {
        
 
     }
     
-    public void startWebGetter() throws AWTException{
-         webGetter = new WebGetter();
+    public void startWebHandler() throws AWTException{
+         webGetter = new WebPort();
     }
     
-    public WebGetter getWebGetter() throws AWTException {
+    public WebPort getWebHandler() throws AWTException {
 
         return this.webGetter;
     }
 
-    public void closeWebGetters() {
+    public void closeWebHandlers() {
         webGetter.close();
     }
 
-    public boolean isWebGetterConnectedToThisSite(String url) {
+    public boolean isWebHandlerConnectedToThisSite(String url) {
         if (webGetter.getSiteCurrentlyConnectedTo().equals(url)) {
             return true;
         }
@@ -45,7 +45,7 @@ public class NavigationInterface {
 
 
     public void closeNavInterface() {
-        this.closeWebGetters();
+        this.closeWebHandlers();
     }
 
 }

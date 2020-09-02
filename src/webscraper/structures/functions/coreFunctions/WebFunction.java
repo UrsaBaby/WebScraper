@@ -7,7 +7,7 @@ package webscraper.structures.functions.coreFunctions;
 
 
 import java.awt.AWTException;
-import webscraper.interfaces.NavigationInterface;
+import webscraper.interfaces.NavigationPortInterface;
 
 
 
@@ -17,26 +17,26 @@ import webscraper.interfaces.NavigationInterface;
  */
 public class WebFunction extends Functions{
     
-public WebFunction(String name) throws AWTException{
-  super(name);
-  navInterface = new NavigationInterface();
+public WebFunction() throws AWTException{
+  super();
+  navInterface = new NavigationPortInterface();
 }
 
     public void startWebGetter() throws AWTException{
-        navInterface.startWebGetter();
+        navInterface.startWebHandler();
     }
     
     public void connectWebGetterToThisSite(String url) throws AWTException {
-        navInterface.getWebGetter().connectToThisSite(url);
+        navInterface.getWebHandler().connectToThisSite(url);
     }
 
     public String getTextFromElementAtThisCss(String cssSelector) throws InterruptedException, AWTException {
-        return navInterface.getWebGetter().getElementAtThisCss(cssSelector).getText();
+        return navInterface.getWebHandler().getElementAtThisCss(cssSelector).getText();
     }
 
     public void clickElementAtThisCss(String cssSelector) throws AWTException {
       
-            navInterface.getWebGetter().clickElementAtThisCss(cssSelector);
+            navInterface.getWebHandler().clickElementAtThisCss(cssSelector);
         
     }
     

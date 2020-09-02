@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.interfaces;
+package webscraper.interfaces.FunctionInterfaces;
 
 import java.awt.AWTException;
 import java.util.ArrayList;
@@ -30,8 +30,8 @@ public class WebFunctionInterface {
     }
 
     
-    public WebFunction createWebFunction(String name) throws AWTException{
-        WebFunction returnWebFunction = new WebFunction(name);
+    public WebFunction createWebFunction() throws AWTException{
+        WebFunction returnWebFunction = new WebFunction();
         return returnWebFunction;
     }
 

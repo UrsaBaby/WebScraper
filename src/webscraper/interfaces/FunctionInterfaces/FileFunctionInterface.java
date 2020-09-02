@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.interfaces;
+package webscraper.interfaces.FunctionInterfaces;
 
-import webscraper.structures.fileHandling.fileHandler;
+import webscraper.structures.Handlers.FilePorting.FilePort;
 import webscraper.structures.functions.functionInstruction.FunctionsInstruction;
 import webscraper.structures.functions.functionInstruction.FunctionsInstructionCommand;
 
@@ -16,7 +16,7 @@ import webscraper.structures.functions.functionInstruction.FunctionsInstructionC
 public class FileFunctionInterface {
    
     public FileFunctionInterface() {
-
+        
     }
     
 

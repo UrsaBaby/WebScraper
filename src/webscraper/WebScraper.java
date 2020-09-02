@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import webscraper.structures.fileHandling.fileHandler;
+import webscraper.structures.Handlers.FilePorting.FilePort;
 
 
 /**
