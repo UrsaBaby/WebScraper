@@ -26,9 +26,9 @@ public class FilePort {
        
     }
     
-    public void writeThisDataToFileWithThisNameAtThisLocationInThisFormat(String data, String fileName, String fileLocation, String fileFormat) throws IOException{
-        FileWriter newFileWriter = new FileWriter(fileLocation + fileName + fileFormat);
-        newFileWriter.write(data);
+    public void writeThisTextToFileAtThisPathname(String pathName, String fileName, String format, String textToWrite) throws IOException{
+        FileWriter newFileWriter = new FileWriter(pathName + fileName + format);
+        newFileWriter.write(textToWrite);
         newFileWriter.close();
     }
     

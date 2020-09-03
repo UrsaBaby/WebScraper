@@ -9,8 +9,6 @@ import java.awt.AWTException;
 import java.io.File;
 import java.io.IOException;
 import webscraper.MainEnd.ports.FilePort.Interface.FilePortInterface;
-import webscraper.MainEnd.interfaces.FunctionInterfaces.FileFunctionInterface;
-import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
 
 /**
  *
@@ -29,11 +27,11 @@ public class FileFunction extends Functions {
 
     }
     
-    public void saveNewFile(String pathName, String fileName, String format){
-        
+    public void saveNewFile(String pathName, String fileName, String format) throws IOException{
+        this.getFileHandlerInterface().getFilePort().createNewFileWithThisNameAtThisLocationInThisFormat(pathName, fileName, format); //TODO test
     }
     
-    public void writeTextToFile(String textToWrite){
-        
+    public void writeTextToFile(String textToWrite, String pathName, String filename, String format) throws IOException{ //TODO test
+        this.getFileHandlerInterface().getFilePort().writeThisTextToFileAtThisPathname(pathName, filename, format, textToWrite);
     }
 }
