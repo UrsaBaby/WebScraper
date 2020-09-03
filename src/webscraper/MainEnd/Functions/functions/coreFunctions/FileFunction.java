@@ -28,4 +28,12 @@ public class FileFunction extends Functions {
         return this.getFileHandlerInterface().getFilePort().createNewFileWithThisNameAtThisLocationInThisFormat(fileName, fileName, format);
 
     }
+    
+    public void saveNewFile(String pathName, String fileName, String format){
+        
+    }
+    
+    public void writeTextToFile(String textToWrite){
+        
+    }
 }
