@@ -9,10 +9,12 @@ import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstr
 import webscraper.MainEnd.Functions.functions.coreFunctions.WebFunction;
 import webscraper.MainEnd.Functions.functions.coreFunctions.Functions;
 import java.awt.AWTException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import webscraper.MainEnd.Functions.functions.coreFunctions.FileFunction;
 
-import webscraper.MainEnd.Logic.LogicInterface;
+import webscraper.MainEnd.interfaces.FunctionInterfaces.FunctionInstructionInterface;
 
 /**
  *
@@ -21,22 +23,21 @@ import webscraper.MainEnd.Logic.LogicInterface;
 public class FunctionsInstructionListRunner implements Runnable {
 
     ListOfFunctionInstructions listToRun;
-    LogicInterface logicInterface;
+  //  LogicInterface logicInterface;
     Functions functions;
     WebFunction webFunctions;
+    FileFunction fileFunction;
 
     public FunctionsInstructionListRunner(ListOfFunctionInstructions listToRun) throws AWTException {
         this.listToRun = listToRun;
-        logicInterface = new LogicInterface();
+       // logicInterface = new LogicInterface(); probably remove
     }
 
     @Override
     public void run() {
         try {
-            if(webFunctionsIsUsed(listToRun)){
-                initiateWebFunctions();
-                runWebFunctions(listToRun);
-            }
+            initiateUsedFunctions(listToRun);
+            runFunctions(listToRun);
         } catch (Exception e) {
         }
     }
@@ -56,12 +57,14 @@ public class FunctionsInstructionListRunner implements Runnable {
         }
         return false;
     }
-
-    private void initiateWebFunctions() throws AWTException{
-        this.webFunctions = new WebFunction();
-    }
     
-    private void runWebFunctions(ListOfFunctionInstructions listToRun) throws AWTException, InterruptedException{
+    private boolean fileFunctionIsUsed(ListOfFunctionInstructions listToCheck){
+        
+        return false;
+    }
+
+
+    private void runFunctions(ListOfFunctionInstructions listToRun) throws AWTException, InterruptedException{
          for (FunctionsInstruction checker : listToRun.getListOfFunctionInstruction()) {
                 switch (checker.getCommand()) {
                     case CLICKWEBELEMENT:
@@ -82,5 +85,19 @@ public class FunctionsInstructionListRunner implements Runnable {
                 }
             }     
     }
+
+
+    
+    private void initiateUsedFunctions(ListOfFunctionInstructions listToRun) throws AWTException, IOException{
+             if(webFunctionsIsUsed(listToRun)){
+                this.webFunctions = new WebFunction();
+            }
+            if(fileFunctionIsUsed(listToRun)){
+                  this.fileFunction = new FileFunction();
+            }
+        
+    }
+
+
 }
 
