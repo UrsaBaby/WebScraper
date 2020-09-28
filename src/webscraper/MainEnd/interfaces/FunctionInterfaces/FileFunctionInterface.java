@@ -21,11 +21,12 @@ public class FileFunctionInterface {
     
 
 
-    public FunctionsInstruction createNewFile(String filename, String fileFormat) {
+    public FunctionsInstruction createNewFile(String pathName, String fileName, String format) { //Will be read in FunctionInstructionListRunner
         FunctionsInstruction returnFI = new FunctionsInstruction();
         returnFI.setCommand(FunctionsInstructionCommand.CREATENEWFILE);
-        returnFI.addStringValue(filename);
-        returnFI.addStringValue(fileFormat);
+        returnFI.addStringValue(pathName);
+        returnFI.addStringValue(fileName);
+        returnFI.addStringValue(format);
         return returnFI;
     }
 

@@ -59,12 +59,12 @@ public class FunctionsInstructionListRunner implements Runnable {
     }
     
     private boolean fileFunctionIsUsed(ListOfFunctionInstructions listToCheck){
-        
+        //TODO 
         return false;
     }
 
 
-    private void runFunctions(ListOfFunctionInstructions listToRun) throws AWTException, InterruptedException{
+    private void runFunctions(ListOfFunctionInstructions listToRun) throws AWTException, InterruptedException, IOException{
          for (FunctionsInstruction checker : listToRun.getListOfFunctionInstruction()) {
                 switch (checker.getCommand()) {
                     case CLICKWEBELEMENT:
@@ -82,6 +82,11 @@ public class FunctionsInstructionListRunner implements Runnable {
                     case STARTWEBGETTER:
                         webFunctions.startWebGetter();
                         break;
+                        
+                    case CREATENEWFILE:
+                        //fileFunction.createNewFile(pathName, fileName, format)
+                        fileFunction.createNewFile(checker.getStringValueWithIndex(0), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2));
+                        //TODO check correct values
                 }
             }     
     }
