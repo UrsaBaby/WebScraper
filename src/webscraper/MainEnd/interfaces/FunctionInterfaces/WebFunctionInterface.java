@@ -49,10 +49,10 @@ public class WebFunctionInterface {
         return returnFI;
     }
 
-    public FunctionsInstruction createFunctionInstructionGetTextFromWebElement(String cssSelector) {
+    public FunctionsInstruction createFunctionInstructionStoreTextFromWebElement(String cssSelector) {
         FunctionsInstruction returnFI = new FunctionsInstruction();
         returnFI.addStringValue(cssSelector);
-        returnFI.setCommand(FunctionsInstructionCommand.GETTEXTFROMWEBELEMENT);
+        returnFI.setCommand(FunctionsInstructionCommand.STORETEXTFROMWEBELEMENT);
         return returnFI;
     }
 

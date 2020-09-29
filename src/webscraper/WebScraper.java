@@ -9,8 +9,13 @@ import java.awt.AWTException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstructionListRunner;
+import webscraper.MainEnd.Functions.functions.functionInstruction.ListOfFunctionInstructions;
+import webscraper.MainEnd.interfaces.FunctionInterfaces.FileFunctionInterface;
+import webscraper.MainEnd.interfaces.FunctionInterfaces.WebFunctionInterface;
 
 import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
+import webscraper.MainEnd.ports.FilePort.Interface.FilePortInterface;
 
 
 /**
@@ -38,13 +43,23 @@ public class WebScraper {
 
         //fileHandler fileHandler = new fileHandler();
       //  fileHandler.createNewFileWithThisNameAtThisLocationInThisFormat("nyttTest", "C:\\Users\\Peter\\Documents\\", ".txt");
-      File testFile = new File("jagindar.txt");
-     
-        FileWriter myWrite = new FileWriter(testFile);
-     
+      
+        WebFunctionInterface WFI = new WebFunctionInterface();
+        FileFunctionInterface FFI = new FileFunctionInterface();
         
-        myWrite.close();
-        testFile.createNewFile();
+        ListOfFunctionInstructions instructionList = WFI.createListOfFunctionsInstructions();
+        instructionList.addFunctionsInstruction(WFI.createFunctionStartWebGetter());
+            instructionList.addFunctionsInstruction(WFI.createFunctionInstructionConnectToThisSite("https://www.google.com/"));
+             instructionList.addFunctionsInstruction(WFI.createFunctionInstructionStoreTextFromWebElement("#gsr"));
+             
+             instructionList.addFunctionsInstruction(FFI.createNewFile("", "google", ".txt")); //Desnt work?
+             instructionList.addFunctionsInstruction(FFI.writeTextToFile(0, "", "google", ".txt"));
+             
+             FunctionsInstructionListRunner FILR = new FunctionsInstructionListRunner(instructionList);
+             FILR.run();
+        
+
+            
    
     }
 

@@ -21,9 +21,9 @@ public class FileFunction extends Functions {
    fileHandlerInterface = new FilePortInterface();
     }
 
-    public File createNewFile(String pathName, String fileName, String format) throws IOException { //TODO format maybe enum?
+    public void createNewFile(String pathName, String fileName, String format) throws IOException { //TODO format maybe enum?
      
-        return this.getFileHandlerInterface().getFilePort().createNewFileWithThisNameAtThisLocationInThisFormat(fileName, fileName, format);
+      this.getFileHandlerInterface().getFilePort().createNewFileWithThisNameAtThisLocationInThisFormat(pathName, fileName, format);
 
     }
     

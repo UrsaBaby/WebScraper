@@ -47,9 +47,7 @@ public class FunctionsInstruction {
         return this.listOfIntValues;
     }
     
-    public void addIntValues(int intValue){
-        this.getIntValues().add(intValue);
-    }
+ 
     
     public int getIntValueWithIndex(int index){
         return this.getIntValues().get(index);

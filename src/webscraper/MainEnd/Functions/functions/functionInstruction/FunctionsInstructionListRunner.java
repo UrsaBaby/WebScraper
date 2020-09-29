@@ -10,6 +10,7 @@ import webscraper.MainEnd.Functions.functions.coreFunctions.WebFunction;
 import webscraper.MainEnd.Functions.functions.coreFunctions.Functions;
 import java.awt.AWTException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import webscraper.MainEnd.Functions.functions.coreFunctions.FileFunction;
@@ -27,10 +28,12 @@ public class FunctionsInstructionListRunner implements Runnable {
     Functions functions;
     WebFunction webFunctions;
     FileFunction fileFunction;
+    ArrayList<String> storedStrings;
 
     public FunctionsInstructionListRunner(ListOfFunctionInstructions listToRun) throws AWTException {
         this.listToRun = listToRun;
        // logicInterface = new LogicInterface(); probably remove
+       storedStrings = new ArrayList<>(); //TODO dont initiate here, check for boolean.
     }
 
     @Override
@@ -49,7 +52,7 @@ public class FunctionsInstructionListRunner implements Runnable {
                     return true;
                 case CONNECTTOTHISITE:
                     return true;
-                case GETTEXTFROMWEBELEMENT:
+                case STORETEXTFROMWEBELEMENT:
                     return true;
                 case STARTWEBGETTER:
                     return true;
@@ -60,7 +63,7 @@ public class FunctionsInstructionListRunner implements Runnable {
     
     private boolean fileFunctionIsUsed(ListOfFunctionInstructions listToCheck){
         //TODO 
-        return false;
+        return true;
     }
 
 
@@ -73,8 +76,9 @@ public class FunctionsInstructionListRunner implements Runnable {
                     case CONNECTTOTHISITE:
                         webFunctions.connectWebGetterToThisSite(checker.getStringValueWithIndex(0));
                         break;
-                    case GETTEXTFROMWEBELEMENT:
-                        webFunctions.getTextFromElementAtThisCss(checker.getStringValueWithIndex(0));
+                    case STORETEXTFROMWEBELEMENT:
+                        storedStrings.add(webFunctions.getTextFromElementAtThisCss(checker.getStringValueWithIndex(0)));
+                                
                         break;
                     case CLOSEWEBFUNCTION:
                         webFunctions.closeFunction();
@@ -87,6 +91,9 @@ public class FunctionsInstructionListRunner implements Runnable {
                         //fileFunction.createNewFile(pathName, fileName, format)
                         fileFunction.createNewFile(checker.getStringValueWithIndex(0), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2));
                         //TODO check correct values
+                    case WRITETOFILE:
+                       // fileFunction.writeTextToFile(textToWrite, pathName, filename, format);
+                        fileFunction.writeTextToFile(storedStrings.get(0), checker.getStringValueWithIndex(0), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2));
                 }
             }     
     }

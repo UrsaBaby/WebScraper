@@ -1,4 +1,5 @@
 /*
+
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -27,6 +28,15 @@ public class FileFunctionInterface {
         returnFI.addStringValue(pathName);
         returnFI.addStringValue(fileName);
         returnFI.addStringValue(format);
+        return returnFI;
+    }
+    
+    public FunctionsInstruction writeTextToFile(int indexOfStoredText, String pathName, String fileName, String format){
+        FunctionsInstruction returnFI = new FunctionsInstruction();
+        returnFI.addIntValue(indexOfStoredText);
+        returnFI.addStringValue(pathName);
+        returnFI.addStringValue(fileName);
+        returnFI.addStringValue(format);      
         return returnFI;
     }
 

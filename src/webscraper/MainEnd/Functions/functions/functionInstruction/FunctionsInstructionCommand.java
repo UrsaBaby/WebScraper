@@ -12,7 +12,7 @@ package webscraper.MainEnd.Functions.functions.functionInstruction;
 public enum FunctionsInstructionCommand {
    //WebFunctions
     CONNECTTOTHISITE,
-    GETTEXTFROMWEBELEMENT,
+    STORETEXTFROMWEBELEMENT,
     CLICKWEBELEMENT, 
     STARTWEBGETTER,
     CLOSEWEBFUNCTION,
@@ -21,5 +21,6 @@ public enum FunctionsInstructionCommand {
     CLOSEFUNCTION,
     
    //FileFunctions
-    CREATENEWFILE
+    CREATENEWFILE,
+    WRITETOFILE
 }

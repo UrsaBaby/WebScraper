@@ -16,23 +16,20 @@ import java.io.IOException;
 public class FilePort {
     
     public FilePort(){
-        
+        FileWriter fileWriter;
     }
     
-    public File createNewFileWithThisNameAtThisLocationInThisFormat(String pathName, String fileName, String fileFormat) throws IOException{
+    public void createNewFileWithThisNameAtThisLocationInThisFormat(String pathName, String fileName, String fileFormat) throws IOException{
         File newFile = new File(pathName+ fileName + fileFormat);
         newFile.createNewFile();
-        return newFile;
        
     }
     
     public void writeThisTextToFileAtThisPathname(String pathName, String fileName, String format, String textToWrite) throws IOException{
-        FileWriter newFileWriter = new FileWriter(pathName + fileName + format);
-        newFileWriter.write(textToWrite);
-        newFileWriter.close();
+        FileWriter fileWriter = new FileWriter(pathName + fileName + format);
+        fileWriter.write(textToWrite);
+        fileWriter.close();
     }
     
-    public void saveFile(File saveFile) throws IOException{
-        saveFile.createNewFile();
-    }
+
 }

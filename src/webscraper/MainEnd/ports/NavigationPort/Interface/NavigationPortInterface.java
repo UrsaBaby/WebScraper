@@ -12,7 +12,7 @@ import webscraper.MainEnd.ports.NavigationPort.Interface.Webport.WebPort;
  *
  * @author Peter
  */
-public class NavigationPortInterface {
+public class NavigationPortInterface { //used byt listrunner
 
     WebPort webGetter;
 
