@@ -14,7 +14,7 @@ import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
  *
  * @author Peter
  */
-public class FilePortInterface { //used by listrunner
+public class FilePortInterface { //USED by FileFunction
 
     FilePort filePort;
 

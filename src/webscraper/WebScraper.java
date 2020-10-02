@@ -9,10 +9,12 @@ import java.awt.AWTException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstructionListRunner;
 import webscraper.MainEnd.Functions.functions.functionInstruction.ListOfFunctionInstructions;
-import webscraper.MainEnd.interfaces.FunctionInterfaces.FileFunctionInterface;
-import webscraper.MainEnd.interfaces.FunctionInterfaces.WebFunctionInterface;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionInstructionInterfaces.FileFunctionInstructionInterface;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionInstructionInterfaces.WebFunctionInstructionInterface;
+import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
 
 import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
 import webscraper.MainEnd.ports.FilePort.Interface.FilePortInterface;
@@ -44,19 +46,26 @@ public class WebScraper {
         //fileHandler fileHandler = new fileHandler();
       //  fileHandler.createNewFileWithThisNameAtThisLocationInThisFormat("nyttTest", "C:\\Users\\Peter\\Documents\\", ".txt");
       
-        WebFunctionInterface WFI = new WebFunctionInterface();
-        FileFunctionInterface FFI = new FileFunctionInterface();
-        
+        WebFunctionInstructionInterface WFI = new WebFunctionInstructionInterface();
+        FileFunctionInstructionInterface FFI = new FileFunctionInstructionInterface();
+       
+        FunctionsInstruction test2 = FFI.writeTextToFile("gsr", "", "ID", ".txt");
         ListOfFunctionInstructions instructionList = WFI.createListOfFunctionsInstructions();
         instructionList.addFunctionsInstruction(WFI.createFunctionStartWebGetter());
             instructionList.addFunctionsInstruction(WFI.createFunctionInstructionConnectToThisSite("https://www.google.com/"));
-             instructionList.addFunctionsInstruction(WFI.createFunctionInstructionStoreTextFromWebElement("#gsr"));
+           
+             instructionList.addFunctionsInstruction(WFI.createFunctionInstructionStoreTextFromWebElement("gsr", "#gsr"));
              
-             instructionList.addFunctionsInstruction(FFI.createNewFile("", "google", ".txt")); //Desnt work?
-             instructionList.addFunctionsInstruction(FFI.writeTextToFile(0, "", "google", ".txt"));
+             instructionList.addFunctionsInstruction(FFI.createNewFile("", "google", ".txt")); 
+              //TODO redo stored value? 
+             instructionList.addFunctionsInstruction(test2); //TODO textID isnt captured? se threadsafe?
              
              FunctionsInstructionListRunner FILR = new FunctionsInstructionListRunner(instructionList);
              FILR.run();
+             
+         
+             
+             
         
 
             

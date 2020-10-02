@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * @author Peter
  */
 public class ListOfFunctionInstructions {
-     private ArrayList<FunctionsInstruction> listOfFunctionsInstructions;
-     String name;
+     private final ArrayList<FunctionsInstruction> listOfFunctionsInstructions;
+ 
      
      public ListOfFunctionInstructions(){
          listOfFunctionsInstructions = new ArrayList<FunctionsInstruction>();

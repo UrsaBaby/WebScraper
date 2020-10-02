@@ -7,7 +7,7 @@ package webscraper.MainEnd.Functions.functions.coreFunctions;
 
 
 import java.awt.AWTException;
-import webscraper.MainEnd.ports.NavigationPort.Interface.NavigationPortInterface;
+import webscraper.MainEnd.ports.NavigationPort.Interface.Webport.WebPort;
 
 
 
@@ -16,28 +16,33 @@ import webscraper.MainEnd.ports.NavigationPort.Interface.NavigationPortInterface
  * @author Peter Meisel
  */
 public class WebFunction extends Functions{
-    
+   
 public WebFunction() throws AWTException{
   super();
-  navInterface = new NavigationPortInterface();
+  
+
 }
 
-    public void startWebGetter() throws AWTException{
-        navInterface.startWebHandler();
+    public void startWebPort() throws AWTException{
+        webPort = new WebPort();
     }
     
     public void connectWebGetterToThisSite(String url) throws AWTException {
-        navInterface.getWebHandler().connectToThisSite(url);
+        webPort.connectToThisSite(url);
     }
 
     public String getTextFromElementAtThisCss(String cssSelector) throws InterruptedException, AWTException {
-        return navInterface.getWebHandler().getElementAtThisCss(cssSelector).getText();
+        return webPort.getElementAtThisCss(cssSelector).getText();
     }
 
     public void clickElementAtThisCss(String cssSelector) throws AWTException {
       
-            navInterface.getWebHandler().clickElementAtThisCss(cssSelector);
+            webPort.clickElementAtThisCss(cssSelector);
         
+    }
+    
+    public void closeWebPort(){
+        webPort.close();
     }
     
     

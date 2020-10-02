@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.MainEnd.interfaces.FunctionInterfaces;
+package webscraper.MainEnd.Functions.functions.functionInstruction.FunctionInstructionInterfaces;
 
 import java.awt.AWTException;
 

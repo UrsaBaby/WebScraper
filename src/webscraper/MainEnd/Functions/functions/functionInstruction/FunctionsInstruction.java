@@ -18,7 +18,7 @@ public class FunctionsInstruction {
     //TODO ENUM or someway to check instruction (String?) and ListOfStringValues and listOfIntValues
     public FunctionsInstruction(){
         listOfStringValues = new ArrayList<String>();
-        listOfIntValues = new ArrayList<Integer>();             
+        listOfIntValues = new ArrayList<Integer>();        //TODO check if used and only do new then.     
     }
     
     public void setCommand(FunctionsInstructionCommand command){
@@ -35,7 +35,7 @@ public class FunctionsInstruction {
     
  
     
-    private ArrayList<String> getStringValues(){
+   public  ArrayList<String> getStringValues(){
         return this.listOfStringValues;
     }
     
@@ -43,7 +43,7 @@ public class FunctionsInstruction {
         return this.getStringValues().get(index);
     }
     
-    private ArrayList<Integer> getIntValues(){
+    public ArrayList<Integer> getIntValues(){
         return this.listOfIntValues;
     }
     

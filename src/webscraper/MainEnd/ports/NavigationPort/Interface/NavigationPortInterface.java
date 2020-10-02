@@ -14,28 +14,28 @@ import webscraper.MainEnd.ports.NavigationPort.Interface.Webport.WebPort;
  */
 public class NavigationPortInterface { //used byt listrunner
 
-    WebPort webGetter;
+    WebPort webPort;
 
     public NavigationPortInterface() throws AWTException {
        
 
     }
     
-    public void startWebHandler() throws AWTException{
-         webGetter = new WebPort();
+    public void startWebPort() throws AWTException{
+         webPort = new WebPort();
     }
     
-    public WebPort getWebHandler() throws AWTException {
+    public WebPort getWebPort() throws AWTException {
 
-        return this.webGetter;
+        return this.webPort;
     }
 
     public void closeWebHandlers() {
-        webGetter.close();
+        webPort.close();
     }
 
     public boolean isWebHandlerConnectedToThisSite(String url) {
-        if (webGetter.getSiteCurrentlyConnectedTo().equals(url)) {
+        if (webPort.getSiteCurrentlyConnectedTo().equals(url)) {
             return true;
         }
         return false;

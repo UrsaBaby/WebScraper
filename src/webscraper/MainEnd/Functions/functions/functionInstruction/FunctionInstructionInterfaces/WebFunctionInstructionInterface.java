@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.MainEnd.interfaces.FunctionInterfaces;
+package webscraper.MainEnd.Functions.functions.functionInstruction.FunctionInstructionInterfaces;
 
 import java.awt.AWTException;
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import webscraper.MainEnd.Functions.functions.coreFunctions.WebFunction;
  *
  * @author Peter
  */
-public class WebFunctionInterface {
+public class WebFunctionInstructionInterface {
 
-    public WebFunctionInterface() throws AWTException  {
+    public WebFunctionInstructionInterface() throws AWTException  {
         
     }
 
@@ -49,8 +49,9 @@ public class WebFunctionInterface {
         return returnFI;
     }
 
-    public FunctionsInstruction createFunctionInstructionStoreTextFromWebElement(String cssSelector) {
+    public FunctionsInstruction createFunctionInstructionStoreTextFromWebElement(String id, String cssSelector) {
         FunctionsInstruction returnFI = new FunctionsInstruction();
+        returnFI.addStringValue(id);
         returnFI.addStringValue(cssSelector);
         returnFI.setCommand(FunctionsInstructionCommand.STORETEXTFROMWEBELEMENT);
         return returnFI;

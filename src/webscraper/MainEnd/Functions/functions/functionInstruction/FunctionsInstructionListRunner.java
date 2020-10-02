@@ -5,17 +5,14 @@
  */
 package webscraper.MainEnd.Functions.functions.functionInstruction;
 
-import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
 import webscraper.MainEnd.Functions.functions.coreFunctions.WebFunction;
 import webscraper.MainEnd.Functions.functions.coreFunctions.Functions;
 import java.awt.AWTException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import webscraper.MainEnd.Functions.functions.coreFunctions.FileFunction;
 
-import webscraper.MainEnd.interfaces.FunctionInterfaces.FunctionInstructionInterface;
+import java.util.HashMap;
+
+import webscraper.MainEnd.Functions.functions.coreFunctions.FileFunction;
 
 /**
  *
@@ -24,22 +21,20 @@ import webscraper.MainEnd.interfaces.FunctionInterfaces.FunctionInstructionInter
 public class FunctionsInstructionListRunner implements Runnable {
 
     ListOfFunctionInstructions listToRun;
-  //  LogicInterface logicInterface;
+    //  LogicInterface logicInterface;
     Functions functions;
     WebFunction webFunctions;
     FileFunction fileFunction;
-    ArrayList<String> storedStrings;
+    HashMap<String, String> storedStrings = new HashMap<>(); //todo initate when used instead
 
     public FunctionsInstructionListRunner(ListOfFunctionInstructions listToRun) throws AWTException {
         this.listToRun = listToRun;
-       // logicInterface = new LogicInterface(); probably remove
-       storedStrings = new ArrayList<>(); //TODO dont initiate here, check for boolean.
+
     }
 
     @Override
     public void run() {
-        try {
-            initiateUsedFunctions(listToRun);
+        try {            
             runFunctions(listToRun);
         } catch (Exception e) {
         }
@@ -60,56 +55,60 @@ public class FunctionsInstructionListRunner implements Runnable {
         }
         return false;
     }
-    
-    private boolean fileFunctionIsUsed(ListOfFunctionInstructions listToCheck){
-        //TODO 
-        return true;
-    }
 
-
-    private void runFunctions(ListOfFunctionInstructions listToRun) throws AWTException, InterruptedException, IOException{
-         for (FunctionsInstruction checker : listToRun.getListOfFunctionInstruction()) {
-                switch (checker.getCommand()) {
-                    case CLICKWEBELEMENT:
-                        webFunctions.clickElementAtThisCss(checker.getStringValueWithIndex(0));
-                        break;
-                    case CONNECTTOTHISITE:
-                        webFunctions.connectWebGetterToThisSite(checker.getStringValueWithIndex(0));
-                        break;
-                    case STORETEXTFROMWEBELEMENT:
-                        storedStrings.add(webFunctions.getTextFromElementAtThisCss(checker.getStringValueWithIndex(0)));
-                                
-                        break;
-                    case CLOSEWEBFUNCTION:
-                        webFunctions.closeFunction();
-                        break;
-                    case STARTWEBGETTER:
-                        webFunctions.startWebGetter();
-                        break;
-                        
-                    case CREATENEWFILE:
-                        //fileFunction.createNewFile(pathName, fileName, format)
-                        fileFunction.createNewFile(checker.getStringValueWithIndex(0), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2));
-                        //TODO check correct values
-                    case WRITETOFILE:
-                       // fileFunction.writeTextToFile(textToWrite, pathName, filename, format);
-                        fileFunction.writeTextToFile(storedStrings.get(0), checker.getStringValueWithIndex(0), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2));
-                }
-            }     
-    }
-
-
-    
-    private void initiateUsedFunctions(ListOfFunctionInstructions listToRun) throws AWTException, IOException{
-             if(webFunctionsIsUsed(listToRun)){
-                this.webFunctions = new WebFunction();
+    private boolean fileFunctionIsUsed(ListOfFunctionInstructions listToCheck) {
+        for (FunctionsInstruction checker : listToRun.getListOfFunctionInstruction()) {
+            switch (checker.getCommand()) {
+                case CREATENEWFILE:
+                    return true;
+                case WRITETOFILE:
+                    return true;
             }
-            if(fileFunctionIsUsed(listToRun)){
-                  this.fileFunction = new FileFunction();
-            }
-        
+        }
+        return false;
     }
 
+    private void runFunctions(ListOfFunctionInstructions listToRun) throws AWTException, InterruptedException, IOException {
+        initiateUsedFunctions(listToRun);
+        for (FunctionsInstruction checker : listToRun.getListOfFunctionInstruction()) {
+            switch (checker.getCommand()) {
+                case CLICKWEBELEMENT:
+                    webFunctions.clickElementAtThisCss(checker.getStringValueWithIndex(0));
+                    break;
+                case CONNECTTOTHISITE:
+                    webFunctions.connectWebGetterToThisSite(checker.getStringValueWithIndex(0));
+                    break;
+                case STORETEXTFROMWEBELEMENT:
+                    storedStrings.put(checker.getStringValueWithIndex(0), webFunctions.getTextFromElementAtThisCss(checker.getStringValueWithIndex(1)));
+                    break;
+                case CLOSEWEBFUNCTION:
+                    webFunctions.closeWebPort();
+                    break;
+                case STARTWEBGETTER:
+                    webFunctions.startWebPort();
+                    break;
+
+                case CREATENEWFILE:
+                    //fileFunction.createNewFile(pathName, fileName, format)
+                    fileFunction.createNewFile(checker.getStringValueWithIndex(0), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2));
+                    //TODO check correct 
+                    break;
+                case WRITETOFILE:
+                    // fileFunction.writeTextToFile(textID, textToWrite, pathName, filename, format); 
+                    fileFunction.writeTextToFile(storedStrings.get(checker.getStringValueWithIndex(0)), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2), checker.getStringValueWithIndex(3));
+                    break;
+            }
+        }
+    }
+
+    private void initiateUsedFunctions(ListOfFunctionInstructions listToRun) throws AWTException, IOException {
+        if (webFunctionsIsUsed(listToRun)) {
+            this.webFunctions = new WebFunction();
+        }
+        if (fileFunctionIsUsed(listToRun)) {
+            this.fileFunction = new FileFunction();
+        }
+
+    }
 
 }
-

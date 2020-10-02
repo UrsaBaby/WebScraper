@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.MainEnd.interfaces.FunctionInterfaces;
+package webscraper.MainEnd.Functions.functions.functionInstruction.FunctionInstructionInterfaces;
 
 import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
 import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
@@ -14,13 +14,11 @@ import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstr
  *
  * @author Peter
  */
-public class FileFunctionInterface {
-   
-    public FileFunctionInterface() {
-        
-    }
-    
+public class FileFunctionInstructionInterface {
 
+    public FileFunctionInstructionInterface() {
+
+    }
 
     public FunctionsInstruction createNewFile(String pathName, String fileName, String format) { //Will be read in FunctionInstructionListRunner
         FunctionsInstruction returnFI = new FunctionsInstruction();
@@ -30,13 +28,15 @@ public class FileFunctionInterface {
         returnFI.addStringValue(format);
         return returnFI;
     }
-    
-    public FunctionsInstruction writeTextToFile(int indexOfStoredText, String pathName, String fileName, String format){
+
+    public FunctionsInstruction writeTextToFile(String textId, String pathName, String fileName, String format) {
         FunctionsInstruction returnFI = new FunctionsInstruction();
-        returnFI.addIntValue(indexOfStoredText);
+        returnFI.addStringValue(textId);
         returnFI.addStringValue(pathName);
         returnFI.addStringValue(fileName);
-        returnFI.addStringValue(format);      
+        returnFI.addStringValue(format);
+        returnFI.setCommand(FunctionsInstructionCommand.WRITETOFILE);
+
         return returnFI;
     }
 
