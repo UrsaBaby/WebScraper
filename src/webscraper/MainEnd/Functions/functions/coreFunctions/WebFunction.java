@@ -7,7 +7,7 @@ package webscraper.MainEnd.Functions.functions.coreFunctions;
 
 
 import java.awt.AWTException;
-import webscraper.MainEnd.ports.NavigationPort.Interface.Webport.WebPort;
+import webscraper.MainEnd.ports.Webport.WebPort;
 
 
 

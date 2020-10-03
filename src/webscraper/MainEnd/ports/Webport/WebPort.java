@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.MainEnd.ports.NavigationPort.Interface.Webport;
+package webscraper.MainEnd.ports.Webport;
 
 import java.awt.AWTException;
 

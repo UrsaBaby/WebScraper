@@ -6,9 +6,10 @@
 package webscraper.MainEnd.Functions.functions.coreFunctions;
 
 import java.awt.AWTException;
-import webscraper.MainEnd.ports.FilePort.Interface.FilePortInterface;
-import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionInstructionInterfaces.FileFunctionInstructionInterface;
-import webscraper.MainEnd.ports.NavigationPort.Interface.Webport.WebPort;
+
+
+import webscraper.MainEnd.ports.FilePort.FilePort;
+import webscraper.MainEnd.ports.Webport.WebPort;
 
 /**
  *
@@ -17,16 +18,18 @@ import webscraper.MainEnd.ports.NavigationPort.Interface.Webport.WebPort;
 public class Functions {
 
    WebPort webPort;
-    FilePortInterface fileHandlerInterface;
+   FilePort filePort;
+   
 
     public Functions() throws AWTException {
     
         
     }
     
+
     
-    protected FilePortInterface getFileHandlerInterface(){
-        return this.fileHandlerInterface;
+    protected FilePort getFilePort(){
+        return this.filePort;
     }
 
  }

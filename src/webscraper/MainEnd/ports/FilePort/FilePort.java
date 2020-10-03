@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscraper.MainEnd.ports.FilePort.Interface.FilePort;
+package webscraper.MainEnd.ports.FilePort;
 
 import java.io.File;
 import java.io.FileWriter;

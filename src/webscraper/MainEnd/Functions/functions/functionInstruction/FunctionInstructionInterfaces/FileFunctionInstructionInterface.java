@@ -6,7 +6,7 @@
  */
 package webscraper.MainEnd.Functions.functions.functionInstruction.FunctionInstructionInterfaces;
 
-import webscraper.MainEnd.ports.FilePort.Interface.FilePort.FilePort;
+import webscraper.MainEnd.ports.FilePort.FilePort;
 import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
 import webscraper.MainEnd.Functions.functions.functionInstruction.FunctionsInstructionCommand;
 
