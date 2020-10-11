@@ -1,0 +1,148 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package IUNGO.FrontEndMaker;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+/**
+ *
+ * @author Peter
+ */
+public class FrontEndObject {
+
+    ArrayList<FrontEndObject> listOfFrontEndObjects;
+    FrontEndTags typeOfObject;
+    String id;
+
+    FrontEndLengthUnits rowLengthUnit;
+    int rowAmount;
+    int[] rowSize;
+
+    FrontEndLengthUnits columnLengthUnit;
+    int columnAmount;
+    int[] columnSize;
+
+    FrontEndLengthUnits gridGapRowLengthUnit;
+    int gripGapRowDistance;
+
+    FrontEndLengthUnits gridGapColumnsLengthUnit;
+    int gridGapColumnsDistance;
+
+    AlignJustify justify;
+    AlignJustify align;
+
+    public FrontEndObject(FrontEndTags typeOfObject, String id) {
+        this.typeOfObject = typeOfObject;
+        this.id = id;
+        rowSize = new int[2];
+        columnSize = new int[2];
+
+    }
+
+    public void setRows(FrontEndLengthUnits lengthUnit, int[] rowSize, int numberOfRows) {
+        rowLengthUnit = lengthUnit;
+        this.rowSize = rowSize;
+        rowAmount = numberOfRows;
+
+    }
+
+    public void setColumns(FrontEndLengthUnits lengthUnit, int[] columnSize, int numberOfRows) {
+        columnLengthUnit = lengthUnit;
+        this.columnSize = columnSize;
+        this.columnAmount = numberOfRows;
+    }
+
+    public void setGridGapRows(FrontEndLengthUnits lengthUnit, int gripGapDistance) {
+        this.gridGapRowLengthUnit = lengthUnit;
+        this.gripGapRowDistance = gripGapDistance;
+    }
+
+    public void setGridGapColumns(FrontEndLengthUnits lengthUnit, int gridGapDistance) {
+        this.gridGapColumnsLengthUnit = lengthUnit;
+        this.gridGapColumnsDistance = gridGapDistance;
+
+    }
+
+    public void setJustify(AlignJustify justifyRule) {
+        this.justify = justifyRule;
+    }
+
+    public void setAlign(AlignJustify alignRule) {
+        this.align = alignRule;
+    }
+
+    //
+    
+    public AlignJustify getAlign() {
+        return this.align;
+    }
+
+    public AlignJustify getJustify() {
+        return this.justify;
+    }
+
+    private ArrayList<FrontEndObject> getListOfFrontEndObjects() {
+        return this.listOfFrontEndObjects;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    //
+    
+    public void addFrontEndObject(FrontEndObject addThis) {
+        if (!this.isListOfFEOsInitiated()) {
+            this.initiateListOfFrontEndObjects();
+        }
+        this.getListOfFrontEndObjects().add(addThis);
+    }
+    
+    //
+    
+    public boolean isRowsInitated() { //TODO test this
+        if (this.rowLengthUnit == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isColumnsInitiated() {
+        if (this.columnLengthUnit == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isGripGapRowsInitiated() {
+        if (this.gridGapRowLengthUnit == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isGripGapColumnsInitiated() {
+        if (this.gridGapColumnsLengthUnit == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isListOfFEOsInitiated() {
+        if (this.listOfFrontEndObjects == null) {
+            return false;
+        }
+        return true;
+    }
+    
+    //
+    
+    private void initiateListOfFrontEndObjects() {
+        this.listOfFrontEndObjects = new ArrayList<>();
+    }
+
+}

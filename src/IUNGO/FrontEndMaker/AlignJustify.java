@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IUNGO.IUNGO;
+package IUNGO.FrontEndMaker;
 
 /**
  *
  * @author Peter
  */
-public enum HTMLCommands {
-    HYPERLINKREFERENCE,
-    SOURCE,
-    TYPE,
-    PlACEHOLDER,
-    REQUIRED,
+public enum AlignJustify {
+    
 }
