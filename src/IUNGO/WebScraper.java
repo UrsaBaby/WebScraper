@@ -5,6 +5,9 @@
  */
 package IUNGO;
 
+import IUNGO.FrontEndMaker.FrontEndLengthUnits;
+import IUNGO.FrontEndMaker.FrontEndObject;
+import IUNGO.FrontEndMaker.FrontEndTags;
 import java.awt.AWTException;
 import java.io.File;
 import java.io.FileWriter;
@@ -45,7 +48,10 @@ public class WebScraper {
         //fileHandler fileHandler = new fileHandler();
       //  fileHandler.createNewFileWithThisNameAtThisLocationInThisFormat("nyttTest", "C:\\Users\\Peter\\Documents\\", ".txt");
       
-        WebFunctionInstructionInterface WFI = new WebFunctionInstructionInterface();
+     
+      
+      
+      /*WebFunctionInstructionInterface WFI = new WebFunctionInstructionInterface();
         FileFunctionInstructionInterface FFI = new FileFunctionInstructionInterface();
        
         FunctionsInstruction test2 = FFI.writeTextToFile("gsr", "", "ID", ".txt");
@@ -60,8 +66,17 @@ public class WebScraper {
              instructionList.addFunctionsInstruction(test2); //TODO textID isnt captured? se threadsafe?
              
              FunctionsInstructionListRunner FILR = new FunctionsInstructionListRunner(instructionList);
-             FILR.run();
-             
+             FILR.run();*/
+      
+        FrontEndObject testObject = new FrontEndObject(FrontEndTags.CONTAINER, "box");
+        System.out.println(testObject.getId() + testObject.getTag() + testObject.isColumnsInitiated());
+        int[] array = new int[2];
+        array[0] = 2;
+        array[1] = 2;
+        
+        testObject.setColumns(FrontEndLengthUnits.EM, array, 0);
+        System.out.println(testObject.getId() + testObject.getTag() + testObject.isColumnsInitiated());
+        
          
              
              

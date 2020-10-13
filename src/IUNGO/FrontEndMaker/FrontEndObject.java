@@ -34,6 +34,11 @@ public class FrontEndObject {
 
     AlignJustify justify;
     AlignJustify align;
+    AlignJustify justifySelf;
+
+    ArrayList<ArrayList<String>> gridTemplateArea;
+
+    FrontEndObjectDisplayTypes displayType;
 
     public FrontEndObject(FrontEndTags typeOfObject, String id) {
         this.typeOfObject = typeOfObject;
@@ -66,6 +71,10 @@ public class FrontEndObject {
         this.gridGapColumnsDistance = gridGapDistance;
 
     }
+    
+    public void setID(String id){
+        this.id = id;
+    }
 
     public void setJustify(AlignJustify justifyRule) {
         this.justify = justifyRule;
@@ -75,7 +84,23 @@ public class FrontEndObject {
         this.align = alignRule;
     }
 
+    public void setJustifySelf(AlignJustify justifySelf) {
+        this.justifySelf = justifySelf;
+    }
+
+    public void setGridTemplateArea(ArrayList<ArrayList<String>> gridTemplateArea) {
+        this.gridTemplateArea = gridTemplateArea;
+    }
+
+    public void setDisplayType(FrontEndObjectDisplayTypes displayType) {
+        this.displayType = displayType;
+    }
+
     //
+    
+    public String getId(){
+        return this.id;
+    }
     
     public AlignJustify getAlign() {
         return this.align;
@@ -89,22 +114,32 @@ public class FrontEndObject {
         return this.listOfFrontEndObjects;
     }
 
-    public String getId() {
-        return this.id;
+    public FrontEndTags getTag() {
+        return this.typeOfObject;
+    }
+
+    public AlignJustify getJustifySelf() {
+        return justifySelf;
+    }
+
+    public ArrayList<ArrayList<String>> getGridTemplateArea() {
+        return gridTemplateArea;
+    }
+
+    public FrontEndObjectDisplayTypes getDisplayType() {
+        return displayType;
     }
 
     //
-    
     public void addFrontEndObject(FrontEndObject addThis) {
         if (!this.isListOfFEOsInitiated()) {
             this.initiateListOfFrontEndObjects();
         }
         this.getListOfFrontEndObjects().add(addThis);
     }
-    
+
     //
-    
-    public boolean isRowsInitated() { //TODO test this
+    public boolean isRowsInitated() { // not redundant! Works as expected
         if (this.rowLengthUnit == null) {
             return false;
         }
@@ -118,29 +153,28 @@ public class FrontEndObject {
         return true;
     }
 
-    private boolean isGripGapRowsInitiated() {
+    public boolean isGripGapRowsInitiated() {
         if (this.gridGapRowLengthUnit == null) {
             return false;
         }
         return true;
     }
 
-    private boolean isGripGapColumnsInitiated() {
+    public boolean isGripGapColumnsInitiated() {
         if (this.gridGapColumnsLengthUnit == null) {
             return false;
         }
         return true;
     }
 
-    private boolean isListOfFEOsInitiated() {
+    public boolean isListOfFEOsInitiated() {
         if (this.listOfFrontEndObjects == null) {
             return false;
         }
         return true;
     }
-    
+
     //
-    
     private void initiateListOfFrontEndObjects() {
         this.listOfFrontEndObjects = new ArrayList<>();
     }
