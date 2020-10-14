@@ -22,5 +22,9 @@ public enum FunctionsInstructionCommand {
     
    //FileFunctions
     CREATENEWFILE,
-    WRITETOFILE
+    WRITETOFILE,
+    
+    //FRONTENDMAKER
+    WRITEFRONTENDOBJECTTOHTML,
+    
 }

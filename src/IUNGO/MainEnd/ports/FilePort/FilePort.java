@@ -25,7 +25,7 @@ public class FilePort {
        
     }
     
-    public void writeThisTextToFileAtThisPathname(String pathName, String fileName, String format, String textToWrite) throws IOException{
+    public void writeThisTextToFileAtThisPathname(String textToWrite, String pathName, String fileName, String format) throws IOException{
         FileWriter fileWriter = new FileWriter(pathName + fileName + format);
         fileWriter.write(textToWrite);
         fileWriter.close();

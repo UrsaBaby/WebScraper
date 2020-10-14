@@ -14,11 +14,12 @@ import java.util.ArrayList;
 public class FunctionsInstruction {
    ArrayList<String> listOfStringValues;
     ArrayList<Integer> listOfIntValues;
+    ArrayList<String> listOfFormattedStrings;
     FunctionsInstructionCommand command;
     //TODO ENUM or someway to check instruction (String?) and ListOfStringValues and listOfIntValues
     public FunctionsInstruction(){
-        listOfStringValues = new ArrayList<String>();
-        listOfIntValues = new ArrayList<Integer>();        //TODO check if used and only do new then.     
+        
+           
     }
     
     public void setCommand(FunctionsInstructionCommand command){
@@ -30,31 +31,49 @@ public class FunctionsInstruction {
     }
     
     public void addStringValue(String stringValue){
-        this.getStringValues().add(stringValue);
+        if(!isListOfStringValuesInitiated()){
+            this.initiateListOfStringValues();
+        }
+        this.listOfStringValues.add(stringValue);
     }
     
- 
+      public void addIntValue(int intValue){
+          if(!isListOfIntValuesInitiated()){
+              this.initiateListOfIntValues();
+          }
+        this.listOfIntValues.add(intValue);
+    }
     
-   public  ArrayList<String> getStringValues(){
-        return this.listOfStringValues;
+    
+    public void addListOfFormattedString(ArrayList<String> formattedString){
+        listOfFormattedStrings = formattedString;
     }
     
     public String getStringValueWithIndex(int index){
-        return this.getStringValues().get(index);
+        return this.listOfStringValues.get(index);
     }
     
-    public ArrayList<Integer> getIntValues(){
-        return this.listOfIntValues;
+    //
+    private void initiateListOfStringValues(){
+        listOfStringValues = new ArrayList<String>();
     }
     
- 
+    private void initiateListOfIntValues(){
+        listOfIntValues = new ArrayList<Integer>();  
+    }
+    //
     
-    public int getIntValueWithIndex(int index){
-        return this.getIntValues().get(index);
+    private boolean isListOfStringValuesInitiated(){
+        if(this.listOfStringValues == null){
+            return false;
+        }
+        return true;
     }
     
-    public void addIntValue(int intValue){
-        this.getIntValues().add(intValue);
-    }
-            
+       private boolean isListOfIntValuesInitiated(){
+        if(this.listOfIntValues == null){
+            return false;
+        }
+        return true;
+    }              
 }

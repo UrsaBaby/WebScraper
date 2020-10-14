@@ -55,9 +55,9 @@ public class FrontEndObject {
 
     }
 
-    public void setColumns(FrontEndLengthUnits lengthUnit, int[] columnSize, int numberOfRows) {
+    public void setColumns(FrontEndLengthUnits lengthUnit, int[] columnMinMaxSize, int numberOfRows) {
         columnLengthUnit = lengthUnit;
-        this.columnSize = columnSize;
+        this.columnSize = columnMinMaxSize;
         this.columnAmount = numberOfRows;
     }
 

@@ -94,7 +94,7 @@ public class FunctionsInstructionListRunner implements Runnable {
                     //TODO check correct 
                     break;
                 case WRITETOFILE:
-                    // fileFunction.writeTextToFile(textID, textToWrite, pathName, filename, format); 
+                    // fileFunction.writeTextToFile(textIDToWrite, pathName, filename, format); 
                     fileFunction.writeTextToFile(storedStrings.get(checker.getStringValueWithIndex(0)), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2), checker.getStringValueWithIndex(3));
                     break;
             }

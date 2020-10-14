@@ -32,8 +32,8 @@ public class FileFunction extends Functions {
     public void saveNewFile(String pathName, String fileName, String format) throws IOException{
         this.getFilePort().createNewFileWithThisNameAtThisLocationInThisFormat(pathName, fileName, format); //TODO test
     }
-    
+    //public void writeThisTextToFileAtThisPathname(String pathName, String fileName, String format, String textToWrite)
     public void writeTextToFile(String textToWrite, String pathName, String filename, String format) throws IOException{ //TODO test
-        this.getFilePort().writeThisTextToFileAtThisPathname(pathName, filename, format, textToWrite);
+        this.getFilePort().writeThisTextToFileAtThisPathname(textToWrite, pathName, filename, format);
     }
 }
