@@ -29,7 +29,7 @@ public class FileFunctionInstructionInterface {
         return returnFI;
     }
 
-    public FunctionsInstruction writeTextToFile(String textId, String pathName, String fileName, String format) {
+    public FunctionsInstruction writeStoredTextToFile(String textId, String pathName, String fileName, String format) {
         FunctionsInstruction returnFI = new FunctionsInstruction();
         returnFI.addStringValue(textId);
         returnFI.addStringValue(pathName);

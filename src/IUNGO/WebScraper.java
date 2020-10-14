@@ -51,31 +51,31 @@ public class WebScraper {
      
       
       
-      /*WebFunctionInstructionInterface WFI = new WebFunctionInstructionInterface();
+      WebFunctionInstructionInterface WFI = new WebFunctionInstructionInterface();
         FileFunctionInstructionInterface FFI = new FileFunctionInstructionInterface();
        
-        FunctionsInstruction test2 = FFI.writeTextToFile("gsr", "", "ID", ".txt");
+        FunctionsInstruction test2 = FFI.writeStoredTextToFile("gsr", "", "ID", ".txt");
         ListOfFunctionInstructions instructionList = WFI.createListOfFunctionsInstructions();
         instructionList.addFunctionsInstruction(WFI.createFunctionStartWebGetter());
             instructionList.addFunctionsInstruction(WFI.createFunctionInstructionConnectToThisSite("https://www.google.com/"));
            
              instructionList.addFunctionsInstruction(WFI.createFunctionInstructionStoreTextFromWebElement("gsr", "#gsr"));
              
-             instructionList.addFunctionsInstruction(FFI.createNewFile("", "google", ".txt")); 
+         
               //TODO redo stored value? 
              instructionList.addFunctionsInstruction(test2); //TODO textID isnt captured? se threadsafe?
              
              FunctionsInstructionListRunner FILR = new FunctionsInstructionListRunner(instructionList);
-             FILR.run();*/
+             FILR.run();
       
-        FrontEndObject testObject = new FrontEndObject(FrontEndTags.CONTAINER, "box");
+  /*      FrontEndObject testObject = new FrontEndObject(FrontEndTags.CONTAINER, "box");
         System.out.println(testObject.getId() + testObject.getTag() + testObject.isColumnsInitiated());
         int[] array = new int[2];
         array[0] = 2;
         array[1] = 2;
         
         testObject.setColumns(FrontEndLengthUnits.EM, array, 0);
-        System.out.println(testObject.getId() + testObject.getTag() + testObject.isColumnsInitiated());
+        System.out.println(testObject.getId() + testObject.getTag() + testObject.isColumnsInitiated());*/
         
          
              
