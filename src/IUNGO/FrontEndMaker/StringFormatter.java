@@ -19,7 +19,21 @@ public class StringFormatter {
     }
 
     public String formatFrontEndSceneToStringHTMLCSS(FrontEndObject sceneToFormat) { //TODO test this
-        String returnString = null;
+        String returnString = "";
+        returnString += this.getCSS(sceneToFormat);
+        returnString += this.getHTML(sceneToFormat);
+        return returnString;
+    }
+    
+    private String getCSS(FrontEndObject toCSS){
+        String returnString = "";
+        returnString += "<style>" + this.getRewRow();
+        returnString += "</style>";
+        return returnString;
+    }
+
+    private String getHTML(FrontEndObject toHTML) {
+        String returnString = "";
         ArrayList<FrontEndObject> currentObjects = new ArrayList<>();
 
         while (this.isThereAnUnprintedChild(currentObjects)) {
@@ -42,21 +56,6 @@ public class StringFormatter {
 
         }
 
-        //get mainscene object
-        //print opening mainscene
-        //
-        //loop through keyset
-        //get first object that has mainscene as parent
-        //print opening
-        //check if it is parent to anyone
-        //get first one that has it as parent
-        //print opening
-        //and so on
-        //get second that has mainscene as parent
-        //print opening
-        //check if it is parent to anyone
-        //if yes, print opening
-        //and so on
         return returnString;
     }
 

@@ -19,6 +19,8 @@ public class FrontEndObject {
     String id;
     boolean isPrinted;
     boolean isOpeningPrinted;
+    
+    String color;
 
     FrontEndLengthUnits rowLengthUnit;
     int rowAmount;
@@ -107,6 +109,10 @@ public class FrontEndObject {
     public void setIsOpeningPrinted(boolean toThis){
         this.isOpeningPrinted = toThis;
     }
+    
+    public void setColor(String color){
+        this.color = color;
+    }
 
     //
     
@@ -145,8 +151,13 @@ public class FrontEndObject {
     public ArrayList<FrontEndObject> getListOfFeos(){
         return this.listOfFrontEndObjects;
     }
+    
+    public String getColor(){
+        return this.color;
+    }
 
     //
+    
     public void addFrontEndObject(FrontEndObject addThis) {
         if (!this.isListOfFEOsInitiated()) {
             this.initiateListOfFrontEndObjects();
