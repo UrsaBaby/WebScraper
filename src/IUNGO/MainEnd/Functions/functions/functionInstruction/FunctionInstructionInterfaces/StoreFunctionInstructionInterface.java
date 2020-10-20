@@ -11,11 +11,11 @@ import IUNGO.MainEnd.Functions.functions.functionInstruction.FunctionsInstructio
  *
  * @author Peter
  */
-public class FrontEndMakerInstructionInterface {
+public class StoreFunctionInstructionInterface {
     
-    public FunctionsInstruction storeFrontEndObjectAsString(){
+    public FunctionsInstruction storeString(String stringToStore){ //TODO do this
         FunctionsInstruction returnFi = new FunctionsInstruction();
-        return returnFi;
+        return  returnFi;
     }
     
 }

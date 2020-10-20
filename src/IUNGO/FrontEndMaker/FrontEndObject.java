@@ -17,6 +17,8 @@ public class FrontEndObject {
     ArrayList<FrontEndObject> listOfFrontEndObjects;
     FrontEndTags typeOfObject;
     String id;
+    boolean isPrinted;
+    boolean isOpeningPrinted;
 
     FrontEndLengthUnits rowLengthUnit;
     int rowAmount;
@@ -45,6 +47,8 @@ public class FrontEndObject {
         this.id = id;
         rowSize = new int[2];
         columnSize = new int[2];
+        isPrinted = false;
+        isOpeningPrinted = false;
 
     }
 
@@ -95,6 +99,14 @@ public class FrontEndObject {
     public void setDisplayType(FrontEndObjectDisplayTypes displayType) {
         this.displayType = displayType;
     }
+    
+    public void setIsPrinted(boolean toThis){
+        this.isPrinted = toThis;
+    }
+    
+    public void setIsOpeningPrinted(boolean toThis){
+        this.isOpeningPrinted = toThis;
+    }
 
     //
     
@@ -128,6 +140,10 @@ public class FrontEndObject {
 
     public FrontEndObjectDisplayTypes getDisplayType() {
         return displayType;
+    }
+    
+    public ArrayList<FrontEndObject> getListOfFeos(){
+        return this.listOfFrontEndObjects;
     }
 
     //

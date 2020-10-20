@@ -10,5 +10,8 @@ package IUNGO.FrontEndMaker;
  * @author Peter
  */
 public enum AlignJustify {
+    CENTER,
+    START,
+    END,
     
 }

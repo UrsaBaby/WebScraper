@@ -14,7 +14,7 @@ public class FrontEndObjectInterface {
     public FrontEndObject createContainer(String id, int[] columnMinMaxSize, int numberOfColumns, int[] rowMinMaxSize, int numberOfRows){
         FrontEndObject returnObject = new FrontEndObject(FrontEndTags.CONTAINER, id);
         returnObject.setDisplayType(FrontEndObjectDisplayTypes.GRID);
-        returnObject.setAlign(AlignJustify.CENTER);
+        returnObject.setAlign(AlignJustify.START);
         returnObject.setJustify(AlignJustify.START);
      
         returnObject.setColumns(FrontEndLengthUnits.PX, columnMinMaxSize, numberOfColumns);
