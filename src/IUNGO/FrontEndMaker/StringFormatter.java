@@ -47,7 +47,7 @@ public class StringFormatter {
             FrontEndObject currentObject = listOfCurrentObjects.get(listOfCurrentObjects.size() - 1);
             // System.out.println(currentObject.getId());
             if (!currentObject.isOpeningPrinted) { // works
-                returnString += this.getTagStartString(currentObject.getTag()) + this.getEmptySpace();
+                returnString += this.getIndentation(listOfCurrentObjects.size()-1) +this.getTagStartString(currentObject.getTag()) + this.getEmptySpace();
                 returnString += this.getClassDefinitionSyntaxForThisFEO(currentObject);
                 returnString += this.getCloseTagString() + this.getRewRow();
                 currentObject.setIsOpeningPrinted(true);
@@ -58,7 +58,7 @@ public class StringFormatter {
             if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) {
                 listOfCurrentObjects.add(this.getFirstUnprintedChild(currentObject));
             } else {
-                returnString += this.getTagEndString(currentObject.getTag()) + this.getRewRow();
+                returnString +=this.getIndentation(listOfCurrentObjects.size()-1) + this.getTagEndString(currentObject.getTag()) + this.getRewRow();
                 currentObject.setIsPrinted(true);
                 this.removePrintedObjects(listOfCurrentObjects);
 
@@ -155,5 +155,14 @@ public class StringFormatter {
             }
         }
         fromThis.removeAll(toRemove);
+    }
+    
+    private String getIndentation(int numberOfIndentations){
+        String returnString = "";
+        String indentation = "  ";
+        for(int i = 0; i<numberOfIndentations; i++){
+            returnString += indentation;
+        }
+        return returnString;
     }
 }
