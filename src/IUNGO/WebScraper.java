@@ -7,7 +7,9 @@ package IUNGO;
 
 import IUNGO.FrontEndMaker.FrontEndLengthUnits;
 import IUNGO.FrontEndMaker.FrontEndObject;
+import IUNGO.FrontEndMaker.FrontEndObjectInterface;
 import IUNGO.FrontEndMaker.FrontEndTags;
+import IUNGO.FrontEndMaker.StringFormatter;
 import java.awt.AWTException;
 import java.io.File;
 import java.io.FileWriter;
@@ -20,8 +22,6 @@ import IUNGO.MainEnd.Functions.functions.functionInstruction.FunctionInstruction
 import IUNGO.MainEnd.Functions.functions.functionInstruction.FunctionsInstruction;
 import IUNGO.MainEnd.ports.FilePort.FilePort;
 
-
-
 /**
  *
  * @author Peter
@@ -32,8 +32,24 @@ public class WebScraper {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws AWTException, InterruptedException, IOException {
+        FrontEndObjectInterface FEOInterface = new FrontEndObjectInterface();
+        int[] minMaxSize = new int[2];
+        minMaxSize[0] = 100;
+        minMaxSize[1] = 1000;
+        FrontEndObject mainScene = FEOInterface.createContainer("SCENE", minMaxSize, 0, minMaxSize, 0);
+        mainScene.setBackgroundColor("blue");
+        
+        FrontEndObject insideBox = FEOInterface.createContainer("box", minMaxSize, 0, minMaxSize, 0);
+        
+        mainScene.addFrontEndObject(insideBox);
+        
+        StringFormatter stringFormat = new StringFormatter();
+        System.out.println(stringFormat.formatFrontEndSceneToStringHTMLCSS(mainScene));
 
-     /*   FunctionInterface testFI = new FunctionInterface();
+    }
+
+    private void writeFileTest() {
+        /*   FunctionInterface testFI = new FunctionInterface();
         LogicInterface testLI;
 
         testLI = new LogicInterface();
@@ -46,44 +62,24 @@ public class WebScraper {
         testLI.runListOfFunctionInstructionsInNewThread(listOfFI);*/
 
         //fileHandler fileHandler = new fileHandler();
-      //  fileHandler.createNewFileWithThisNameAtThisLocationInThisFormat("nyttTest", "C:\\Users\\Peter\\Documents\\", ".txt");
-      
-     
-      
-      
-      WebFunctionInstructionInterface WFI = new WebFunctionInstructionInterface();
+        //  fileHandler.createNewFileWithThisNameAtThisLocationInThisFormat("nyttTest", "C:\\Users\\Peter\\Documents\\", ".txt");
+    }
+
+    private void getDataAndWriteToFileTest() throws AWTException {
+        WebFunctionInstructionInterface WFI = new WebFunctionInstructionInterface();
         FileFunctionInstructionInterface FFI = new FileFunctionInstructionInterface();
-       
+
         FunctionsInstruction test2 = FFI.writeStoredTextToFile("gsr", "", "ID", ".txt");
         ListOfFunctionInstructions instructionList = WFI.createListOfFunctionsInstructions();
         instructionList.addFunctionsInstruction(WFI.createFunctionStartWebGetter());
-            instructionList.addFunctionsInstruction(WFI.createFunctionInstructionConnectToThisSite("https://www.google.com/"));
-           
-             instructionList.addFunctionsInstruction(WFI.createFunctionInstructionStoreTextFromWebElement("gsr", "#gsr"));
-             
-         
-              //TODO redo stored value? 
-             instructionList.addFunctionsInstruction(test2); //TODO textID isnt captured? se threadsafe?
-             
-             FunctionsInstructionListRunner FILR = new FunctionsInstructionListRunner(instructionList);
-             FILR.run();
-      
-  /*      FrontEndObject testObject = new FrontEndObject(FrontEndTags.CONTAINER, "box");
-        System.out.println(testObject.getId() + testObject.getTag() + testObject.isColumnsInitiated());
-        int[] array = new int[2];
-        array[0] = 2;
-        array[1] = 2;
-        
-        testObject.setColumns(FrontEndLengthUnits.EM, array, 0);
-        System.out.println(testObject.getId() + testObject.getTag() + testObject.isColumnsInitiated());*/
-        
-         
-             
-             
-        
+        instructionList.addFunctionsInstruction(WFI.createFunctionInstructionConnectToThisSite("https://www.google.com/"));
 
-            
-   
+        instructionList.addFunctionsInstruction(WFI.createFunctionInstructionStoreTextFromWebElement("gsr", "#gsr"));
+
+        instructionList.addFunctionsInstruction(test2);
+
+        FunctionsInstructionListRunner FILR = new FunctionsInstructionListRunner(instructionList);
+        FILR.run();
     }
 
 }

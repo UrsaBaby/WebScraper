@@ -6,7 +6,11 @@
 package IUNGO.FrontEndMaker;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.function.Predicate;
 
 /**
  *
@@ -20,12 +24,12 @@ public class StringFormatter {
 
     public String formatFrontEndSceneToStringHTMLCSS(FrontEndObject sceneToFormat) { //TODO test this
         String returnString = "";
-        returnString += this.getCSS(sceneToFormat);
-        returnString += this.getHTML(sceneToFormat);
+        returnString += this.getCSS(sceneToFormat) + this.getRewRow();
+        returnString += this.getHTML(sceneToFormat) + this.getRewRow();
         return returnString;
     }
-    
-    private String getCSS(FrontEndObject toCSS){
+
+    private String getCSS(FrontEndObject toCSS) {
         String returnString = "";
         returnString += "<style>" + this.getRewRow();
         returnString += "</style>";
@@ -34,25 +38,31 @@ public class StringFormatter {
 
     private String getHTML(FrontEndObject toHTML) {
         String returnString = "";
-        ArrayList<FrontEndObject> currentObjects = new ArrayList<>();
+        ArrayList<FrontEndObject> listOfCurrentObjects = new ArrayList<>();
+        if (!listOfCurrentObjects.contains(toHTML)) {
+            listOfCurrentObjects.add(toHTML);
+        }
 
-        while (this.isThereAnUnprintedChild(currentObjects)) {
-            FrontEndObject currentObject = currentObjects.get(currentObjects.size() - 1);
-            if (!currentObject.isOpeningPrinted) {
+        while (this.isThereAnUnprintedChild(listOfCurrentObjects)) {
+            FrontEndObject currentObject = listOfCurrentObjects.get(listOfCurrentObjects.size() - 1);
+            // System.out.println(currentObject.getId());
+            if (!currentObject.isOpeningPrinted) { // works
                 returnString += this.getTagStartString(currentObject.getTag()) + this.getEmptySpace();
                 returnString += this.getClassDefinitionSyntaxForThisFEO(currentObject);
-                returnString += this.getCloseTagString();
+                returnString += this.getCloseTagString() + this.getRewRow();
                 currentObject.setIsOpeningPrinted(true);
             }
-            if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) {
 
-                currentObject.addFrontEndObject(this.getFirstUnprintedChild(currentObject));
+            
+           
+            if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) {
+                listOfCurrentObjects.add(this.getFirstUnprintedChild(currentObject));
             } else {
-                this.getTagEndString(currentObject.getTag());
+                returnString += this.getTagEndString(currentObject.getTag()) + this.getRewRow();
                 currentObject.setIsPrinted(true);
+                this.removePrintedObjects(listOfCurrentObjects);
 
             }
-            this.removePrintedObjects(currentObjects);
 
         }
 
@@ -120,7 +130,10 @@ public class StringFormatter {
         return null;
     }
 
-    private boolean isThereAnUnprintedChild(ArrayList<FrontEndObject> fromThis) {
+    private boolean isThereAnUnprintedChild(ArrayList<FrontEndObject> fromThis) { //TODO refactor
+        if (fromThis == null) {
+            return false;
+        }
         for (FrontEndObject checker : fromThis) {
             if (!checker.isPrinted) {
                 return true;
@@ -130,11 +143,17 @@ public class StringFormatter {
     }
 
     private void removePrintedObjects(ArrayList<FrontEndObject> fromThis) {
-        for (FrontEndObject checker : fromThis) {
+
+        /*  for (Iterator iterator = fromThis.iterator(); iterator.hasNext();){
+            if()
+        }*/
+        
+      ArrayList<FrontEndObject> toRemove = new ArrayList<FrontEndObject>();
+        for (FrontEndObject checker : fromThis) { //TODO iterator?
             if (checker.isPrinted) {
-                fromThis.remove(checker);
+                toRemove.add(checker);
             }
         }
+        fromThis.removeAll(toRemove);
     }
-
 }

@@ -20,7 +20,7 @@ public class FrontEndObject {
     boolean isPrinted;
     boolean isOpeningPrinted;
     
-    String color;
+    String backgroundColor;
 
     FrontEndLengthUnits rowLengthUnit;
     int rowAmount;
@@ -110,8 +110,8 @@ public class FrontEndObject {
         this.isOpeningPrinted = toThis;
     }
     
-    public void setColor(String color){
-        this.color = color;
+    public void setBackgroundColor(String backgroundColor){
+        this.backgroundColor = backgroundColor;
     }
 
     //
@@ -152,8 +152,8 @@ public class FrontEndObject {
         return this.listOfFrontEndObjects;
     }
     
-    public String getColor(){
-        return this.color;
+    public String getBackgroundColor(){
+        return this.backgroundColor;
     }
 
     //
