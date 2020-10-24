@@ -18,6 +18,8 @@ import java.util.function.Predicate;
  */
 public class StringFormatter {
 
+    ArrayList<FrontEndObject> listOfCurrentFrontEndObjects;
+
     public StringFormatter() {
 
     }
@@ -38,29 +40,22 @@ public class StringFormatter {
 
     private String getHTML(FrontEndObject toHTML) {
         String returnString = "";
-        ArrayList<FrontEndObject> listOfCurrentObjects = new ArrayList<>();
-        if (!listOfCurrentObjects.contains(toHTML)) {
-            listOfCurrentObjects.add(toHTML);
-        }
+        this.addToListOfCurrentFEOs(toHTML);
 
-        while (this.isThereAnUnprintedChild(listOfCurrentObjects)) {
-            FrontEndObject currentObject = listOfCurrentObjects.get(listOfCurrentObjects.size() - 1);
-            // System.out.println(currentObject.getId());
+        while (this.isThereAnUnprintedChild(listOfCurrentFrontEndObjects)) {
+            FrontEndObject currentObject = listOfCurrentFrontEndObjects.get(listOfCurrentFrontEndObjects.size() - 1);
+ 
             if (!currentObject.isOpeningPrinted) { // works
-                returnString += this.getIndentation(listOfCurrentObjects.size()-1) +this.getTagStartString(currentObject.getTag()) + this.getEmptySpace();
-                returnString += this.getClassDefinitionSyntaxForThisFEO(currentObject);
-                returnString += this.getCloseTagString() + this.getRewRow();
+                returnString += this.printHTMLOpening(currentObject);
                 currentObject.setIsOpeningPrinted(true);
             }
 
-            
-           
             if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) {
-                listOfCurrentObjects.add(this.getFirstUnprintedChild(currentObject));
+                this.addToListOfCurrentFEOs(this.getFirstUnprintedChild(currentObject));
             } else {
-                returnString +=this.getIndentation(listOfCurrentObjects.size()-1) + this.getTagEndString(currentObject.getTag()) + this.getRewRow();
+                returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagEndString(currentObject.getTag()) + this.getRewRow();
                 currentObject.setIsPrinted(true);
-                this.removePrintedObjects(listOfCurrentObjects);
+                this.removePrintedObjects(listOfCurrentFrontEndObjects);
 
             }
 
@@ -147,8 +142,7 @@ public class StringFormatter {
         /*  for (Iterator iterator = fromThis.iterator(); iterator.hasNext();){
             if()
         }*/
-        
-      ArrayList<FrontEndObject> toRemove = new ArrayList<FrontEndObject>();
+        ArrayList<FrontEndObject> toRemove = new ArrayList<FrontEndObject>();
         for (FrontEndObject checker : fromThis) { //TODO iterator?
             if (checker.isPrinted) {
                 toRemove.add(checker);
@@ -156,13 +150,40 @@ public class StringFormatter {
         }
         fromThis.removeAll(toRemove);
     }
-    
-    private String getIndentation(int numberOfIndentations){
+
+    private String getIndentation(int numberOfIndentations) {
         String returnString = "";
         String indentation = "  ";
-        for(int i = 0; i<numberOfIndentations; i++){
+        for (int i = 0; i < numberOfIndentations; i++) {
             returnString += indentation;
         }
         return returnString;
+    }
+
+    private void initiateListOfCurrentFEOs() {
+        this.listOfCurrentFrontEndObjects = new ArrayList<>();
+    }
+
+    private boolean isListOfCurrentFEOsInitiated() {
+        if (this.listOfCurrentFrontEndObjects == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private void addToListOfCurrentFEOs(FrontEndObject addThis) {
+        if (!this.isListOfCurrentFEOsInitiated()) {
+            this.initiateListOfCurrentFEOs();
+        }
+        this.listOfCurrentFrontEndObjects.add(addThis);
+    }
+
+    private String printHTMLOpening(FrontEndObject printThis) {
+        String returnString = "";
+        returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagStartString(printThis.getTag()) + this.getEmptySpace();
+        returnString += this.getClassDefinitionSyntaxForThisFEO(printThis);
+        returnString += this.getCloseTagString() + this.getRewRow();
+        
+        return  returnString;
     }
 }
