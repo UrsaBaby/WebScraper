@@ -42,26 +42,24 @@ public class StringFormatter {
         String returnString = "";
         this.addToListOfCurrentFEOs(toHTML);
 
-        while (this.isThereAnUnprintedChild(listOfCurrentFrontEndObjects)) {
-            FrontEndObject currentObject = listOfCurrentFrontEndObjects.get(listOfCurrentFrontEndObjects.size() - 1);
- 
-            if (!currentObject.isOpeningPrinted) { // works
-                returnString += this.printHTMLOpening(currentObject);
-                currentObject.setIsOpeningPrinted(true);
-            }
+        this.setCurrentObjectToLastInThisList(listOfCurrentFrontEndObjects);
+        returnString += this.printOpeningsForThisList(listOfCurrentFrontEndObjects);
+        this.setToPrinted(toHTML);
+        returnString += this.printClosing(toHTML);
+        this.removePrintedObjects(listOfCurrentFrontEndObjects);
 
-            if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) {
-                this.addToListOfCurrentFEOs(this.getFirstUnprintedChild(currentObject));
-            } else {
-                returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagEndString(currentObject.getTag()) + this.getRewRow();
-                currentObject.setIsPrinted(true);
-                this.removePrintedObjects(listOfCurrentFrontEndObjects);
-
-            }
-
+        // TODO Make This
+        /*   while (this.isThereAnUnprintedChild(listOfCurrentFrontEndObjects)) { //TODO continue formatted, printopening still needs way more work.
+            FrontEndObject currentObject = this.setCurrentObjectToLastInThisList(listOfCurrentFrontEndObjects);
+            
+            this.printOpening(currentObject);
+            this.setToOpeningPrinted(currentObject);
+            this.addFirstUnprintedChildToCurrentObjects(currentObject);
+            this.printClosing(currentObject);
+            this.setToPrinted(currentObject);
+            
         }
-
-        return returnString;
+         */ return returnString;
     }
 
     private String getStyleDecleration(FrontEndObject toFormat) {
@@ -183,7 +181,50 @@ public class StringFormatter {
         returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagStartString(printThis.getTag()) + this.getEmptySpace();
         returnString += this.getClassDefinitionSyntaxForThisFEO(printThis);
         returnString += this.getCloseTagString() + this.getRewRow();
-        
-        return  returnString;
+        return returnString;
+    }
+
+    private String printOpeningsForThisList(ArrayList<FrontEndObject> listOfCurrentFrontEndObjects) {
+
+        String returnString = "";
+        while (this.isThereAnUnprintedChild(listOfCurrentFrontEndObjects)) {
+            FrontEndObject currentObject = this.setCurrentObjectToLastInThisList(listOfCurrentFrontEndObjects);
+
+            if (!currentObject.isOpeningPrinted) { // works
+                returnString += this.printHTMLOpening(currentObject);
+            }
+
+            if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) {
+                this.addToListOfCurrentFEOs(this.getFirstUnprintedChild(currentObject));
+            } else {
+                returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagEndString(currentObject.getTag()) + this.getRewRow();
+                currentObject.setIsPrinted(true);
+                this.removePrintedObjects(listOfCurrentFrontEndObjects);
+
+            }
+
+        }
+
+        return returnString;
+
+    }
+
+    private String printClosing(FrontEndObject printThis) {
+
+        String returnString = "";
+
+        return returnString;
+
+    }
+
+    private void setToPrinted(FrontEndObject setThis) {
+        if (!setThis.isOpeningPrinted) { // works
+
+            setThis.setIsOpeningPrinted(true);
+        }
+    }
+
+    private FrontEndObject setCurrentObjectToLastInThisList(ArrayList<FrontEndObject> thisList) {
+        return listOfCurrentFrontEndObjects.get(listOfCurrentFrontEndObjects.size() - 1);
     }
 }
