@@ -7,11 +7,6 @@ package IUNGO.FrontEndMaker;
 
 import java.util.ArrayList;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.function.Predicate;
-
 /**
  *
  * @author Peter
@@ -24,42 +19,46 @@ public class StringFormatter {
 
     }
 
-    public String formatFrontEndSceneToStringHTMLCSS(FrontEndObject sceneToFormat) { //TODO test this
-        String returnString = "";
-        returnString += this.getCSS(sceneToFormat) + this.getRewRow();
-        returnString += this.getHTML(sceneToFormat) + this.getRewRow();
-        return returnString;
-    }
 
-    private String getCSS(FrontEndObject toCSS) {
+    public String getCSS(FrontEndObject toCSS) {
         String returnString = "";
-        returnString += "<style>" + this.getRewRow();
+        returnString += "<style>" + this.getNewRow();
         returnString += "</style>";
         return returnString;
     }
+ 
 
-    private String getHTML(FrontEndObject toHTML) {
+    public String getHTML(FrontEndObject getThisHTML) {
         String returnString = "";
-        this.addToListOfCurrentFEOs(toHTML);
-
-        this.setCurrentObjectToLastInThisList(listOfCurrentFrontEndObjects);
-        returnString += this.printOpeningsForThisList(listOfCurrentFrontEndObjects);
-        this.setToPrinted(toHTML);
-        returnString += this.printClosing(toHTML);
-        this.removePrintedObjects(listOfCurrentFrontEndObjects);
-
-        // TODO Make This
-        /*   while (this.isThereAnUnprintedChild(listOfCurrentFrontEndObjects)) { //TODO continue formatted, printopening still needs way more work.
-            FrontEndObject currentObject = this.setCurrentObjectToLastInThisList(listOfCurrentFrontEndObjects);
-            
-            this.printOpening(currentObject);
-            this.setToOpeningPrinted(currentObject);
-            this.addFirstUnprintedChildToCurrentObjects(currentObject);
-            this.printClosing(currentObject);
-            this.setToPrinted(currentObject);
-            
+        
+        if(this.listOfCurrentFrontEndObjects == null){
+            this.listOfCurrentFrontEndObjects = new ArrayList<>(); //initiates the list.
         }
-         */ return returnString;
+        this.listOfCurrentFrontEndObjects.add(getThisHTML);
+
+        while (this.isThereAnUnprintedChild(listOfCurrentFrontEndObjects)) {
+            FrontEndObject currentObject = this.getCurrentObjectLastInThisList(listOfCurrentFrontEndObjects); //Sets to last added unprinted child, first run is the full scene that you want printed.
+
+            if (!currentObject.isOpeningPrinted) {
+                returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagStartString(currentObject.getTag()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentObject) + this.getCloseTagString() + this.getNewRow();
+            }                                                         /* Prints opening. ex , printed parent-> "<div>            with the indentation based on the depth inside another object it is.
+                                                                                                                     <div>" <- printed child */   
+
+            if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) { //If there is an unprinted child, add first one to currentfeos. Will be made current object on next iteration.
+                this.addToListOfCurrentFEOs(this.getFirstUnprintedChild(currentObject));                                   //making sure the full depth of all children have been printed before we start closing tags.
+            } else { //If there is no unprinted child (either through beeing the deepest child object, or having all children printed). Start closing tags
+                returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagEndString(currentObject.getTag()) + this.getNewRow(); //print closing with right indentation ex: "</div>
+                currentObject.setIsPrinted(true); //TODO refactor, prints closing.                                                                                                                              </div>               
+                listOfCurrentFrontEndObjects.remove(currentObject);
+            }
+        }
+        return returnString;
+    }    
+
+    
+    //
+    private FrontEndObject getCurrentObjectLastInThisList(ArrayList<FrontEndObject> thisList) {
+        return listOfCurrentFrontEndObjects.get(listOfCurrentFrontEndObjects.size() - 1);
     }
 
     private String getStyleDecleration(FrontEndObject toFormat) {
@@ -106,8 +105,17 @@ public class StringFormatter {
         return " ";
     }
 
-    private String getRewRow() {
+    private String getNewRow() {
         return "\n";
+    }
+
+    private String getIndentation(int numberOfIndentations) {
+        String returnString = "";
+        String indentation = "  ";
+        for (int i = 0; i < numberOfIndentations; i++) {
+            returnString += indentation;
+        }
+        return returnString;
     }
 
     private String getClassDefinitionSyntaxForThisFEO(FrontEndObject defineThis) {
@@ -123,6 +131,8 @@ public class StringFormatter {
         return null;
     }
 
+    //
+    
     private boolean isThereAnUnprintedChild(ArrayList<FrontEndObject> fromThis) { //TODO refactor
         if (fromThis == null) {
             return false;
@@ -135,6 +145,14 @@ public class StringFormatter {
         return false;
     }
 
+    private boolean isListOfCurrentFEOsInitiated() {
+        if (this.listOfCurrentFrontEndObjects == null) {
+            return false;
+        }
+        return true;
+    }
+
+    //
     private void removePrintedObjects(ArrayList<FrontEndObject> fromThis) {
 
         /*  for (Iterator iterator = fromThis.iterator(); iterator.hasNext();){
@@ -149,82 +167,11 @@ public class StringFormatter {
         fromThis.removeAll(toRemove);
     }
 
-    private String getIndentation(int numberOfIndentations) {
-        String returnString = "";
-        String indentation = "  ";
-        for (int i = 0; i < numberOfIndentations; i++) {
-            returnString += indentation;
-        }
-        return returnString;
-    }
-
-    private void initiateListOfCurrentFEOs() {
-        this.listOfCurrentFrontEndObjects = new ArrayList<>();
-    }
-
-    private boolean isListOfCurrentFEOsInitiated() {
-        if (this.listOfCurrentFrontEndObjects == null) {
-            return false;
-        }
-        return true;
-    }
 
     private void addToListOfCurrentFEOs(FrontEndObject addThis) {
-        if (!this.isListOfCurrentFEOsInitiated()) {
-            this.initiateListOfCurrentFEOs();
-        }
         this.listOfCurrentFrontEndObjects.add(addThis);
     }
 
-    private String printHTMLOpening(FrontEndObject printThis) {
-        String returnString = "";
-        returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagStartString(printThis.getTag()) + this.getEmptySpace();
-        returnString += this.getClassDefinitionSyntaxForThisFEO(printThis);
-        returnString += this.getCloseTagString() + this.getRewRow();
-        return returnString;
-    }
+   
 
-    private String printOpeningsForThisList(ArrayList<FrontEndObject> listOfCurrentFrontEndObjects) {
-
-        String returnString = "";
-        while (this.isThereAnUnprintedChild(listOfCurrentFrontEndObjects)) {
-            FrontEndObject currentObject = this.setCurrentObjectToLastInThisList(listOfCurrentFrontEndObjects);
-
-            if (!currentObject.isOpeningPrinted) { // works
-                returnString += this.printHTMLOpening(currentObject);
-            }
-
-            if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) {
-                this.addToListOfCurrentFEOs(this.getFirstUnprintedChild(currentObject));
-            } else {
-                returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagEndString(currentObject.getTag()) + this.getRewRow();
-                currentObject.setIsPrinted(true);
-                this.removePrintedObjects(listOfCurrentFrontEndObjects);
-
-            }
-
-        }
-
-        return returnString;
-
-    }
-
-    private String printClosing(FrontEndObject printThis) {
-
-        String returnString = "";
-
-        return returnString;
-
-    }
-
-    private void setToPrinted(FrontEndObject setThis) {
-        if (!setThis.isOpeningPrinted) { // works
-
-            setThis.setIsOpeningPrinted(true);
-        }
-    }
-
-    private FrontEndObject setCurrentObjectToLastInThisList(ArrayList<FrontEndObject> thisList) {
-        return listOfCurrentFrontEndObjects.get(listOfCurrentFrontEndObjects.size() - 1);
-    }
 }
