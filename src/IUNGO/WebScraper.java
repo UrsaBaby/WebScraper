@@ -44,6 +44,7 @@ public class WebScraper {
         mainScene.addFrontEndObject(insideBox);
         
         StringFormatter stringFormat = new StringFormatter();
+        System.out.println(stringFormat.getCSS(mainScene));
         System.out.println(stringFormat.getHTML(mainScene));
         //System.out.println(stringFormat.getHTML2(mainScene));
 

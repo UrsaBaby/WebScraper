@@ -13,52 +13,69 @@ import java.util.ArrayList;
  */
 public class StringFormatter {
 
-    ArrayList<FrontEndObject> listOfCurrentFrontEndObjects;
+    ArrayList<FrontEndObject> listOfCurrentHTMLFrontEndObjects;
+    ArrayList<FrontEndObject> listOfCurrentCSSFrontEndObjects;
 
     public StringFormatter() {
 
     }
 
-
     public String getCSS(FrontEndObject toCSS) {
         String returnString = "";
+        this.initiateListOfCurrentCSSFEOs();
         returnString += "<style>" + this.getNewRow();
+        listOfCurrentCSSFrontEndObjects.add(toCSS);
+        while (!this.listOfCurrentCSSFrontEndObjects.isEmpty()) { //If lsit isnt empty
+            FrontEndObject currentCSSObject = this.listOfCurrentCSSFrontEndObjects.get(listOfCurrentCSSFrontEndObjects.size()-1);
+            //Sets the last added object to current
+            if (!currentCSSObject.isCssPrinted) {
+                returnString += this.getCssAttributes(currentCSSObject); //Prints css syntax and info
+                currentCSSObject.setIsCssPrinted(true); //set to printed
+            }
+
+            if (currentCSSObject.isListOfFEOsInitiated() && this.isThereAnUnprintedCssChild(currentCSSObject.getListOfFeos())) {
+                this.listOfCurrentCSSFrontEndObjects.add(this.getFirstUnprintedCssChild(currentCSSObject));
+            }   //if current object has children and they are unprinted, add it to current objects, will be current next iteration
+            else{
+                
+                listOfCurrentCSSFrontEndObjects.remove(currentCSSObject); //if it doesnt have children that is unprinted
+                //                                                          it will have been printed and can therefore be removed;
+            }
+        }
+
         returnString += "</style>";
         return returnString;
     }
- 
 
     public String getHTML(FrontEndObject getThisHTML) {
         String returnString = "";
-        
-        if(this.listOfCurrentFrontEndObjects == null){
-            this.listOfCurrentFrontEndObjects = new ArrayList<>(); //initiates the list.
-        }
-        this.listOfCurrentFrontEndObjects.add(getThisHTML);
 
-        while (this.isThereAnUnprintedChild(listOfCurrentFrontEndObjects)) {
-            FrontEndObject currentObject = this.getCurrentObjectLastInThisList(listOfCurrentFrontEndObjects); //Sets to last added unprinted child, first run is the full scene that you want printed.
+        this.initiateListOfCurrentHTMLFEOs();
+        this.listOfCurrentHTMLFrontEndObjects.add(getThisHTML);
 
-            if (!currentObject.isOpeningPrinted) {
-                returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagStartString(currentObject.getTag()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentObject) + this.getCloseTagString() + this.getNewRow();
-            }                                                         /* Prints opening. ex , printed parent-> "<div>            with the indentation based on the depth inside another object it is.
-                                                                                                                     <div>" <- printed child */   
+        while (this.isThereAnUnprintedHtmlChild(listOfCurrentHTMLFrontEndObjects)) {
+            FrontEndObject currentHTMLObject = this.getCurrentObjectLastInThisList(listOfCurrentHTMLFrontEndObjects); //Sets to last added unprinted child, first run is the full scene that you want printed.
 
-            if (currentObject.isListOfFEOsInitiated() && this.isThereAnUnprintedChild(currentObject.getListOfFeos())) { //If there is an unprinted child, add first one to currentfeos. Will be made current object on next iteration.
-                this.addToListOfCurrentFEOs(this.getFirstUnprintedChild(currentObject));                                   //making sure the full depth of all children have been printed before we start closing tags.
+            if (!currentHTMLObject.isOpeningHtmlPrinted) {
+                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getTag()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject) + this.getCloseTagString() + this.getNewRow();
+            }
+            /* Prints opening. ex , printed parent-> "<div>            with the indentation based on the depth inside another object it is.
+                                                                                                                     <div>" <- printed child */
+
+            if (currentHTMLObject.isListOfFEOsInitiated() && this.isThereAnUnprintedHtmlChild(currentHTMLObject.getListOfFeos())) { //If there is an unprinted child, add first one to currentfeos. Will be made current object on next iteration.
+                this.addToListOfCurrentFEOs(this.getFirstUnprintedHtmlChild(currentHTMLObject));                                   //making sure the full depth of all children have been printed before we start closing tags.
             } else { //If there is no unprinted child (either through beeing the deepest child object, or having all children printed). Start closing tags
-                returnString += this.getIndentation(listOfCurrentFrontEndObjects.size() - 1) + this.getTagEndString(currentObject.getTag()) + this.getNewRow(); //print closing with right indentation ex: "</div>
-                currentObject.setIsPrinted(true); //TODO refactor, prints closing.                                                                                                                              </div>               
-                listOfCurrentFrontEndObjects.remove(currentObject);
+                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagEndString(currentHTMLObject.getTag()) + this.getNewRow(); //print closing with right indentation ex: "</div>
+                currentHTMLObject.setIsHtmlPrinted(true); //                                                                                                                           </div>               
+                listOfCurrentHTMLFrontEndObjects.remove(currentHTMLObject); //Removes the printedobject and goes back up to its parent to check for other nex unprinted child, if parent has no unprinted child it will be closed, and so on.
             }
         }
         return returnString;
-    }    
+    }
 
-    
     //
     private FrontEndObject getCurrentObjectLastInThisList(ArrayList<FrontEndObject> thisList) {
-        return listOfCurrentFrontEndObjects.get(listOfCurrentFrontEndObjects.size() - 1);
+        return listOfCurrentHTMLFrontEndObjects.get(listOfCurrentHTMLFrontEndObjects.size() - 1);
     }
 
     private String getStyleDecleration(FrontEndObject toFormat) {
@@ -122,9 +139,18 @@ public class StringFormatter {
         return "class=\"" + defineThis.getId() + "\"";
     }
 
-    private FrontEndObject getFirstUnprintedChild(FrontEndObject fromThis) {
+    private FrontEndObject getFirstUnprintedHtmlChild(FrontEndObject fromThis) {
         for (FrontEndObject checker : fromThis.getListOfFeos()) {
-            if (!checker.isPrinted) {
+            if (!checker.isHtmlPrinted) {
+                return checker;
+            }
+        }
+        return null;
+    }
+
+    private FrontEndObject getFirstUnprintedCssChild(FrontEndObject fromThis) {
+        for (FrontEndObject checker : fromThis.getListOfFeos()) {
+            if (!checker.isCssPrinted) {
                 return checker;
             }
         }
@@ -132,13 +158,21 @@ public class StringFormatter {
     }
 
     //
-    
-    private boolean isThereAnUnprintedChild(ArrayList<FrontEndObject> fromThis) { //TODO refactor
+    private boolean isThereAnUnprintedHtmlChild(ArrayList<FrontEndObject> fromThis) { //TODO refactor
         if (fromThis == null) {
             return false;
         }
         for (FrontEndObject checker : fromThis) {
-            if (!checker.isPrinted) {
+            if (!checker.isHtmlPrinted) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isThereAnUnprintedCssChild(ArrayList<FrontEndObject> listOfFeos) {
+        for (FrontEndObject checker : listOfFeos) {
+            if (!checker.isCssPrinted) {
                 return true;
             }
         }
@@ -146,7 +180,7 @@ public class StringFormatter {
     }
 
     private boolean isListOfCurrentFEOsInitiated() {
-        if (this.listOfCurrentFrontEndObjects == null) {
+        if (this.listOfCurrentHTMLFrontEndObjects == null) {
             return false;
         }
         return true;
@@ -160,18 +194,38 @@ public class StringFormatter {
         }*/
         ArrayList<FrontEndObject> toRemove = new ArrayList<FrontEndObject>();
         for (FrontEndObject checker : fromThis) { //TODO iterator?
-            if (checker.isPrinted) {
+            if (checker.isHtmlPrinted) {
                 toRemove.add(checker);
             }
         }
         fromThis.removeAll(toRemove);
     }
 
-
     private void addToListOfCurrentFEOs(FrontEndObject addThis) {
-        this.listOfCurrentFrontEndObjects.add(addThis);
+        this.listOfCurrentHTMLFrontEndObjects.add(addThis);
     }
 
-   
+    //
+    private void initiateListOfCurrentHTMLFEOs() {
+        if (this.listOfCurrentHTMLFrontEndObjects == null) {
+            this.listOfCurrentHTMLFrontEndObjects = new ArrayList<>(); //initiates the list.
+        }
+    }
+
+    private void initiateListOfCurrentCSSFEOs() {
+        if (this.listOfCurrentCSSFrontEndObjects == null) {
+            this.listOfCurrentCSSFrontEndObjects = new ArrayList<>();
+        }
+    }
+    
+    private String getCssAttributes(FrontEndObject fromThis){
+        String returnString = "";
+        returnString += "." + fromThis.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
+        if(fromThis.getBackgroundColor() == null){
+            returnString += this.getIndentation(1)+"background-color: " + fromThis.getBackgroundColor() + ";" + this.getNewRow();
+        }
+        returnString +=";" + this.getNewRow();
+        return returnString;
+    }
 
 }

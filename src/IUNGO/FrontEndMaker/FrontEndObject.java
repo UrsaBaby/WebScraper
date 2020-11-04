@@ -17,8 +17,9 @@ public class FrontEndObject {
     ArrayList<FrontEndObject> listOfFrontEndObjects;
     FrontEndTags typeOfObject;
     String id;
-    boolean isPrinted;
-    boolean isOpeningPrinted;
+    boolean isHtmlPrinted;
+    boolean isOpeningHtmlPrinted;
+    boolean isCssPrinted;
     
     String backgroundColor;
 
@@ -49,8 +50,8 @@ public class FrontEndObject {
         this.id = id;
         rowSize = new int[2];
         columnSize = new int[2];
-        isPrinted = false;
-        isOpeningPrinted = false;
+        isHtmlPrinted = false;
+        isOpeningHtmlPrinted = false;
 
     }
 
@@ -102,16 +103,20 @@ public class FrontEndObject {
         this.displayType = displayType;
     }
     
-    public void setIsPrinted(boolean toThis){
-        this.isPrinted = toThis;
+    public void setIsHtmlPrinted(boolean toThis){
+        this.isHtmlPrinted = toThis;
     }
     
-    public void setIsOpeningPrinted(boolean toThis){
-        this.isOpeningPrinted = toThis;
+    public void setIsOpeningHtmlPrinted(boolean toThis){
+        this.isOpeningHtmlPrinted = toThis;
     }
     
     public void setBackgroundColor(String backgroundColor){
         this.backgroundColor = backgroundColor;
+    }
+    
+    public void setIsCssPrinted(boolean toThis){
+        this.isCssPrinted = toThis;
     }
 
     //
@@ -199,6 +204,10 @@ public class FrontEndObject {
             return false;
         }
         return true;
+    }
+    
+    public boolean isCssPrinted(){
+        return this.isCssPrinted;
     }
 
     //
