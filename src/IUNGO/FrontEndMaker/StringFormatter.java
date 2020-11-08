@@ -29,7 +29,9 @@ public class StringFormatter {
             FrontEndObject currentCSSObject = this.listOfCurrentCSSFrontEndObjects.get(listOfCurrentCSSFrontEndObjects.size()-1);
             //Sets the last added object to current
             if (!currentCSSObject.isCssPrinted) {
+            
                 returnString += this.getCssAttributes(currentCSSObject); //Prints css syntax and info
+                returnString += "}" + this.getNewRow();
                 currentCSSObject.setIsCssPrinted(true); //set to printed
             }
 
@@ -37,7 +39,7 @@ public class StringFormatter {
                 this.listOfCurrentCSSFrontEndObjects.add(this.getFirstUnprintedCssChild(currentCSSObject));
             }   //if current object has children and they are unprinted, add it to current objects, will be current next iteration
             else{
-                
+               
                 listOfCurrentCSSFrontEndObjects.remove(currentCSSObject); //if it doesnt have children that is unprinted
                 //                                                          it will have been printed and can therefore be removed;
             }
@@ -54,10 +56,11 @@ public class StringFormatter {
         this.listOfCurrentHTMLFrontEndObjects.add(getThisHTML);
 
         while (this.isThereAnUnprintedHtmlChild(listOfCurrentHTMLFrontEndObjects)) {
-            FrontEndObject currentHTMLObject = this.getCurrentObjectLastInThisList(listOfCurrentHTMLFrontEndObjects); //Sets to last added unprinted child, first run is the full scene that you want printed.
+            FrontEndObject currentHTMLObject = listOfCurrentHTMLFrontEndObjects.get(listOfCurrentHTMLFrontEndObjects.size()-1); //Sets to last added unprinted child, first run is the full scene that you want printed.
 
             if (!currentHTMLObject.isOpeningHtmlPrinted) {
                 returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getTag()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject) + this.getCloseTagString() + this.getNewRow();
+                currentHTMLObject.setIsOpeningHtmlPrinted(true);
             }
             /* Prints opening. ex , printed parent-> "<div>            with the indentation based on the depth inside another object it is.
                                                                                                                      <div>" <- printed child */
@@ -221,10 +224,9 @@ public class StringFormatter {
     private String getCssAttributes(FrontEndObject fromThis){
         String returnString = "";
         returnString += "." + fromThis.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
-        if(fromThis.getBackgroundColor() == null){
+        if(fromThis.getBackgroundColor() != null){
             returnString += this.getIndentation(1)+"background-color: " + fromThis.getBackgroundColor() + ";" + this.getNewRow();
         }
-        returnString +=";" + this.getNewRow();
         return returnString;
     }
 
