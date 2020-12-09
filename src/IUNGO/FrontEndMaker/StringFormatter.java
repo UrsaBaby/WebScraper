@@ -77,9 +77,6 @@ public class StringFormatter {
     }
 
     //
-    private FrontEndObject getCurrentObjectLastInThisList(ArrayList<FrontEndObject> thisList) {
-        return listOfCurrentHTMLFrontEndObjects.get(listOfCurrentHTMLFrontEndObjects.size() - 1);
-    }
 
     private String getStyleDecleration(FrontEndObject toFormat) {
         String returnString = "";
@@ -225,7 +222,8 @@ public class StringFormatter {
         String returnString = "";
         returnString += "." + fromThis.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
         if(fromThis.getBackgroundColor() != null){
-            returnString += this.getIndentation(1)+"background-color: " + fromThis.getBackgroundColor() + ";" + this.getNewRow();
+            returnString += this.getIndentation(1)+"background-color: " + fromThis.getBackgroundColor() + ";" + this.getNewRow()
+                    + fromThis.getw;
         }
         return returnString;
     }

@@ -11,14 +11,14 @@ package IUNGO.FrontEndMaker;
  */
 public class FrontEndObjectInterface {
     
-    public FrontEndObject createContainer(String id, int[] columnMinMaxSize, int numberOfColumns, int[] rowMinMaxSize, int numberOfRows){
+    public FrontEndObject createContainer(String id, int[] columnMinMaxSize, int numberOfColumns, int[] rowMinMaxSize, int numberOfRows, FrontEndLengthUnits unit){
         FrontEndObject returnObject = new FrontEndObject(FrontEndTags.CONTAINER, id);
         returnObject.setDisplayType(FrontEndObjectDisplayTypes.GRID);
         returnObject.setAlign(AlignJustify.START);
         returnObject.setJustify(AlignJustify.START);
      
-        returnObject.setColumns(FrontEndLengthUnits.PX, columnMinMaxSize, numberOfColumns);
-        returnObject.setRows(FrontEndLengthUnits.PX, rowMinMaxSize, numberOfRows);
+        returnObject.setColumns(unit, columnMinMaxSize, numberOfColumns);
+        returnObject.setRows(unit, rowMinMaxSize, numberOfRows);
       //  returnObject.se
         return returnObject;      
     }

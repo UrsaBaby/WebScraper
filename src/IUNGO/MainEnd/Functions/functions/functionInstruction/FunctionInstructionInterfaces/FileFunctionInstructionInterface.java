@@ -40,4 +40,12 @@ public class FileFunctionInstructionInterface {
         return returnFI;
     }
 
+    public FunctionsInstruction createFunctionInstructionStoreText(String id, String textToStore) {
+        FunctionsInstruction returnFI = new FunctionsInstruction();
+        returnFI.addStringValue(id);
+        returnFI.addStringValue(textToStore);
+        returnFI.setCommand(FunctionsInstructionCommand.STORETEXT);
+        return returnFI;
+    }
+
 }

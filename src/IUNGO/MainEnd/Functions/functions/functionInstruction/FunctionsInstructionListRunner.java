@@ -34,7 +34,7 @@ public class FunctionsInstructionListRunner implements Runnable {
 
     @Override
     public void run() {
-        try {            
+        try {
             runFunctions(listToRun);
         } catch (Exception e) {
         }
@@ -97,6 +97,9 @@ public class FunctionsInstructionListRunner implements Runnable {
                     // fileFunction.writeTextToFile(textIDToWrite, pathName, filename, format); 
                     fileFunction.writeTextToFile(storedStrings.get(checker.getStringValueWithIndex(0)), checker.getStringValueWithIndex(1), checker.getStringValueWithIndex(2), checker.getStringValueWithIndex(3));
                     break;
+                case STORETEXT:
+                     // fileFunction.storeText(textId, textToStore); 
+                    storedStrings.put(checker.getStringValueWithIndex(0), checker.getStringValueWithIndex(1)); //TODO untested
             }
         }
     }

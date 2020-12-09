@@ -20,8 +20,13 @@ public class FrontEndObject {
     boolean isHtmlPrinted;
     boolean isOpeningHtmlPrinted;
     boolean isCssPrinted;
-    
+
     String backgroundColor;
+
+    FrontEndLengthUnits heightUnit;
+    FrontEndLengthUnits widthUnit;
+    int width;
+    int height;
 
     FrontEndLengthUnits rowLengthUnit;
     int rowAmount;
@@ -78,8 +83,15 @@ public class FrontEndObject {
         this.gridGapColumnsDistance = gridGapDistance;
 
     }
-    
-    public void setID(String id){
+
+    public void setWidthHeight(int width, FrontEndLengthUnits widthUnit, int height, FrontEndLengthUnits heightUnit){
+        this.width = width;
+        this.widthUnit = widthUnit;
+        this.height = height;
+        this.heightUnit = heightUnit;
+    }
+
+    public void setID(String id) {
         this.id = id;
     }
 
@@ -102,29 +114,29 @@ public class FrontEndObject {
     public void setDisplayType(FrontEndObjectDisplayTypes displayType) {
         this.displayType = displayType;
     }
-    
-    public void setIsHtmlPrinted(boolean toThis){
+
+    public void setIsHtmlPrinted(boolean toThis) {
         this.isHtmlPrinted = toThis;
     }
-    
-    public void setIsOpeningHtmlPrinted(boolean toThis){
+
+    public void setIsOpeningHtmlPrinted(boolean toThis) {
         this.isOpeningHtmlPrinted = toThis;
     }
-    
-    public void setBackgroundColor(String backgroundColor){
+
+    public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
-    
-    public void setIsCssPrinted(boolean toThis){
+
+    public void setIsCssPrinted(boolean toThis) {
         this.isCssPrinted = toThis;
     }
 
     //
     
-    public String getId(){
+    public String getId() {
         return this.id;
     }
-    
+
     public AlignJustify getAlign() {
         return this.align;
     }
@@ -152,13 +164,29 @@ public class FrontEndObject {
     public FrontEndObjectDisplayTypes getDisplayType() {
         return displayType;
     }
-    
-    public ArrayList<FrontEndObject> getListOfFeos(){
+
+    public ArrayList<FrontEndObject> getListOfFeos() {
         return this.listOfFrontEndObjects;
     }
-    
-    public String getBackgroundColor(){
+
+    public String getBackgroundColor() {
         return this.backgroundColor;
+    }
+    
+    public int getWidth(){
+        return this.width;
+    }
+    
+    public FrontEndLengthUnits getWidthUnit(){
+        return this.widthUnit;
+    }
+    
+    public int getHeight(){
+        return this.height;
+    }
+    
+    public FrontEndLengthUnits getHeightUnit(){
+        return this.heightUnit;
     }
 
     //
@@ -205,8 +233,8 @@ public class FrontEndObject {
         }
         return true;
     }
-    
-    public boolean isCssPrinted(){
+
+    public boolean isCssPrinted() {
         return this.isCssPrinted;
     }
 
