@@ -17,9 +17,11 @@ import java.awt.AWTException;
  * @author Peter
  */
 public class helperConsole {
-
-    public helperConsole() {
-
+ FileFunctionInstructionInterface FFI;
+ WebFunctionInstructionInterface WFI;
+    public helperConsole() throws AWTException {
+ FFI = new FileFunctionInstructionInterface();
+ WFI = new WebFunctionInstructionInterface(); //TODO dont initialize here
     }
 
     private void writeFileTest() {
@@ -39,22 +41,26 @@ public class helperConsole {
         //  fileHandler.createNewFileWithThisNameAtThisLocationInThisFormat("nyttTest", "C:\\Users\\Peter\\Documents\\", ".txt");
     }
 
-    public void writeThisTextToAFile(String textToWrite, String fileName, String fileFormat) throws AWTException {
+    public ListOfFunctionInstructions writeThisTextToAFile(String textToWrite, String fileName, String fileFormat) throws AWTException {
         String id = "textToWrite";
-        ListOfFunctionInstructions writeTextInstructions = new ListOfFunctionInstructions();
-        FileFunctionInstructionInterface FFI = new FileFunctionInstructionInterface();
-        writeTextInstructions.addFunctionsInstruction(FFI.createFunctionInstructionStoreText(id, textToWrite));
-        writeTextInstructions.addFunctionsInstruction(FFI.writeStoredTextToFile(id, "", fileName, fileFormat));
-        runList(writeTextInstructions);
+        ListOfFunctionInstructions returnInstructions = new ListOfFunctionInstructions();   
+        returnInstructions.addFunctionsInstruction(FFI.createFunctionInstructionStoreText(id, textToWrite));
+        returnInstructions.addFunctionsInstruction(FFI.writeStoredTextToFile(id, "", fileName, fileFormat));
+        return  returnInstructions;
 
+    }
+    
+    public ListOfFunctionInstructions connectToThisAdress(String adress){
+        ListOfFunctionInstructions returnInstructions = new ListOfFunctionInstructions();
+        returnInstructions.addFunctionsInstruction(WFI.createFunctionInstructionConnectToThisSite(adress));             
+        return returnInstructions;
     }
 
     public void getDataAndWriteToFileTest() throws AWTException {
-        WebFunctionInstructionInterface WFI = new WebFunctionInstructionInterface();
-        FileFunctionInstructionInterface FFI = new FileFunctionInstructionInterface();
+ 
 
         FunctionsInstruction test2 = FFI.writeStoredTextToFile("gsr", "", "ID", ".txt");
-        ListOfFunctionInstructions instructionList = WFI.createListOfFunctionsInstructions();
+        ListOfFunctionInstructions instructionList = new ListOfFunctionInstructions();
         instructionList.addFunctionsInstruction(WFI.createFunctionStartWebGetter());
         instructionList.addFunctionsInstruction(WFI.createFunctionInstructionConnectToThisSite("https://www.google.com/"));
 
@@ -69,6 +75,14 @@ public class helperConsole {
     private void runList(ListOfFunctionInstructions runThis) throws AWTException {
         FunctionsInstructionListRunner listRunner = new FunctionsInstructionListRunner(runThis);
         listRunner.run();
+    }
+    
+    public FileFunctionInstructionInterface getFFI(){
+        return this.FFI;
+    }
+    
+    public WebFunctionInstructionInterface getWFI(){
+        return this.WFI;
     }
 
 }

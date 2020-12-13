@@ -27,12 +27,15 @@ public class FrontEndObject {
     FrontEndLengthUnits widthUnit;
     int width;
     int height;
+    
+    String gridArea;
 
     FrontEndLengthUnits rowLengthUnit;
     int rowAmount;
     int[] rowSize;
 
     FrontEndLengthUnits columnLengthUnit;
+    HashMap <Integer, FrontEndLengthUnits> columns;
     int columnAmount;
     int[] columnSize;
 
@@ -56,8 +59,7 @@ public class FrontEndObject {
         rowSize = new int[2];
         columnSize = new int[2];
         isHtmlPrinted = false;
-        isOpeningHtmlPrinted = false;
-
+        isOpeningHtmlPrinted = false;       
     }
 
     public void setRows(FrontEndLengthUnits lengthUnit, int[] rowSize, int numberOfRows) {
@@ -84,7 +86,7 @@ public class FrontEndObject {
 
     }
 
-    public void setWidthHeight(int width, FrontEndLengthUnits widthUnit, int height, FrontEndLengthUnits heightUnit){
+    public void setWidthHeight(int width, FrontEndLengthUnits widthUnit, int height, FrontEndLengthUnits heightUnit) {
         this.width = width;
         this.widthUnit = widthUnit;
         this.height = height;
@@ -130,9 +132,12 @@ public class FrontEndObject {
     public void setIsCssPrinted(boolean toThis) {
         this.isCssPrinted = toThis;
     }
+    
+    public void setGridArea(String gridArea){
+        this.gridArea = gridArea;
+    }
 
     //
-    
     public String getId() {
         return this.id;
     }
@@ -157,6 +162,30 @@ public class FrontEndObject {
         return justifySelf;
     }
 
+    public int getColumnsAmount() {
+        return this.columnAmount;
+    }
+
+    public int[] getColumnsSize() {
+        return this.columnSize;
+    }
+
+    public FrontEndLengthUnits getColumnLengthUnit() {
+        return  this.columnLengthUnit;
+    }
+    
+    public int getRowsAmount(){
+        return this.rowAmount;
+    }
+    
+    public int[] getRowsSize(){
+        return this.rowSize;
+    }
+    
+    public FrontEndLengthUnits getRowLengthUnit(){
+        return this.rowLengthUnit;
+    }
+
     public ArrayList<ArrayList<String>> getGridTemplateArea() {
         return gridTemplateArea;
     }
@@ -172,25 +201,28 @@ public class FrontEndObject {
     public String getBackgroundColor() {
         return this.backgroundColor;
     }
-    
-    public int getWidth(){
+
+    public int getWidth() {
         return this.width;
     }
-    
-    public FrontEndLengthUnits getWidthUnit(){
+
+    public FrontEndLengthUnits getWidthUnit() {
         return this.widthUnit;
     }
-    
-    public int getHeight(){
+
+    public int getHeight() {
         return this.height;
     }
-    
-    public FrontEndLengthUnits getHeightUnit(){
+
+    public FrontEndLengthUnits getHeightUnit() {
         return this.heightUnit;
+    }
+    
+    public String getGridArea(){
+        return this.gridArea;
     }
 
     //
-    
     public void addFrontEndObject(FrontEndObject addThis) {
         if (!this.isListOfFEOsInitiated()) {
             this.initiateListOfFrontEndObjects();

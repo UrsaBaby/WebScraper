@@ -27,4 +27,10 @@ public class ListOfFunctionInstructions {
      public ArrayList<FunctionsInstruction> getListOfFunctionInstruction(){
          return listOfFunctionsInstructions;
      }
+     
+     public void addListOfFunctionInstructions(ListOfFunctionInstructions addThis){
+         for(FunctionsInstruction checker : listOfFunctionsInstructions){
+             this.listOfFunctionsInstructions.add(checker);
+         }
+     }
 }

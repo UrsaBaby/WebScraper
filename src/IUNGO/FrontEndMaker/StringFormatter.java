@@ -26,10 +26,10 @@ public class StringFormatter {
         returnString += "<style>" + this.getNewRow();
         listOfCurrentCSSFrontEndObjects.add(toCSS);
         while (!this.listOfCurrentCSSFrontEndObjects.isEmpty()) { //If lsit isnt empty
-            FrontEndObject currentCSSObject = this.listOfCurrentCSSFrontEndObjects.get(listOfCurrentCSSFrontEndObjects.size()-1);
+            FrontEndObject currentCSSObject = this.listOfCurrentCSSFrontEndObjects.get(listOfCurrentCSSFrontEndObjects.size() - 1);
             //Sets the last added object to current
             if (!currentCSSObject.isCssPrinted) {
-            
+
                 returnString += this.getCssAttributes(currentCSSObject); //Prints css syntax and info
                 returnString += "}" + this.getNewRow();
                 currentCSSObject.setIsCssPrinted(true); //set to printed
@@ -37,9 +37,9 @@ public class StringFormatter {
 
             if (currentCSSObject.isListOfFEOsInitiated() && this.isThereAnUnprintedCssChild(currentCSSObject.getListOfFeos())) {
                 this.listOfCurrentCSSFrontEndObjects.add(this.getFirstUnprintedCssChild(currentCSSObject));
-            }   //if current object has children and they are unprinted, add it to current objects, will be current next iteration
-            else{
-               
+            } //if current object has children and they are unprinted, add it to current objects, will be current next iteration
+            else {
+
                 listOfCurrentCSSFrontEndObjects.remove(currentCSSObject); //if it doesnt have children that is unprinted
                 //                                                          it will have been printed and can therefore be removed;
             }
@@ -56,7 +56,7 @@ public class StringFormatter {
         this.listOfCurrentHTMLFrontEndObjects.add(getThisHTML);
 
         while (this.isThereAnUnprintedHtmlChild(listOfCurrentHTMLFrontEndObjects)) {
-            FrontEndObject currentHTMLObject = listOfCurrentHTMLFrontEndObjects.get(listOfCurrentHTMLFrontEndObjects.size()-1); //Sets to last added unprinted child, first run is the full scene that you want printed.
+            FrontEndObject currentHTMLObject = listOfCurrentHTMLFrontEndObjects.get(listOfCurrentHTMLFrontEndObjects.size() - 1); //Sets to last added unprinted child, first run is the full scene that you want printed.
 
             if (!currentHTMLObject.isOpeningHtmlPrinted) {
                 returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getTag()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject) + this.getCloseTagString() + this.getNewRow();
@@ -77,7 +77,6 @@ public class StringFormatter {
     }
 
     //
-
     private String getStyleDecleration(FrontEndObject toFormat) {
         String returnString = "";
 
@@ -217,15 +216,40 @@ public class StringFormatter {
             this.listOfCurrentCSSFrontEndObjects = new ArrayList<>();
         }
     }
-    
-    private String getCssAttributes(FrontEndObject fromThis){
+
+    private String getCssAttributes(FrontEndObject fromThis) {
         String returnString = "";
         returnString += "." + fromThis.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
-        if(fromThis.getBackgroundColor() != null){
-            returnString += this.getIndentation(1)+"background-color: " + fromThis.getBackgroundColor() + ";" + this.getNewRow()
-                    + fromThis.getw;
+        if (fromThis.getBackgroundColor() != null) {
+            returnString += this.getIndentation(1) + "background-color: " + fromThis.getBackgroundColor() + ";" + this.getNewRow();
         }
+        if (fromThis.getWidthUnit() != null) {
+            returnString += this.getIndentation(1) + "width: " + fromThis.getWidth() + fromThis.getWidthUnit() + ";" + this.getNewRow();
+        }
+        if (fromThis.getHeightUnit() != null) {
+            returnString += this.getIndentation(1) + "height: " + fromThis.getHeight() + fromThis.getHeightUnit() + ";" + this.getNewRow();
+        }
+        if (fromThis.getDisplayType() != null) {
+            returnString += this.getIndentation(1) + "display: " + fromThis.getDisplayType().toString().toLowerCase() + ";" + this.getNewRow();
+        }
+        if (fromThis.getGridTemplateArea() != null) {
+            returnString += this.getIndentation(1) + "grid-template-areas: " + this.getNewRow();
+            for (ArrayList<String> checker : fromThis.getGridTemplateArea()) {
+                returnString += "\"";
+                String newRowString = "";
+                for (String insideChecker : checker) {
+                    newRowString += insideChecker + " ";
+                }
+                returnString += newRowString + "\"" +  this.getNewRow();
+            }
+            returnString += ";" + this.getNewRow();
+        }
+        if(fromThis.getGridArea() != null){
+            returnString += this.getIndentation(1) + "grid-area: " + fromThis.getGridArea() + ";" + this.getNewRow();
+        }
+        
         return returnString;
     }
+    
 
 }

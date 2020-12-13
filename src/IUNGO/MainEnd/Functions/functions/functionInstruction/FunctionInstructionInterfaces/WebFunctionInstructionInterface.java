@@ -23,13 +23,7 @@ public class WebFunctionInstructionInterface {
         
     }
 
- 
-
-    public ListOfFunctionInstructions createListOfFunctionsInstructions() {
-        return new ListOfFunctionInstructions();
-    }
-
-    
+     
     public WebFunction createWebFunction() throws AWTException{
         WebFunction returnWebFunction = new WebFunction();
         return returnWebFunction;

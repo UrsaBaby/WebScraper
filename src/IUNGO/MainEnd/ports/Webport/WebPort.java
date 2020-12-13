@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import org.openqa.selenium.interactions.Actions;
 
@@ -28,9 +29,14 @@ public class WebPort {
 
     public WebPort() throws AWTException {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
+        
+        
+        ChromeOptions options = new ChromeOptions();
+        
+       // options.setExperimentalOption("detach", true);
+       // webDriver = new ChromeDriver(options);
         webDriver = new ChromeDriver();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     public WebDriver getWebDriver() {

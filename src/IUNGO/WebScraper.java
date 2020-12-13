@@ -7,6 +7,7 @@ package IUNGO;
 
 import IUNGO.FrontEndMaker.FrontEndLengthUnits;
 import IUNGO.FrontEndMaker.FrontEndObject;
+import IUNGO.FrontEndMaker.FrontEndObjectDisplayTypes;
 import IUNGO.FrontEndMaker.FrontEndObjectInterface;
 import IUNGO.FrontEndMaker.StringFormatter;
 import IUNGO.MainEnd.Functions.functions.coreFunctions.WebFunction;
@@ -15,6 +16,7 @@ import IUNGO.MainEnd.Functions.functions.functionInstruction.ListOfFunctionInstr
 import IUNGO.MainEnd.ports.Webport.WebPort;
 import java.awt.AWTException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,15 +34,49 @@ public class WebScraper {
         int[] minMaxSize = new int[2];
         minMaxSize[0] = 10;
         minMaxSize[1] = 10;
-        FrontEndObject mainScene = FEOInterface.createContainer("scene", minMaxSize, 0, minMaxSize, 0, FrontEndLengthUnits.PX);
+        FrontEndObject mainScene = FEOInterface.createContainer("scene");
         mainScene.setWidthHeight(500, FrontEndLengthUnits.PX, 500, FrontEndLengthUnits.PX);
-        mainScene.setBackgroundColor("blue");
+        mainScene.setBackgroundColor("grey");
+       mainScene.setDisplayType(FrontEndObjectDisplayTypes.GRID);
+       
+       ArrayList<ArrayList<String>> templateArea = new ArrayList<>();
+       ArrayList<String> column1 = new ArrayList<>();
+       column1.add("one");
+       column1.add("one");
+       column1.add("one");
+        ArrayList<String> column2 = new ArrayList<>();
+       column2.add("two");
+       column2.add("two");
+       column2.add("two");
+        ArrayList<String> column3 = new ArrayList<>();
+       column3.add("three");
+       column3.add("three");
+       column3.add("three");
+       templateArea.add(column1);
+       templateArea.add(column2);
+       templateArea.add(column3);
+ 
+       mainScene.setGridTemplateArea(templateArea);
 
-        FrontEndObject insideBox = FEOInterface.createContainer("box", minMaxSize, 0, minMaxSize, 0, FrontEndLengthUnits.PX);
-        insideBox.setBackgroundColor("white");
-        insideBox.setWidthHeight(50, FrontEndLengthUnits.PX, 50, FrontEndLengthUnits.PX);
+        FrontEndObject insideBox = FEOInterface.createContainer("box");
+        insideBox.setBackgroundColor("pink");
+        insideBox.setGridArea("one");
         
-
+        FrontEndObject twiceInsideBox = FEOInterface.createContainer("box2");
+        twiceInsideBox.setBackgroundColor("orange");  
+        twiceInsideBox.setGridArea("two");
+        
+         FrontEndObject twiceInsideBox2 = FEOInterface.createContainer("box3");
+        twiceInsideBox2.setBackgroundColor("grey");
+        twiceInsideBox2.setGridArea("three");
+        
+       /*  FrontEndObject twiceInsideBox3 = FEOInterface.createContainer("box4", minMaxSize, 0, minMaxSize, 0, FrontEndLengthUnits.PX);
+        twiceInsideBox3.setBackgroundColor("orange");
+        twiceInsideBox3.setWidthHeight(50, FrontEndLengthUnits.PX, 500, FrontEndLengthUnits.PX);*/
+        
+       
+        mainScene.addFrontEndObject(twiceInsideBox2);
+        mainScene.addFrontEndObject(twiceInsideBox);
         mainScene.addFrontEndObject(insideBox);
 
         StringFormatter stringFormat = new StringFormatter();
