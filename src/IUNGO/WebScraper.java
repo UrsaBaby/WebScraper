@@ -29,6 +29,7 @@ public class WebScraper {
      */
     public static void main(String[] args) throws AWTException, InterruptedException, IOException {
         helperConsole helperConsole = new helperConsole();
+        WebFunction wf = new WebFunction();
         
         FrontEndObjectInterface FEOInterface = new FrontEndObjectInterface();
         int[] minMaxSize = new int[2];
@@ -88,11 +89,19 @@ public class WebScraper {
         FunctionsInstructionListRunner listRunner = new FunctionsInstructionListRunner(tryList);
         listRunner.run();
         
-        ListOfFunctionInstructions tryList2 = new ListOfFunctionInstructions();
+       /* ListOfFunctionInstructions tryList2 = new ListOfFunctionInstructions();
         tryList2.addFunctionsInstruction(helperConsole.getWFI().createFunctionStartWebGetter());
         tryList2.addFunctionsInstruction(helperConsole.WFI.createFunctionInstructionConnectToThisSite("C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\tes2t.html"));
         FunctionsInstructionListRunner listRunner2 = new FunctionsInstructionListRunner(tryList2);
-        listRunner2.run();
+        listRunner2.run();*/
+       
+       wf.startWebPort();
+       wf.connectWebGetterToThisSite("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t.html");
+       
+       Thread.sleep(10000);
+       wf.closeWebPort();
+        
+        
         
 
         

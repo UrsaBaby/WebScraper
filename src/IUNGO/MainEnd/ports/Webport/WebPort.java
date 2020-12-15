@@ -31,10 +31,8 @@ public class WebPort {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peter\\Documents\\NetBeansProjects\\WebScraper\\Driver\\chromedriver.exe");
         
         
-        ChromeOptions options = new ChromeOptions();
         
-       // options.setExperimentalOption("detach", true);
-       // webDriver = new ChromeDriver(options);
+
         webDriver = new ChromeDriver();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
@@ -52,7 +50,7 @@ public class WebPort {
     }
 
     public void close() {
-        this.getWebDriver().close();
+        this.getWebDriver().quit();
     }
 
     public WebElement getElementAtThisCss(String cssSelector) throws InterruptedException {
