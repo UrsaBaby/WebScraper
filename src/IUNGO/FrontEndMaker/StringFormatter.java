@@ -235,11 +235,18 @@ public class StringFormatter {
         if (fromThis.getGridTemplateArea() != null) {
             returnString += this.getIndentation(1) + "grid-template-areas: " + this.getNewRow();
             for (ArrayList<String> checker : fromThis.getGridTemplateArea()) {
-                returnString += "\"";
+                returnString += "\""; //adds a "
                 String newRowString = "";
-                for (String insideChecker : checker) {
-                    newRowString += insideChecker + " ";
+                for(int i = 0; i<checker.size(); i++){
+                    newRowString += checker.get(i);
+                    if(i != checker.size()-1){
+                        newRowString += " ";
+                    }
                 }
+                
+                /*for (String insideChecker : checker) {
+                    newRowString += insideChecker + " ";
+                }*/
                 returnString += newRowString + "\"" +  this.getNewRow();
             }
             returnString += ";" + this.getNewRow();

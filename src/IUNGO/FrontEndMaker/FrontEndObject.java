@@ -52,6 +52,10 @@ public class FrontEndObject {
     ArrayList<ArrayList<String>> gridTemplateArea;
 
     FrontEndObjectDisplayTypes displayType;
+    
+    String linksTo;
+    
+    String outputTo;
 
     public FrontEndObject(FrontEndTags typeOfObject, String id) {
         this.typeOfObject = typeOfObject;
@@ -135,6 +139,14 @@ public class FrontEndObject {
     
     public void setGridArea(String gridArea){
         this.gridArea = gridArea;
+    }
+    
+    public void setLinksTo(String linkToThis){
+        this.linksTo = linkToThis;
+    }
+    
+    public void setOutputTo(String directoryAndFilename){
+        this.outputTo = directoryAndFilename;      
     }
 
     //
@@ -220,6 +232,18 @@ public class FrontEndObject {
     
     public String getGridArea(){
         return this.gridArea;
+    }
+    
+    public String getLinksTo(){
+        return this.linksTo;
+    }
+    
+    public String getOutputTo(){
+        return this.outputTo;
+    }
+    
+    public String getLinkAdress(){
+        return this.getLinkAdress() + ".html#" + this.getId();
     }
 
     //

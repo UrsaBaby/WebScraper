@@ -17,6 +17,7 @@ import IUNGO.MainEnd.ports.Webport.WebPort;
 import java.awt.AWTException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -44,7 +45,7 @@ public class WebScraper {
        ArrayList<String> column1 = new ArrayList<>();
        column1.add("one");
        column1.add("one");
-       column1.add("one");
+       column1.add("two");
         ArrayList<String> column2 = new ArrayList<>();
        column2.add("two");
        column2.add("two");
@@ -58,6 +59,7 @@ public class WebScraper {
        templateArea.add(column3);
  
        mainScene.setGridTemplateArea(templateArea);
+       mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");
 
         FrontEndObject insideBox = FEOInterface.createContainer("box");
         insideBox.setBackgroundColor("pink");
@@ -84,7 +86,7 @@ public class WebScraper {
     
         String printString =  stringFormat.getCSS(mainScene) + "\n" +stringFormat.getHTML(mainScene);
         //System.out.println(stringFormat.getHTML2(mainScene));
-        ListOfFunctionInstructions tryList = helperConsole.writeThisTextToAFile(printString, "tes2t", ".html");
+        ListOfFunctionInstructions tryList = helperConsole.writeThisTextToAFile(printString, mainScene.getOutputTo(), ".html");
 
         FunctionsInstructionListRunner listRunner = new FunctionsInstructionListRunner(tryList);
         listRunner.run();
@@ -98,7 +100,16 @@ public class WebScraper {
        wf.startWebPort();
        wf.connectWebGetterToThisSite("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t.html");
        
-       Thread.sleep(10000);
+        System.out.println("to quit press q and enter");
+        Scanner scanner = new Scanner(System.in);
+        while(true){
+            String checkForQuit = scanner.next();
+            if(checkForQuit.equals("q")){
+                break;
+            }
+            
+        }
+       
        wf.closeWebPort();
         
         
