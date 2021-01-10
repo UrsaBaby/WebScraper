@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class FrontEndObject {
 
     ArrayList<FrontEndObject> listOfFrontEndObjects;
-    FrontEndTags typeOfObject;
+    FrontEndObjectTypes typeOfObject;
     String id;
     boolean isHtmlPrinted;
     boolean isOpeningHtmlPrinted;
@@ -53,11 +53,11 @@ public class FrontEndObject {
 
     FrontEndObjectDisplayTypes displayType;
     
-    String linksTo;
+    String linksTo = "";
     
     String outputTo;
 
-    public FrontEndObject(FrontEndTags typeOfObject, String id) {
+    public FrontEndObject(FrontEndObjectTypes typeOfObject, String id) {
         this.typeOfObject = typeOfObject;
         this.id = id;
         rowSize = new int[2];
@@ -148,8 +148,13 @@ public class FrontEndObject {
     public void setOutputTo(String directoryAndFilename){
         this.outputTo = directoryAndFilename;      
     }
+    
+    public void setObjectType(FrontEndObjectTypes thisType){
+        this.typeOfObject = thisType;
+    }
 
     //
+    
     public String getId() {
         return this.id;
     }
@@ -166,7 +171,7 @@ public class FrontEndObject {
         return this.listOfFrontEndObjects;
     }
 
-    public FrontEndTags getTag() {
+    public FrontEndObjectTypes getTag() {
         return this.typeOfObject;
     }
 
@@ -247,6 +252,7 @@ public class FrontEndObject {
     }
 
     //
+    
     public void addFrontEndObject(FrontEndObject addThis) {
         if (!this.isListOfFEOsInitiated()) {
             this.initiateListOfFrontEndObjects();
@@ -255,6 +261,7 @@ public class FrontEndObject {
     }
 
     //
+    
     public boolean isRowsInitated() { // not redundant! Works as expected
         if (this.rowLengthUnit == null) {
             return false;
@@ -293,8 +300,11 @@ public class FrontEndObject {
     public boolean isCssPrinted() {
         return this.isCssPrinted;
     }
+    
+   
 
     //
+    
     private void initiateListOfFrontEndObjects() {
         this.listOfFrontEndObjects = new ArrayList<>();
     }

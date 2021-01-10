@@ -84,5 +84,6 @@ public class helperConsole {
     public WebFunctionInstructionInterface getWFI(){
         return this.WFI;
     }
+    
 
 }

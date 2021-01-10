@@ -12,7 +12,7 @@ package IUNGO.FrontEndMaker;
 public class FrontEndObjectInterface {
     
     public FrontEndObject createContainer(String id){
-        FrontEndObject returnObject = new FrontEndObject(FrontEndTags.CONTAINER, id);
+        FrontEndObject returnObject = new FrontEndObject(FrontEndObjectTypes.CONTAINER, id);
        
         returnObject.setAlign(AlignJustify.START);
         returnObject.setJustify(AlignJustify.START);

@@ -9,7 +9,7 @@ package IUNGO.FrontEndMaker;
  *
  * @author Peter
  */
-public enum FrontEndTags {
+public enum FrontEndObjectTypes {
     SCENE,
     CONTAINER,
     IMAGE,
@@ -17,6 +17,8 @@ public enum FrontEndTags {
     TEXT,
     SOUND,
     TRIGGER,
+    
+    BUTTON,
       
     
     

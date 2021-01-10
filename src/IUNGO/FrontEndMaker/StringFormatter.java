@@ -59,7 +59,9 @@ public class StringFormatter {
             FrontEndObject currentHTMLObject = listOfCurrentHTMLFrontEndObjects.get(listOfCurrentHTMLFrontEndObjects.size() - 1); //Sets to last added unprinted child, first run is the full scene that you want printed.
 
             if (!currentHTMLObject.isOpeningHtmlPrinted) {
-                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getTag()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject) + this.getCloseTagString() + this.getNewRow();
+                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getTag()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject);
+                returnString += this.getObjectOpeningBracketInfo(currentHTMLObject);
+                returnString += this.getCloseTagString() + this.getNewRow();
                 currentHTMLObject.setIsOpeningHtmlPrinted(true);
             }
             /* Prints opening. ex , printed parent-> "<div>            with the indentation based on the depth inside another object it is.
@@ -85,7 +87,15 @@ public class StringFormatter {
         return returnString;
     }
 
-    private String getTagStartString(FrontEndTags forThisTag) {
+    private String getObjectOpeningBracketInfo(FrontEndObject currentHTMLObject) {
+        String returnString = "";
+        if(!currentHTMLObject.getLinksTo().isEmpty()){
+            returnString += " " + "href=\"" + currentHTMLObject.getLinksTo() + "\"";
+        }
+        return returnString;
+    }
+
+    private String getTagStartString(FrontEndObjectTypes forThisTag) {
         switch (forThisTag) {
             case CONTAINER:
                 return "<div";
@@ -94,12 +104,14 @@ public class StringFormatter {
             case TEXT:
                 return "<p";
             case VIDEO:
-                return ""; //TODO   
+                return "";
+            case BUTTON:
+                return "<a";//TODO   
         }
         return null;
     }
 
-    private String getTagEndString(FrontEndTags forThisTag) {
+    private String getTagEndString(FrontEndObjectTypes forThisTag) {
         switch (forThisTag) {
             case CONTAINER:
                 return "</div>";
@@ -108,7 +120,9 @@ public class StringFormatter {
             case TEXT:
                 return "</p>";
             case VIDEO:
-                return ""; //TODO   
+                return "";
+            case BUTTON:
+                return "</a>";//TODO   
         }
         return null;
     }
@@ -237,26 +251,25 @@ public class StringFormatter {
             for (ArrayList<String> checker : fromThis.getGridTemplateArea()) {
                 returnString += "\""; //adds a "
                 String newRowString = "";
-                for(int i = 0; i<checker.size(); i++){
+                for (int i = 0; i < checker.size(); i++) {
                     newRowString += checker.get(i);
-                    if(i != checker.size()-1){
+                    if (i != checker.size() - 1) {
                         newRowString += " ";
                     }
                 }
-                
+
                 /*for (String insideChecker : checker) {
                     newRowString += insideChecker + " ";
                 }*/
-                returnString += newRowString + "\"" +  this.getNewRow();
+                returnString += newRowString + "\"" + this.getNewRow();
             }
             returnString += ";" + this.getNewRow();
         }
-        if(fromThis.getGridArea() != null){
+        if (fromThis.getGridArea() != null) {
             returnString += this.getIndentation(1) + "grid-area: " + fromThis.getGridArea() + ";" + this.getNewRow();
         }
-        
+
         return returnString;
     }
-    
 
 }

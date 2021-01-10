@@ -9,6 +9,7 @@ import IUNGO.FrontEndMaker.FrontEndLengthUnits;
 import IUNGO.FrontEndMaker.FrontEndObject;
 import IUNGO.FrontEndMaker.FrontEndObjectDisplayTypes;
 import IUNGO.FrontEndMaker.FrontEndObjectInterface;
+import IUNGO.FrontEndMaker.FrontEndObjectTypes;
 import IUNGO.FrontEndMaker.StringFormatter;
 import IUNGO.MainEnd.Functions.functions.coreFunctions.WebFunction;
 import IUNGO.MainEnd.Functions.functions.functionInstruction.FunctionsInstructionListRunner;
@@ -44,14 +45,14 @@ public class WebScraper {
        ArrayList<ArrayList<String>> templateArea = new ArrayList<>();
        ArrayList<String> column1 = new ArrayList<>();
        column1.add("one");
-       column1.add("one");
+       column1.add("two");
        column1.add("two");
         ArrayList<String> column2 = new ArrayList<>();
-       column2.add("two");
+       column2.add("one");
        column2.add("two");
        column2.add("two");
         ArrayList<String> column3 = new ArrayList<>();
-       column3.add("three");
+       column3.add("one");
        column3.add("three");
        column3.add("three");
        templateArea.add(column1);
@@ -60,10 +61,15 @@ public class WebScraper {
  
        mainScene.setGridTemplateArea(templateArea);
        mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");
+       
+       
 
         FrontEndObject insideBox = FEOInterface.createContainer("box");
         insideBox.setBackgroundColor("pink");
         insideBox.setGridArea("one");
+        insideBox.setLinksTo("https://www.google.com/");
+        insideBox.setObjectType(FrontEndObjectTypes.BUTTON);
+    
         
         FrontEndObject twiceInsideBox = FEOInterface.createContainer("box2");
         twiceInsideBox.setBackgroundColor("orange");  
@@ -100,7 +106,8 @@ public class WebScraper {
        wf.startWebPort();
        wf.connectWebGetterToThisSite("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t.html");
        
-        System.out.println("to quit press q and enter");
+       Thread.sleep(5000);
+       /*   System.out.println("to quit press q and enter");
         Scanner scanner = new Scanner(System.in);
         while(true){
             String checkForQuit = scanner.next();
@@ -108,7 +115,7 @@ public class WebScraper {
                 break;
             }
             
-        }
+        }*/
        
        wf.closeWebPort();
         
