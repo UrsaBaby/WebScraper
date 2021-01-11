@@ -59,7 +59,7 @@ public class StringFormatter {
             FrontEndObject currentHTMLObject = listOfCurrentHTMLFrontEndObjects.get(listOfCurrentHTMLFrontEndObjects.size() - 1); //Sets to last added unprinted child, first run is the full scene that you want printed.
 
             if (!currentHTMLObject.isOpeningHtmlPrinted) {
-                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getTag()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject);
+                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getObjectType()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject);
                 returnString += this.getObjectOpeningBracketInfo(currentHTMLObject);
                 returnString += this.getCloseTagString() + this.getNewRow();
                 currentHTMLObject.setIsOpeningHtmlPrinted(true);
@@ -70,7 +70,7 @@ public class StringFormatter {
             if (currentHTMLObject.isListOfFEOsInitiated() && this.isThereAnUnprintedHtmlChild(currentHTMLObject.getListOfFeos())) { //If there is an unprinted child, add first one to currentfeos. Will be made current object on next iteration.
                 this.addToListOfCurrentFEOs(this.getFirstUnprintedHtmlChild(currentHTMLObject));                                   //making sure the full depth of all children have been printed before we start closing tags.
             } else { //If there is no unprinted child (either through beeing the deepest child object, or having all children printed). Start closing tags
-                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagEndString(currentHTMLObject.getTag()) + this.getNewRow(); //print closing with right indentation ex: "</div>
+                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagEndString(currentHTMLObject.getObjectType()) + this.getNewRow(); //print closing with right indentation ex: "</div>
                 currentHTMLObject.setIsHtmlPrinted(true); //                                                                                                                           </div>               
                 listOfCurrentHTMLFrontEndObjects.remove(currentHTMLObject); //Removes the printedobject and goes back up to its parent to check for other nex unprinted child, if parent has no unprinted child it will be closed, and so on.
             }
@@ -82,14 +82,14 @@ public class StringFormatter {
     private String getStyleDecleration(FrontEndObject toFormat) {
         String returnString = "";
 
-        returnString += this.getTagStartString(toFormat.getTag());
+        returnString += this.getTagStartString(toFormat.getObjectType());
 
         return returnString;
     }
 
     private String getObjectOpeningBracketInfo(FrontEndObject currentHTMLObject) {
         String returnString = "";
-        if(!currentHTMLObject.getLinksTo().isEmpty()){
+        if(currentHTMLObject.getObjectType().equals(FrontEndObjectTypes.BUTTON) ){
             returnString += " " + "href=\"" + currentHTMLObject.getLinksTo() + "\"";
         }
         return returnString;
@@ -100,7 +100,7 @@ public class StringFormatter {
             case CONTAINER:
                 return "<div";
             case IMAGE:
-                return "<img";
+                return "<div";
             case TEXT:
                 return "<p";
             case VIDEO:
@@ -116,7 +116,7 @@ public class StringFormatter {
             case CONTAINER:
                 return "</div>";
             case IMAGE:
-                return "</img>";
+                return "</div>";
             case TEXT:
                 return "</p>";
             case VIDEO:
@@ -231,24 +231,24 @@ public class StringFormatter {
         }
     }
 
-    private String getCssAttributes(FrontEndObject fromThis) {
+    private String getCssAttributes(FrontEndObject currentObject) {
         String returnString = "";
-        returnString += "." + fromThis.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
-        if (fromThis.getBackgroundColor() != null) {
-            returnString += this.getIndentation(1) + "background-color: " + fromThis.getBackgroundColor() + ";" + this.getNewRow();
+        returnString += "." + currentObject.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
+        if (currentObject.getBackgroundColor() != null) {
+            returnString += this.getIndentation(1) + "background-color: " + currentObject.getBackgroundColor() + ";" + this.getNewRow();
         }
-        if (fromThis.getWidthUnit() != null) {
-            returnString += this.getIndentation(1) + "width: " + fromThis.getWidth() + fromThis.getWidthUnit() + ";" + this.getNewRow();
+        if (currentObject.getWidthUnit() != null) {
+            returnString += this.getIndentation(1) + "width: " + currentObject.getWidth() + currentObject.getWidthUnit() + ";" + this.getNewRow();
         }
-        if (fromThis.getHeightUnit() != null) {
-            returnString += this.getIndentation(1) + "height: " + fromThis.getHeight() + fromThis.getHeightUnit() + ";" + this.getNewRow();
+        if (currentObject.getHeightUnit() != null) {
+            returnString += this.getIndentation(1) + "height: " + currentObject.getHeight() + currentObject.getHeightUnit() + ";" + this.getNewRow();
         }
-        if (fromThis.getDisplayType() != null) {
-            returnString += this.getIndentation(1) + "display: " + fromThis.getDisplayType().toString().toLowerCase() + ";" + this.getNewRow();
+        if (currentObject.getDisplayType() != null) {
+            returnString += this.getIndentation(1) + "display: " + currentObject.getDisplayType().toString().toLowerCase() + ";" + this.getNewRow();
         }
-        if (fromThis.getGridTemplateArea() != null) {
+        if (currentObject.getGridTemplateArea() != null) {
             returnString += this.getIndentation(1) + "grid-template-areas: " + this.getNewRow();
-            for (ArrayList<String> checker : fromThis.getGridTemplateArea()) {
+            for (ArrayList<String> checker : currentObject.getGridTemplateArea()) {
                 returnString += "\""; //adds a "
                 String newRowString = "";
                 for (int i = 0; i < checker.size(); i++) {
@@ -265,8 +265,15 @@ public class StringFormatter {
             }
             returnString += ";" + this.getNewRow();
         }
-        if (fromThis.getGridArea() != null) {
-            returnString += this.getIndentation(1) + "grid-area: " + fromThis.getGridArea() + ";" + this.getNewRow();
+        if (currentObject.getGridArea() != null) {
+            returnString += this.getIndentation(1) + "grid-area: " + currentObject.getGridArea() + ";" + this.getNewRow();
+        }
+        if(currentObject.getObjectType().equals(FrontEndObjectTypes.IMAGE)){
+            returnString += "background-image: url(" + currentObject.getLinksTo() + ");" + this.getNewRow();
+            returnString += "background-size: 100%;\n" +
+                            "  background-repeat: no-repeat;\n" +
+                            "  background-position-x: 50%;\n" +
+                            "  background-position-y: 50%;" + this.getNewRow();
         }
 
         return returnString;

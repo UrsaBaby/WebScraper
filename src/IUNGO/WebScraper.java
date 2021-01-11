@@ -74,6 +74,8 @@ public class WebScraper {
         FrontEndObject twiceInsideBox = FEOInterface.createContainer("box2");
         twiceInsideBox.setBackgroundColor("orange");  
         twiceInsideBox.setGridArea("two");
+        twiceInsideBox.setObjectType(FrontEndObjectTypes.IMAGE);
+        twiceInsideBox.setLinksTo("https://preview.redd.it/m9ttsf253pa61.jpg?width=1024&auto=webp&s=632530360d36eb94bf478fe3eae35dd75e130f8b");
         
          FrontEndObject twiceInsideBox2 = FEOInterface.createContainer("box3");
         twiceInsideBox2.setBackgroundColor("grey");

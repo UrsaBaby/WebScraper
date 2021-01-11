@@ -171,7 +171,7 @@ public class FrontEndObject {
         return this.listOfFrontEndObjects;
     }
 
-    public FrontEndObjectTypes getTag() {
+    public FrontEndObjectTypes getObjectType() {
         return this.typeOfObject;
     }
 
