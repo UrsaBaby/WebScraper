@@ -99,7 +99,7 @@ public class StringFormatter {
         switch (forThisTag) {
             case CONTAINER:
                 return "<div";
-            case IMAGE:
+            case BOXEDIMAGE:
                 return "<div";
             case TEXT:
                 return "<p";
@@ -115,7 +115,7 @@ public class StringFormatter {
         switch (forThisTag) {
             case CONTAINER:
                 return "</div>";
-            case IMAGE:
+            case BOXEDIMAGE:
                 return "</div>";
             case TEXT:
                 return "</p>";
@@ -268,12 +268,12 @@ public class StringFormatter {
         if (currentObject.getGridArea() != null) {
             returnString += this.getIndentation(1) + "grid-area: " + currentObject.getGridArea() + ";" + this.getNewRow();
         }
-        if(currentObject.getObjectType().equals(FrontEndObjectTypes.IMAGE)){
+        if(currentObject.getObjectType().equals(FrontEndObjectTypes.BOXEDIMAGE)){
             returnString += "background-image: url(" + currentObject.getLinksTo() + ");" + this.getNewRow();
-            returnString += "background-size: 100%;\n" +
+            returnString += "background-size: " + currentObject.getBoxedImageSize() + currentObject.getBoxedImageSizeUnitType() + ";\n" +
                             "  background-repeat: no-repeat;\n" +
-                            "  background-position-x: 50%;\n" +
-                            "  background-position-y: 50%;" + this.getNewRow();
+                            "  background-position-x: "+ currentObject.getBoxedImageCoordinates()[0] + currentObject.getBoxedImageCoordinatesUnitType() +";\n" +
+                            "  background-position-y:"+ currentObject.getBoxedImageCoordinates()[1] + currentObject.getBoxedImageCoordinatesUnitType()  + ";"+this.getNewRow();
         }
 
         return returnString;

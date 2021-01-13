@@ -74,8 +74,13 @@ public class WebScraper {
         FrontEndObject twiceInsideBox = FEOInterface.createContainer("box2");
         twiceInsideBox.setBackgroundColor("orange");  
         twiceInsideBox.setGridArea("two");
-        twiceInsideBox.setObjectType(FrontEndObjectTypes.IMAGE);
-        twiceInsideBox.setLinksTo("https://preview.redd.it/m9ttsf253pa61.jpg?width=1024&auto=webp&s=632530360d36eb94bf478fe3eae35dd75e130f8b");
+        twiceInsideBox.setObjectType(FrontEndObjectTypes.BOXEDIMAGE);
+        twiceInsideBox.setLinksTo("https://nypost.com/wp-content/uploads/sites/2/2017/03/shutterstock.jpg?quality=80&strip=all");
+        twiceInsideBox.setBoxedImageSize(70, FrontEndLengthUnits.PER);
+        int[] boxedImageCoordinates = new int[2];
+        boxedImageCoordinates[0] = 0;
+        boxedImageCoordinates[1] = 100;
+        twiceInsideBox.setBoxedImageCoordinates(boxedImageCoordinates, FrontEndLengthUnits.PER);
         
          FrontEndObject twiceInsideBox2 = FEOInterface.createContainer("box3");
         twiceInsideBox2.setBackgroundColor("grey");

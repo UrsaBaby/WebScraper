@@ -12,7 +12,7 @@ package IUNGO.FrontEndMaker;
 public enum FrontEndObjectTypes {
     SCENE,
     CONTAINER,
-    IMAGE,
+    BOXEDIMAGE,
     VIDEO,
     TEXT,
     SOUND,

@@ -27,7 +27,7 @@ public class FrontEndObject {
     FrontEndLengthUnits widthUnit;
     int width;
     int height;
-    
+
     String gridArea;
 
     FrontEndLengthUnits rowLengthUnit;
@@ -35,7 +35,7 @@ public class FrontEndObject {
     int[] rowSize;
 
     FrontEndLengthUnits columnLengthUnit;
-    HashMap <Integer, FrontEndLengthUnits> columns;
+    HashMap<Integer, FrontEndLengthUnits> columns;
     int columnAmount;
     int[] columnSize;
 
@@ -52,18 +52,24 @@ public class FrontEndObject {
     ArrayList<ArrayList<String>> gridTemplateArea;
 
     FrontEndObjectDisplayTypes displayType;
-    
+
     String linksTo = "";
-    
+
     String outputTo;
+
+    int boxedImageSize;
+    FrontEndLengthUnits boxedImageSizeUnitType;
+    int[] boxedImageCoordinates;
+    FrontEndLengthUnits boxedImageCoordinatesUnitType;
 
     public FrontEndObject(FrontEndObjectTypes typeOfObject, String id) {
         this.typeOfObject = typeOfObject;
         this.id = id;
         rowSize = new int[2];
         columnSize = new int[2];
+        boxedImageCoordinates = new int[2];
         isHtmlPrinted = false;
-        isOpeningHtmlPrinted = false;       
+        isOpeningHtmlPrinted = false;
     }
 
     public void setRows(FrontEndLengthUnits lengthUnit, int[] rowSize, int numberOfRows) {
@@ -136,25 +142,39 @@ public class FrontEndObject {
     public void setIsCssPrinted(boolean toThis) {
         this.isCssPrinted = toThis;
     }
-    
-    public void setGridArea(String gridArea){
+
+    public void setGridArea(String gridArea) {
         this.gridArea = gridArea;
     }
-    
-    public void setLinksTo(String linkToThis){
+
+    public void setLinksTo(String linkToThis) {
         this.linksTo = linkToThis;
     }
-    
-    public void setOutputTo(String directoryAndFilename){
-        this.outputTo = directoryAndFilename;      
+
+    public void setOutputTo(String directoryAndFilename) {
+        this.outputTo = directoryAndFilename;
     }
-    
-    public void setObjectType(FrontEndObjectTypes thisType){
+
+    public void setObjectType(FrontEndObjectTypes thisType) {
         this.typeOfObject = thisType;
     }
 
+    public void setImageCropType() {
+
+    }
+
+    public void setBoxedImageSize(int imageSize, FrontEndLengthUnits thisUnit) {
+        this.boxedImageSize = imageSize;
+        this.boxedImageSizeUnitType = thisUnit;
+    }
+
+    public void setBoxedImageCoordinates(int[] theseCoordinates, FrontEndLengthUnits theseUnits) {
+        this.boxedImageCoordinates = theseCoordinates;
+        this.boxedImageCoordinatesUnitType = theseUnits;
+    }
+
+
     //
-    
     public String getId() {
         return this.id;
     }
@@ -188,18 +208,18 @@ public class FrontEndObject {
     }
 
     public FrontEndLengthUnits getColumnLengthUnit() {
-        return  this.columnLengthUnit;
+        return this.columnLengthUnit;
     }
-    
-    public int getRowsAmount(){
+
+    public int getRowsAmount() {
         return this.rowAmount;
     }
-    
-    public int[] getRowsSize(){
+
+    public int[] getRowsSize() {
         return this.rowSize;
     }
-    
-    public FrontEndLengthUnits getRowLengthUnit(){
+
+    public FrontEndLengthUnits getRowLengthUnit() {
         return this.rowLengthUnit;
     }
 
@@ -234,25 +254,40 @@ public class FrontEndObject {
     public FrontEndLengthUnits getHeightUnit() {
         return this.heightUnit;
     }
-    
-    public String getGridArea(){
+
+    public String getGridArea() {
         return this.gridArea;
     }
-    
-    public String getLinksTo(){
+
+    public String getLinksTo() {
         return this.linksTo;
     }
-    
-    public String getOutputTo(){
+
+    public String getOutputTo() {
         return this.outputTo;
     }
-    
-    public String getLinkAdress(){
+
+    public String getLinkAdress() {
         return this.getLinkAdress() + ".html#" + this.getId();
     }
 
+    public int getBoxedImageSize() {
+        return boxedImageSize;
+    }
+
+    public int[] getBoxedImageCoordinates() {
+        return boxedImageCoordinates;
+    }
+
+    public FrontEndLengthUnits getBoxedImageSizeUnitType() {
+        return boxedImageSizeUnitType;
+    }
+
+    public FrontEndLengthUnits getBoxedImageCoordinatesUnitType() {
+        return boxedImageCoordinatesUnitType;
+    }
+
     //
-    
     public void addFrontEndObject(FrontEndObject addThis) {
         if (!this.isListOfFEOsInitiated()) {
             this.initiateListOfFrontEndObjects();
@@ -261,7 +296,6 @@ public class FrontEndObject {
     }
 
     //
-    
     public boolean isRowsInitated() { // not redundant! Works as expected
         if (this.rowLengthUnit == null) {
             return false;
@@ -300,11 +334,8 @@ public class FrontEndObject {
     public boolean isCssPrinted() {
         return this.isCssPrinted;
     }
-    
-   
 
     //
-    
     private void initiateListOfFrontEndObjects() {
         this.listOfFrontEndObjects = new ArrayList<>();
     }

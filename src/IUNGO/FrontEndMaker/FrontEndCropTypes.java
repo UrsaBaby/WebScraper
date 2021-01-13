@@ -5,23 +5,14 @@
  */
 package IUNGO.FrontEndMaker;
 
-import com.google.common.net.PercentEscaper;
-
 /**
  *
  * @author Peter
  */
-public enum FrontEndLengthUnits {
-    FR,
-    CM,
-    PX,
-    EM,
-    PER{
-          public String toString(){
-              return "%";
-          }
-    },
-    
+public enum FrontEndCropTypes {
+    STRETCH,
+    CROP,
+    FIT,
     
     
 }
