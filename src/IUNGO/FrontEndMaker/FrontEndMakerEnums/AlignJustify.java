@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IUNGO.FrontEndMaker;
+package IUNGO.FrontEndMaker.FrontEndMakerEnums;
 
 /**
  *
  * @author Peter
  */
-public enum FrontEndObjectDisplayTypes {
-    GRID,
-    FLEX
+public enum AlignJustify {
+    CENTER,
+    START,
+    END,
     
 }

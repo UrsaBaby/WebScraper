@@ -5,11 +5,11 @@
  */
 package IUNGO;
 
-import IUNGO.FrontEndMaker.FrontEndLengthUnits;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndLengthUnits;
 import IUNGO.FrontEndMaker.FrontEndObject;
-import IUNGO.FrontEndMaker.FrontEndObjectDisplayTypes;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectDisplayTypes;
 import IUNGO.FrontEndMaker.FrontEndObjectInterface;
-import IUNGO.FrontEndMaker.FrontEndObjectTypes;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectTypes;
 import IUNGO.FrontEndMaker.StringFormatter;
 import IUNGO.MainEnd.Functions.functions.coreFunctions.WebFunction;
 import IUNGO.MainEnd.Functions.functions.functionInstruction.FunctionsInstructionListRunner;
@@ -37,7 +37,7 @@ public class WebScraper {
         int[] minMaxSize = new int[2];
         minMaxSize[0] = 10;
         minMaxSize[1] = 10;
-        FrontEndObject mainScene = FEOInterface.createContainer("scene");
+        FrontEndObject mainScene = FEOInterface.createEmptyObject("scene");
         mainScene.setWidthHeight(500, FrontEndLengthUnits.PX, 500, FrontEndLengthUnits.PX);
         mainScene.setBackgroundColor("grey");
        mainScene.setDisplayType(FrontEndObjectDisplayTypes.GRID);
@@ -64,14 +64,14 @@ public class WebScraper {
        
        
 
-        FrontEndObject insideBox = FEOInterface.createContainer("box");
+        FrontEndObject insideBox = FEOInterface.createEmptyObject("box");
         insideBox.setBackgroundColor("pink");
         insideBox.setGridArea("one");
         insideBox.setLinksTo("https://www.google.com/");
         insideBox.setObjectType(FrontEndObjectTypes.BUTTON);
     
         
-        FrontEndObject twiceInsideBox = FEOInterface.createContainer("box2");
+        FrontEndObject twiceInsideBox = FEOInterface.createEmptyObject("box2");
         twiceInsideBox.setBackgroundColor("orange");  
         twiceInsideBox.setGridArea("two");
         twiceInsideBox.setObjectType(FrontEndObjectTypes.BOXEDIMAGE);
@@ -82,7 +82,7 @@ public class WebScraper {
         boxedImageCoordinates[1] = 100;
         twiceInsideBox.setBoxedImageCoordinates(boxedImageCoordinates, FrontEndLengthUnits.PER);
         
-         FrontEndObject twiceInsideBox2 = FEOInterface.createContainer("box3");
+         FrontEndObject twiceInsideBox2 = FEOInterface.createEmptyObject("box3");
         twiceInsideBox2.setBackgroundColor("grey");
         twiceInsideBox2.setGridArea("three");
         

@@ -5,6 +5,10 @@
  */
 package IUNGO.FrontEndMaker;
 
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.AlignJustify;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectTypes;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectDisplayTypes;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndLengthUnits;
 import java.util.ArrayList;
 import java.util.HashMap;
 
