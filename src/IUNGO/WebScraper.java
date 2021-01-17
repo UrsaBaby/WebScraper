@@ -37,7 +37,7 @@ public class WebScraper {
         int[] minMaxSize = new int[2];
         minMaxSize[0] = 10;
         minMaxSize[1] = 10;
-        FrontEndObject mainScene = FEOInterface.createEmptyObject("scene");
+        FrontEndObject mainScene = FEOInterface.createEmptyObject("scene"); //TODO, insert style
         mainScene.setWidthHeight(500, FrontEndLengthUnits.PX, 500, FrontEndLengthUnits.PX);
         mainScene.setBackgroundColor("grey");
        mainScene.setDisplayType(FrontEndObjectDisplayTypes.GRID);

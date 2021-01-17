@@ -65,15 +65,16 @@ public class FrontEndObject {
     FrontEndLengthUnits boxedImageSizeUnitType;
     int[] boxedImageCoordinates;
     FrontEndLengthUnits boxedImageCoordinatesUnitType;
+    
+    FrontEndObjectStyle style;
 
-    public FrontEndObject(FrontEndObjectTypes typeOfObject, String id) {
+    public FrontEndObject(FrontEndObjectTypes typeOfObject, String id, FrontEndObjectStyle style) {
         this.typeOfObject = typeOfObject;
         this.id = id;
-        rowSize = new int[2];
-        columnSize = new int[2];
         boxedImageCoordinates = new int[2];
         isHtmlPrinted = false;
         isOpeningHtmlPrinted = false;
+        this.style = style;
     }
 
     public void setRows(FrontEndLengthUnits lengthUnit, int[] rowSize, int numberOfRows) {
