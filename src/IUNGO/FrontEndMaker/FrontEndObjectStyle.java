@@ -6,6 +6,7 @@
 package IUNGO.FrontEndMaker;
 
 import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndLengthUnits;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +20,36 @@ public class FrontEndObjectStyle {
     FrontEndLengthUnits heightUnit;
     int[] positionCoordinates;
     FrontEndLengthUnits positionCoordinatesUnits;
+    boolean repeat;
+    String color;
+    int opacity;
+    ArrayList<ArrayList<String>> gridArea;
+    String linksTo;
+    String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getLinksTo() {
+        return linksTo;
+    }
+
+    public ArrayList<ArrayList<String>> getLayout() {
+        return gridArea;
+    }
+
+    public int getOpacity() {
+        return opacity;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public boolean getRepeat() {
+        return repeat;
+    }
 
     public int getWidth() {
         return width;
@@ -69,5 +100,30 @@ public class FrontEndObjectStyle {
     public void setPositionCoordinatesUnits(FrontEndLengthUnits positionCoordinatesUnits) {
         this.positionCoordinatesUnits = positionCoordinatesUnits;
     }
+    
+    public void setRepeat(boolean repeat) {
+        this.repeat = repeat;
+    }
+   
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setOpacity(int opacity) {
+        this.opacity = opacity;
+    }
+    
+    public void setLayout(ArrayList<ArrayList<String>> gridArea) {
+        this.gridArea = gridArea;
+    }
+    
+    public void setLinksTo(String linksTo) {
+        this.linksTo = linksTo;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
 }
