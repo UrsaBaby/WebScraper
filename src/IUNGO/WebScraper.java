@@ -21,6 +21,7 @@ import java.awt.AWTException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import IUNGO.FrontEndMaker.FrontEndObjectStyle;
 
 /**
  *
@@ -37,7 +38,8 @@ public class WebScraper {
         
 
         FrontEndObjectInterface FEOInterface = new FrontEndObjectInterface();
-        FrontEndObject mainScene = FEOInterface.createEmptyObject("scene", styleInterface.getEmptyObject());
+        FrontEndObjectStyle mainSceneStyle = styleInterface.getEmptyObject();
+        FrontEndObject mainScene = FEOInterface.createEmptyObject("Scene", mainSceneStyle);
         mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");//TODO, insert style       
       // Should be in style
         mainScene.setWidthHeight(500, FrontEndLengthUnits.PX, 500, FrontEndLengthUnits.PX);
