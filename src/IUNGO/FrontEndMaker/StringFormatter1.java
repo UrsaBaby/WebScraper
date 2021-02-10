@@ -12,12 +12,12 @@ import java.util.ArrayList;
  *
  * @author Peter
  */
-public class StringFormatter {
+public class StringFormatter1 {
 
     ArrayList<FrontEndObject> listOfCurrentHTMLFrontEndObjects;
     ArrayList<FrontEndObject> listOfCurrentCSSFrontEndObjects;
 
-    public StringFormatter() {
+    public StringFormatter1() {
 
     }
 
@@ -31,7 +31,7 @@ public class StringFormatter {
             //Sets the last added object to current
             if (!currentCSSObject.isCssPrinted) {
 
-                returnString += this.getCssAttributes(currentCSSObject); //Prints css syntax and info
+                returnString += this.getCssAttributes(currentCSSObject.getFrontEndObjectStyle()); //Prints css syntax and info
                 returnString += "}" + this.getNewRow();
                 currentCSSObject.setIsCssPrinted(true); //set to printed
             }
@@ -60,13 +60,13 @@ public class StringFormatter {
             FrontEndObject currentHTMLObject = listOfCurrentHTMLFrontEndObjects.get(listOfCurrentHTMLFrontEndObjects.size() - 1); //Sets to last added unprinted child, first run is the full scene that you want printed.
 
             if (!currentHTMLObject.isOpeningHtmlPrinted) {
-                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getFrontEndObjectType()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject);
-                returnString += this.getObjectOpeningBracketInfo(currentHTMLObject);
+                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagStartString(currentHTMLObject.getFrontEndObjectStyle().getFrontEndObjectType()) + this.getEmptySpace() + this.getClassDefinitionSyntaxForThisFEO(currentHTMLObject);
+                returnString += this.getObjectOpeningBracketInfo(currentHTMLObject.getFrontEndObjectStyle()); //TODO change to getting data from object style.
                 returnString += this.getCloseTagString() + this.getNewRow();
                 currentHTMLObject.setIsOpeningHtmlPrinted(true);
             }
             /* Prints opening. ex , printed parent-> "<div>            with the indentation based on the depth inside another object it is.
-                                                                                                                     <div>" <- printed child */
+                                                            <div>" <- printed child */
 
             if (currentHTMLObject.isListOfFEOsInitiated() && this.isThereAnUnprintedHtmlChild(currentHTMLObject.getListOfFeos())) { //If there is an unprinted child, add first one to currentfeos. Will be made current object on next iteration.
                 this.addToListOfCurrentFEOs(this.getFirstUnprintedHtmlChild(currentHTMLObject));                                   //making sure the full depth of all children have been printed before we start closing tags.
@@ -80,7 +80,7 @@ public class StringFormatter {
     }
 
     //
-    private String getStyleDecleration(FrontEndObject toFormat) {
+    private String getStyleDecleration(FrontEndObjectStyle toFormat) {
         String returnString = "";
 
         returnString += this.getTagStartString(toFormat.getFrontEndObjectType());
@@ -88,10 +88,10 @@ public class StringFormatter {
         return returnString;
     }
 
-    private String getObjectOpeningBracketInfo(FrontEndObject currentHTMLObject) {
+    private String getObjectOpeningBracketInfo(FrontEndObjectStyle currentFEOStyle) {
         String returnString = "";
-        if (currentHTMLObject.getFrontEndObjectType().equals(FrontEndObjectTypes.BUTTON)) {
-            returnString += " " + "href=\"" + currentHTMLObject.getLinksTo() + "\"";
+        if (currentFEOStyle.getFrontEndObjectType().equals(FrontEndObjectTypes.BUTTON)) {
+            returnString += " " + "href=\"" + currentFEOStyle.getLinksTo() + "\"";
         }
         return returnString;
     }
@@ -232,28 +232,28 @@ public class StringFormatter {
         }
     }
 
-    private String getCssAttributes(FrontEndObject currentObject) {
+    private String getCssAttributes(FrontEndObjectStyle currentFEObjectStyle) {
         String returnString = "";
-        returnString += "." + currentObject.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
-        if (currentObject.getBackgroundColor() != null) {
-            returnString += this.getIndentation(1) + "background-color: " + currentObject.getBackgroundColor() + ";" + this.getNewRow();
-            // Change to this returnString += this.getIndentation(1) + "background-color: " + currentObject.getObjectStyle().color + ";" + this.getNewRow();
+        returnString += "." + currentFEObjectStyle.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
+        if (currentFEObjectStyle.getColor() != null) {
+            //returnString += this.getIndentation(1) + "background-color: " + currentObject.getBackgroundColor() + ";" + this.getNewRow();
+           returnString += this.getIndentation(1) + "background-color: " + currentFEObjectStyle.color + ";" + this.getNewRow();
         }
-        if (currentObject.getWidthUnit() != null) {
-            returnString += this.getIndentation(1) + "width: " + currentObject.getWidth() + currentObject.getWidthUnit() + ";" + this.getNewRow();
-            // same here returnString += this.getIndentation(1) + "width: " + currentObject.getObjectStyle().width + currentObject.getObjectStyle().getWidthUnit() + ";" + this.getNewRow();
+        if (currentFEObjectStyle.getWidthUnit() != null) {
+           // returnString += this.getIndentation(1) + "width: " + currentObject.getWidth() + currentObject.getWidthUnit() + ";" + this.getNewRow();
+            returnString += this.getIndentation(1) + "width: " + currentFEObjectStyle.width + currentFEObjectStyle.getWidthUnit() + ";" + this.getNewRow();
         }
-        if (currentObject.getHeightUnit() != null) {
-            returnString += this.getIndentation(1) + "height: " + currentObject.getHeight() + currentObject.getHeightUnit() + ";" + this.getNewRow();
-           // same returnString += this.getIndentation(1) + "height: " + currentObject.getObjectStyle().height + currentObject.getObjectStyle().getHeightUnit() + ";" + this.getNewRow();
+        if (currentFEObjectStyle.getHeightUnit() != null) {
+            // returnString += this.getIndentation(1) + "height: " + currentObject.getHeight() + currentObject.getHeightUnit() + ";" + this.getNewRow();
+         returnString += this.getIndentation(1) + "height: " + currentFEObjectStyle.height + currentFEObjectStyle.getHeightUnit() + ";" + this.getNewRow();
         }
-        if (currentObject.getDisplayType() != null) {
-            returnString += this.getIndentation(1) + "display: " + currentObject.getDisplayType().toString().toLowerCase() + ";" + this.getNewRow();
-            // same returnString += this.getIndentation(1) + "display: " + currentObject.getObjectStyle().getDisplayType() + ";" + this.getNewRow();
+        if (currentFEObjectStyle.getDisplayType() != null) {
+           // returnString += this.getIndentation(1) + "display: " + currentObject.getDisplayType().toString().toLowerCase() + ";" + this.getNewRow();
+          returnString += this.getIndentation(1) + "display: " + currentFEObjectStyle.getDisplayType() + ";" + this.getNewRow();
         }
-        if (currentObject.getGridTemplateArea() != null) {
+        if (currentFEObjectStyle.getGridTemplateArea() != null) {
             returnString += this.getIndentation(1) + "grid-template-areas: " + this.getNewRow();
-            for (ArrayList<String> checker : currentObject.getGridTemplateArea()) {
+          /*  for (ArrayList<String> checker : currentObject.getGridTemplateArea()) {
                 returnString += "\""; //adds a "
                 String newRowString = "";
                 for (int i = 0; i < checker.size(); i++) {
@@ -261,43 +261,36 @@ public class StringFormatter {
                     if (i != checker.size() - 1) {
                         newRowString += " ";
                     }
-                }
-              /* SAME   for (ArrayList<String> checker : currentObject.getObjectStyle().getGridArea()) {
+                */
+              for (ArrayList<String> checker : currentFEObjectStyle.getGridTemplateArea()) {
                 returnString += "\""; //adds a "
-                String newRowString = "";
+                String newRowString = ""; //make sures its printed in a grid
                 for (int i = 0; i < checker.size(); i++) {
                     newRowString += checker.get(i);
                     if (i != checker.size() - 1) {
                         newRowString += " ";
                     }
-                }*/
-        
+                } 
                 returnString += newRowString + "\"" + this.getNewRow();
             }
             returnString += ";" + this.getNewRow();
-        }
-        if (currentObject.getGridArea() != null) {
-            returnString += this.getIndentation(1) + "grid-area: " + currentObject.getGridArea() + ";" + this.getNewRow();
+        
+        if (currentFEObjectStyle.getGridArea() != null) {
+            returnString += this.getIndentation(1) + "grid-area: " + currentFEObjectStyle.getGridArea() + ";" + this.getNewRow();
         }
         /* Same if (currentObject.getObjectStyle().getGridArea() != null) {
             returnString += this.getIndentation(1) + "grid-area: " + currentObject.getGridArea() + ";" + this.getNewRow();
         }*/
-        if (currentObject.getFrontEndObjectType().equals(FrontEndObjectTypes.BOXEDIMAGE)) { //TODO finish making alternative version using frontendobjectstyle.
-            returnString += "background-image: url(" + currentObject.getLinksTo() + ");" + this.getNewRow();
-            returnString += "background-size: " + currentObject.getBoxedImageSize() + currentObject.getBoxedImageSizeUnitType() + ";\n"
-                    + "  background-repeat: no-repeat;\n"
-                    + "  background-position-x: " + currentObject.getBoxedImageCoordinates()[0] + currentObject.getBoxedImageCoordinatesUnitType() + ";\n"
-                    + "  background-position-y:" + currentObject.getBoxedImageCoordinates()[1] + currentObject.getBoxedImageCoordinatesUnitType() + ";" + this.getNewRow();
+        if (currentFEObjectStyle.getFrontEndObjectType().equals(FrontEndObjectTypes.BOXEDIMAGE)) { 
+            returnString += "background-image: url(" + currentFEObjectStyle.getLinksTo() + ");" + this.getNewRow();
+            returnString += "background-size: " + currentFEObjectStyle.height + currentFEObjectStyle.getHeightUnit() +" " + currentFEObjectStyle.getWidth() + currentFEObjectStyle.getWidthUnit() + ";\n"
+                    + "  background-repeat: " + currentFEObjectStyle.getRepeatRule()+ ";\n"
+                    + "  background-position-x: " + currentFEObjectStyle.getPositionCoordinates()[0] + currentFEObjectStyle.getPositionCoordinatesUnits() + ";\n"
+                    + "  background-position-y:" + currentFEObjectStyle.getPositionCoordinates()[1] + currentFEObjectStyle.getPositionCoordinatesUnits() + ";" + this.getNewRow();
         }
-        if (currentObject.getFrontEndObjectStyle().getClass().equals(FrontEndObjectTypes.BOXEDIMAGE)) { //TODO finish making alternative version using frontendobjectstyle.
-            returnString += "background-image: url(" + currentObject.getFrontEndObjectStyle().linksTo + ");" + this.getNewRow();
-            returnString += "background-size: " + currentObject.getBoxedImageSize() + currentObject.getBoxedImageSizeUnitType() + ";\n"
-                    + "  background-repeat: no-repeat;\n"
-                    + "  background-position-x: " + currentObject.getBoxedImageCoordinates()[0] + currentObject.getBoxedImageCoordinatesUnitType() + ";\n"
-                    + "  background-position-y:" + currentObject.getBoxedImageCoordinates()[1] + currentObject.getBoxedImageCoordinatesUnitType() + ";" + this.getNewRow();
-        }
-
-        return returnString;
+        
     }
+    return returnString;
 
+}
 }

@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class FrontEndObject {
 
     ArrayList<FrontEndObject> listOfFrontEndObjects;
-    FrontEndObjectTypes typeOfObject;
+    FrontEndObjectTypes frontEndObjectType;
     String id;
     boolean isHtmlPrinted;
     boolean isOpeningHtmlPrinted;
@@ -65,15 +65,19 @@ public class FrontEndObject {
     FrontEndLengthUnits boxedImageSizeUnitType;
     int[] boxedImageCoordinates;
     FrontEndLengthUnits boxedImageCoordinatesUnitType;
-    
+
     FrontEndObjectStyle style;
 
-    public FrontEndObject(FrontEndObjectTypes typeOfObject, String id, FrontEndObjectStyle style) {
-        this.typeOfObject = typeOfObject;
+    public FrontEndObject(FrontEndObjectTypes typeOfObject, String id) {
+        this.frontEndObjectType = typeOfObject;
         this.id = id;
         boxedImageCoordinates = new int[2];
         isHtmlPrinted = false;
         isOpeningHtmlPrinted = false;
+        this.style = style;
+    }
+
+    public void setObjectStyle(FrontEndObjectStyle style) {
         this.style = style;
     }
 
@@ -161,7 +165,7 @@ public class FrontEndObject {
     }
 
     public void setObjectType(FrontEndObjectTypes thisType) {
-        this.typeOfObject = thisType;
+        this.frontEndObjectType = thisType;
     }
 
     public void setImageCropType() {
@@ -178,8 +182,11 @@ public class FrontEndObject {
         this.boxedImageCoordinatesUnitType = theseUnits;
     }
 
-
     //
+    public FrontEndObjectStyle getFrontEndObjectStyle() {
+        return style;
+    }
+
     public String getId() {
         return this.id;
     }
@@ -196,8 +203,8 @@ public class FrontEndObject {
         return this.listOfFrontEndObjects;
     }
 
-    public FrontEndObjectTypes getObjectType() {
-        return this.typeOfObject;
+    public FrontEndObjectTypes getFrontEndObjectType() {
+        return this.frontEndObjectType;
     }
 
     public AlignJustify getJustifySelf() {

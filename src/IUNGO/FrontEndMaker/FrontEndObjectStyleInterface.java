@@ -18,13 +18,12 @@ int[] positionCoordinates;
 
     }
 
-    public FrontEndObjectStyle getButton(String id) {
+    public FrontEndObjectStyle getButton() {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
-        returnStyle.setId(id);
         return returnStyle;
     }
 
-    public FrontEndObjectStyle getBoxedImage(String id) {
+    public FrontEndObjectStyle getBoxedImage() {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
         positionCoordinates = new int[2];
         positionCoordinates[0] = 50;
@@ -37,26 +36,23 @@ int[] positionCoordinates;
         returnStyle.setWidth(100);
         returnStyle.setWidthUnit(FrontEndLengthUnits.PER);
         returnStyle.setColor("grey");
-        returnStyle.setId(id);
 
         return returnStyle;
     }
 
-    public FrontEndObjectStyle getEmptyObject(String id) {
+    public FrontEndObjectStyle getEmptyObject() {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
         returnStyle.setColor("grey");
-        returnStyle.setId(id);
         return returnStyle;
     }
     
-    public FrontEndObjectStyle getScene(String id, int[] resolution, FrontEndLengthUnits widthUnit, FrontEndLengthUnits heightUnit, ArrayList<ArrayList<String>> layout){
+    public FrontEndObjectStyle getScene(int[] resolution, FrontEndLengthUnits widthUnit, FrontEndLengthUnits heightUnit, ArrayList<ArrayList<String>> layout){
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
         returnStyle.setWidth(resolution[0]);
         returnStyle.setWidthUnit(widthUnit);
         returnStyle.setHeight(resolution[1]);
         returnStyle.setHeightUnit(heightUnit);
         returnStyle.setLayout(layout);
-        returnStyle.setId(id);
         return returnStyle;
     }
     

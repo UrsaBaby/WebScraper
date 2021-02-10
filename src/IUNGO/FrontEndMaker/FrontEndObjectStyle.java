@@ -5,7 +5,10 @@
  */
 package IUNGO.FrontEndMaker;
 
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.BackgroundImageRepeatEnum;
 import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndLengthUnits;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectDisplayTypes;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectTypes;
 import java.util.ArrayList;
 
 /**
@@ -23,9 +26,34 @@ public class FrontEndObjectStyle {
     boolean repeat;
     String color;
     int opacity;
-    ArrayList<ArrayList<String>> gridArea;
+    ArrayList<ArrayList<String>> gridTemplateArea;
     String linksTo;
     String id;
+    FrontEndObjectDisplayTypes displayType;
+    String gridArea;
+    FrontEndObjectTypes frontEndObjectType;
+    BackgroundImageRepeatEnum repeatRule;
+
+    public BackgroundImageRepeatEnum getRepeatRule() {
+        return repeatRule;
+    }
+
+    public FrontEndObjectTypes getFrontEndObjectType() {
+        return frontEndObjectType;
+    }
+
+
+    public String getGridArea() {
+        return gridArea;
+    }
+
+    public ArrayList<ArrayList<String>> getGridTemplateArea() {
+        return gridTemplateArea;
+    }
+
+    public FrontEndObjectDisplayTypes getDisplayType() {
+        return displayType;
+    }
 
     public String getId() {
         return id;
@@ -36,7 +64,7 @@ public class FrontEndObjectStyle {
     }
 
     public ArrayList<ArrayList<String>> getLayout() {
-        return gridArea;
+        return gridTemplateArea;
     }
 
     public int getOpacity() {
@@ -77,6 +105,26 @@ public class FrontEndObjectStyle {
 
     /////////
     
+    public void setRepeatRule(BackgroundImageRepeatEnum repeatRule) {
+        this.repeatRule = repeatRule;
+    }
+
+    public void setFrontEndObjectType(FrontEndObjectTypes frontEndObjectType) {
+        this.frontEndObjectType = frontEndObjectType;
+    }
+    
+    public void setGridArea(String gridArea) {
+        this.gridArea = gridArea;
+    }
+      
+    public void setGridTemplateArea(ArrayList<ArrayList<String>> gridTemplateArea) {
+        this.gridTemplateArea = gridTemplateArea;
+    }
+
+    public void setDisplayType(FrontEndObjectDisplayTypes displayType) {
+        this.displayType = displayType;
+    }
+
     public void setWidth(int width) {
         this.width = width;
     }
@@ -100,11 +148,11 @@ public class FrontEndObjectStyle {
     public void setPositionCoordinatesUnits(FrontEndLengthUnits positionCoordinatesUnits) {
         this.positionCoordinatesUnits = positionCoordinatesUnits;
     }
-    
+
     public void setRepeat(boolean repeat) {
         this.repeat = repeat;
     }
-   
+
     public void setColor(String color) {
         this.color = color;
     }
@@ -112,18 +160,17 @@ public class FrontEndObjectStyle {
     public void setOpacity(int opacity) {
         this.opacity = opacity;
     }
-    
+
     public void setLayout(ArrayList<ArrayList<String>> gridArea) {
-        this.gridArea = gridArea;
+        this.gridTemplateArea = gridArea;
     }
-    
+
     public void setLinksTo(String linksTo) {
         this.linksTo = linksTo;
     }
-    
+
     public void setId(String id) {
         this.id = id;
     }
-
 
 }
