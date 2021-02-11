@@ -6,6 +6,7 @@
 package IUNGO.FrontEndMaker;
 
 import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndLengthUnits;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectDisplayTypes;
 import java.util.ArrayList;
 
 /**
@@ -46,13 +47,14 @@ int[] positionCoordinates;
         return returnStyle;
     }
     
-    public FrontEndObjectStyle getScene(int[] resolution, FrontEndLengthUnits widthUnit, FrontEndLengthUnits heightUnit, ArrayList<ArrayList<String>> layout){
+    public FrontEndObjectStyle getScene(int[] resolution, FrontEndLengthUnits widthUnit, FrontEndLengthUnits heightUnit, ArrayList<ArrayList<String>> gridAreaLayout){
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
         returnStyle.setWidth(resolution[0]);
         returnStyle.setWidthUnit(widthUnit);
         returnStyle.setHeight(resolution[1]);
         returnStyle.setHeightUnit(heightUnit);
-        returnStyle.setLayout(layout);
+        returnStyle.setLayout(gridAreaLayout);
+        returnStyle.setDisplayType(FrontEndObjectDisplayTypes.GRID);
         return returnStyle;
     }
     

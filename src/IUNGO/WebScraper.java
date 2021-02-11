@@ -38,13 +38,9 @@ public class WebScraper {
         
 
         FrontEndObjectInterface FEOInterface = new FrontEndObjectInterface();
-        FrontEndObjectStyle mainSceneStyle = styleInterface.getEmptyObject();
-        FrontEndObject mainScene = FEOInterface.createEmptyObject("Scene", mainSceneStyle);
-        mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");//TODO, insert style       
-      // Should be in style
-        mainScene.setWidthHeight(500, FrontEndLengthUnits.PX, 500, FrontEndLengthUnits.PX);
-        mainScene.setBackgroundColor("grey");
-        mainScene.setDisplayType(FrontEndObjectDisplayTypes.GRID);
+        int[] resolution = new int[2];
+        resolution[0] = 1920;
+        resolution[1] = 1080;
         ArrayList<ArrayList<String>> templateArea = new ArrayList<>();   
         ArrayList<String> column1 = new ArrayList<>();
         column1.add("one");
@@ -60,14 +56,16 @@ public class WebScraper {
         column3.add("three");
         templateArea.add(column1);
         templateArea.add(column2);
-        templateArea.add(column3);         
-        mainScene.setGridTemplateArea(templateArea);
-      //
+        templateArea.add(column3);    
+        FrontEndObjectStyle mainSceneStyle = styleInterface.getScene(resolution, FrontEndLengthUnits.PX, FrontEndLengthUnits.PX, templateArea);
+        FrontEndObject mainScene = FEOInterface.createEmptyObject("Scene", mainSceneStyle);
+        mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");
+    
        
         
 
         FrontEndObject insideBox = FEOInterface.createEmptyObject("box", styleInterface.getButton());
-        insideBox.setBackgroundColor("pink");
+        insideBox.getFrontEndObjectStyle().setColor("pink");
         insideBox.setGridArea("one");
         insideBox.setLinksTo("https://www.google.com/");
         insideBox.setObjectType(FrontEndObjectTypes.BUTTON);
