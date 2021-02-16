@@ -33,11 +33,10 @@ public class WebScraper {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws AWTException, InterruptedException, IOException {
-        //create the interface for style for quick generic styles such as image, button and so on.
+        //create the interfaces for style for quick generic styles such as image, button and so on.
         FrontEndObjectStyleInterface styleInterface = new FrontEndObjectStyleInterface();
-        
-
         FrontEndObjectInterface FEOInterface = new FrontEndObjectInterface();
+        ////// create the mainscene
         int[] resolution = new int[2];
         resolution[0] = 1920;
         resolution[1] = 1080;
@@ -60,8 +59,8 @@ public class WebScraper {
         FrontEndObjectStyle mainSceneStyle = styleInterface.getScene(resolution, FrontEndLengthUnits.PX, FrontEndLengthUnits.PX, templateArea);
         FrontEndObject mainScene = FEOInterface.createEmptyObject("Scene", mainSceneStyle);
         mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");
-    
-       
+        //
+       FrontEndObject button = FEOInterface.createButton("button 1", "https://www.google.com/", styleInterface.getButton());
         
 
         FrontEndObject insideBox = FEOInterface.createEmptyObject("box", styleInterface.getButton());

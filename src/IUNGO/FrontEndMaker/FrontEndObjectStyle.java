@@ -33,6 +33,11 @@ public class FrontEndObjectStyle {
     String gridArea;
     FrontEndObjectTypes frontEndObjectType;
     BackgroundImageRepeatEnum repeatRule;
+    String text;
+    
+    public String getText(String text){
+        return text;
+    }
 
     public BackgroundImageRepeatEnum getRepeatRule() {
         return repeatRule;
@@ -161,9 +166,6 @@ public class FrontEndObjectStyle {
         this.opacity = opacity;
     }
 
-    public void setLayout(ArrayList<ArrayList<String>> gridArea) {
-        this.gridTemplateArea = gridArea;
-    }
 
     public void setLinksTo(String linksTo) {
         this.linksTo = linksTo;
@@ -171,6 +173,10 @@ public class FrontEndObjectStyle {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    void setText(String text) {
+        this.text = text;
     }
 
 }

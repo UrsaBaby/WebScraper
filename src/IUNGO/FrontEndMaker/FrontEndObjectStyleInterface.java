@@ -7,6 +7,7 @@ package IUNGO.FrontEndMaker;
 
 import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndLengthUnits;
 import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectDisplayTypes;
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectTypes;
 import java.util.ArrayList;
 
 /**
@@ -19,8 +20,13 @@ int[] positionCoordinates;
 
     }
 
-    public FrontEndObjectStyle getButton() {
+    public FrontEndObjectStyle getButton(String id, String gridArea) {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
+        returnStyle.setColor("red");
+        returnStyle.setText("button");
+        returnStyle.setFrontEndObjectType(FrontEndObjectTypes.BUTTON);
+        returnStyle.setGridArea(gridArea);
+        returnStyle.setId(id);
         return returnStyle;
     }
 
