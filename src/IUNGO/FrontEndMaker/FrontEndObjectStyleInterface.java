@@ -22,15 +22,19 @@ int[] positionCoordinates;
 
     public FrontEndObjectStyle getButton(String id, String gridArea) {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
-        returnStyle.setColor("red");
-        returnStyle.setText("button");
-        returnStyle.setFrontEndObjectType(FrontEndObjectTypes.BUTTON);
+        this.setToButton(returnStyle);
         returnStyle.setGridArea(gridArea);
         returnStyle.setId(id);
         return returnStyle;
     }
+    
+    public void setToButton(FrontEndObjectStyle forThis){
+       forThis.setColor("red");
+       forThis.setText("button");
+       forThis.setFrontEndObjectType(FrontEndObjectTypes.BUTTON);     
+    }
 
-    public FrontEndObjectStyle getBoxedImage() {
+    public FrontEndObjectStyle getBoxedImage(String id, String gridArea) {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
         positionCoordinates = new int[2];
         positionCoordinates[0] = 50;
@@ -43,23 +47,24 @@ int[] positionCoordinates;
         returnStyle.setWidth(100);
         returnStyle.setWidthUnit(FrontEndLengthUnits.PER);
         returnStyle.setColor("grey");
-
+        returnStyle.setId(id);
+        returnStyle.setGridArea(gridArea);
         return returnStyle;
     }
 
     public FrontEndObjectStyle getEmptyObject() {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
-        returnStyle.setColor("grey");
+        returnStyle.setColor("white");
         return returnStyle;
     }
     
-    public FrontEndObjectStyle getScene(int[] resolution, FrontEndLengthUnits widthUnit, FrontEndLengthUnits heightUnit, ArrayList<ArrayList<String>> gridAreaLayout){
+    public FrontEndObjectStyle getScene(int[] resolution, FrontEndLengthUnits widthUnit, FrontEndLengthUnits heightUnit, ArrayList<ArrayList<String>> gridTemplateArea){
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
         returnStyle.setWidth(resolution[0]);
         returnStyle.setWidthUnit(widthUnit);
         returnStyle.setHeight(resolution[1]);
         returnStyle.setHeightUnit(heightUnit);
-        returnStyle.setLayout(gridAreaLayout);
+        returnStyle.setGridTemplateArea(gridTemplateArea);
         returnStyle.setDisplayType(FrontEndObjectDisplayTypes.GRID);
         return returnStyle;
     }
