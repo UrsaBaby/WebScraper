@@ -15,23 +15,36 @@ import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectTypes;
  */
 public class FrontEndObjectInterface {
 
-    public FrontEndObject createEmptyObject(String id, FrontEndObjectStyle style) {
-        FrontEndObject returnObject = new FrontEndObject(FrontEndObjectTypes.CONTAINER, id);
-        returnObject.setObjectStyle(style);
-        return returnObject;
-    }
-
-    public FrontEndObject createBoxedImage(String id, int imageSize, FrontEndLengthUnits imageSizeUnit, int[] imageCoordinates, FrontEndLengthUnits imageCoordinateUnit, String imagePath, FrontEndObjectStyle style) {
-        FrontEndObject returnObject = new FrontEndObject(FrontEndObjectTypes.BOXEDIMAGE, id);
-        returnObject.setBoxedImageSize(imageSize, imageSizeUnit);
-        returnObject.setBoxedImageCoordinates(imageCoordinates, imageCoordinateUnit);
-        returnObject.setLinksTo(imagePath);
+    public FrontEndObject createScene(String id, FrontEndObjectStyle style) {
+        FrontEndObject returnObject = new FrontEndObject();
+        returnObject.setId(id);
+        style.setId(id);
         returnObject.setObjectStyle(style);
         return returnObject;
     }
     
-    public FrontEndObject createButton(String id, String linksTo, FrontEndObjectStyle style){
-        FrontEndObject returnObject = new FrontEndObject(FrontEndObjectTypes.BUTTON, id);
+    public void setToScene(FrontEndObject setThisObject, FrontEndObjectStyle toThisStyle){
+       toThisStyle.setId(setThisObject.getId());
+       setThisObject.setFrontEndObjectStyle(toThisStyle);
+    }
+
+    public FrontEndObject createBoxedImage(String id, int imageSize, FrontEndLengthUnits imageSizeUnit, int[] imageCoordinates, FrontEndLengthUnits imageCoordinateUnit, String imagePath, FrontEndObjectStyle style, String gridArea) {
+        FrontEndObject returnObject = new FrontEndObject();
+        returnObject.setId(id);
+        returnObject.setBoxedImageSize(imageSize, imageSizeUnit);
+        returnObject.setBoxedImageCoordinates(imageCoordinates, imageCoordinateUnit);
+        returnObject.setLinksTo(imagePath);
+        style.setId(id);
+        style.setGridArea(gridArea);
+        returnObject.setObjectStyle(style);
+        return returnObject;
+    }
+    
+    public FrontEndObject createButton(String id, String linksTo, FrontEndObjectStyle style, String gridArea){
+        FrontEndObject returnObject = new FrontEndObject();
+        returnObject.setId(id);
+        style.setId(id);
+        style.setGridArea(gridArea);
         returnObject.setObjectStyle(style);
         return returnObject;
     }

@@ -37,9 +37,13 @@ public class WebScraper {
         FrontEndObjectStyleInterface styleInterface = new FrontEndObjectStyleInterface();
         FrontEndObjectInterface FEOInterface = new FrontEndObjectInterface();
         ////// create the mainscene
+        
+        //Sets resolution
         int[] resolution = new int[2];
         resolution[0] = 1920;
         resolution[1] = 1080;
+        
+        //Creating the templategridarea
         ArrayList<ArrayList<String>> templateArea = new ArrayList<>();   
         ArrayList<String> column1 = new ArrayList<>();
         column1.add("one");
@@ -55,21 +59,45 @@ public class WebScraper {
         column3.add("three");
         templateArea.add(column1);
         templateArea.add(column2);
-        templateArea.add(column3);    
-        FrontEndObjectStyle mainSceneStyle = styleInterface.getScene(resolution, FrontEndLengthUnits.PX, FrontEndLengthUnits.PX, templateArea);
-        FrontEndObject mainScene = FEOInterface.createEmptyObject("Scene", mainSceneStyle);
-        mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");
-        //
-       FrontEndObject button = FEOInterface.createButton("button 1", "https://www.google.com/", styleInterface.getButton());
+        templateArea.add(column3);
         
-
-        FrontEndObject insideBox = FEOInterface.createEmptyObject("box", styleInterface.getButton());
+        // Creating FEOStyle object, from interface get a template scene, give it id, resolution with type of unitx (pixels), and the template area.
+        FrontEndObjectStyle mainSceneStyle = styleInterface.getScene(resolution, FrontEndLengthUnits.PX, FrontEndLengthUnits.PX, templateArea);
+        
+        //sets color to 
+        mainSceneStyle.setColor("blue");
+        
+        //Create a FEO, and put the style in it.
+        FrontEndObject mainScene = FEOInterface.createScene("MAINSCENE", mainSceneStyle);  
+   
+        
+        //Sets the output of the frontendobject mainScene
+        mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");
+        
+        //
+       FrontEndObject button = FEOInterface.createButton("button 1", "https://www.google.com/", styleInterface.getButton(), "three");
+       
+       //button settings
+       button.getFrontEndObjectStyle().setColor("red");
+       button.getFrontEndObjectStyle().setText("button");
+       button.getFrontEndObjectStyle().setTextColor("white");
+       button.getFrontEndObjectStyle().setTextSize(12, em);
+       button.getFrontEndObjectStyle().setTextFont("arial");
+       
+       //String id, int imageSize, FrontEndLengthUnits imageSizeUnit, int[] imageCoordinates, FrontEndLengthUnits imageCoordinateUnit, String imagePath, FrontEndObjectStyle style, String gridArea
+       int[] imageCoordinates = new int[2];
+       imageCoordinates[0] = 50;
+       imageCoordinates[1] = 50;
+       FrontEndObject image = FEOInterface.createBoxedImage("image", 50, FrontEndLengthUnits.PER, imageCoordinates, FrontEndLengthUnits.PER, "imagePath", styleInterface.getBoxedImage(), "two");
+       
+       
+        FrontEndObject insideBox = FEOInterface.createScene("box", styleInterface.getButton());
         insideBox.getFrontEndObjectStyle().setColor("pink");
         insideBox.setGridArea("one");
         insideBox.setLinksTo("https://www.google.com/");
         insideBox.setObjectType(FrontEndObjectTypes.BUTTON);
 
-        FrontEndObject twiceInsideBox = FEOInterface.createEmptyObject("box2", styleInterface.getBoxedImage());
+        FrontEndObject twiceInsideBox = FEOInterface.createScene("box2", styleInterface.getBoxedImage());
         twiceInsideBox.setBackgroundColor("orange");
         twiceInsideBox.setGridArea("two");
         twiceInsideBox.setObjectType(FrontEndObjectTypes.BOXEDIMAGE);

@@ -20,11 +20,9 @@ int[] positionCoordinates;
 
     }
 
-    public FrontEndObjectStyle getButton(String id, String gridArea) {
+    public FrontEndObjectStyle getButton() {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
-        this.setToButton(returnStyle);
-        returnStyle.setGridArea(gridArea);
-        returnStyle.setId(id);
+        this.setToButton(returnStyle); 
         return returnStyle;
     }
     
@@ -34,39 +32,46 @@ int[] positionCoordinates;
        forThis.setFrontEndObjectType(FrontEndObjectTypes.BUTTON);     
     }
 
-    public FrontEndObjectStyle getBoxedImage(String id, String gridArea) {
+    public FrontEndObjectStyle getBoxedImage() {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
-        positionCoordinates = new int[2];
+        this.setToBoxedImage(returnStyle);   
+        return returnStyle;
+    }
+    
+    public void setToBoxedImage(FrontEndObjectStyle forThis){
+         positionCoordinates = new int[2];
         positionCoordinates[0] = 50;
         positionCoordinates[2] = 50;
-        returnStyle.setPositionCoordinates(positionCoordinates);
-        returnStyle.setPositionCoordinatesUnits(FrontEndLengthUnits.PER);
-        returnStyle.setRepeat(false);
-        returnStyle.setHeight(100);
-        returnStyle.setHeightUnit(FrontEndLengthUnits.PER);
-        returnStyle.setWidth(100);
-        returnStyle.setWidthUnit(FrontEndLengthUnits.PER);
-        returnStyle.setColor("grey");
-        returnStyle.setId(id);
-        returnStyle.setGridArea(gridArea);
-        return returnStyle;
+        forThis.setPositionCoordinates(positionCoordinates);
+        forThis.setPositionCoordinatesUnits(FrontEndLengthUnits.PER);
+        forThis.setRepeat(false);
+        forThis.setHeight(100);
+        forThis.setHeightUnit(FrontEndLengthUnits.PER);
+        forThis.setWidth(100);
+        forThis.setWidthUnit(FrontEndLengthUnits.PER);
+        forThis.setColor("grey");
     }
 
     public FrontEndObjectStyle getEmptyObject() {
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
-        returnStyle.setColor("white");
         return returnStyle;
     }
     
     public FrontEndObjectStyle getScene(int[] resolution, FrontEndLengthUnits widthUnit, FrontEndLengthUnits heightUnit, ArrayList<ArrayList<String>> gridTemplateArea){
         FrontEndObjectStyle returnStyle = new FrontEndObjectStyle();
-        returnStyle.setWidth(resolution[0]);
-        returnStyle.setWidthUnit(widthUnit);
-        returnStyle.setHeight(resolution[1]);
-        returnStyle.setHeightUnit(heightUnit);
-        returnStyle.setGridTemplateArea(gridTemplateArea);
-        returnStyle.setDisplayType(FrontEndObjectDisplayTypes.GRID);
+        this.setToScene(returnStyle, resolution, widthUnit, heightUnit, gridTemplateArea);
         return returnStyle;
     }
+    
+    public void setToScene(FrontEndObjectStyle forThis, int[] resolution, FrontEndLengthUnits widthUnit, FrontEndLengthUnits heightUnit, ArrayList<ArrayList<String>> gridTemplateArea){
+               forThis.setWidth(resolution[0]);
+        forThis.setWidthUnit(widthUnit);
+        forThis.setHeight(resolution[1]);
+        forThis.setHeightUnit(heightUnit);
+        forThis.setGridTemplateArea(gridTemplateArea);
+        forThis.setDisplayType(FrontEndObjectDisplayTypes.GRID);
+    }
+
+
     
 }

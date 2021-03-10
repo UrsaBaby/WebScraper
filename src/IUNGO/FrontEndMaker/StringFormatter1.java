@@ -234,7 +234,7 @@ public class StringFormatter1 {
 
     private String getCssAttributes(FrontEndObjectStyle currentFEObjectStyle) {
         String returnString = "";
-        returnString += "." + currentFEObjectStyle.getId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
+        returnString += "." + currentFEObjectStyle.getFrontEndObjectId() + "{" + this.getNewRow(); //todo should only print if it has any properties.
         if (currentFEObjectStyle.getColor() != null) {
             //returnString += this.getIndentation(1) + "background-color: " + currentObject.getBackgroundColor() + ";" + this.getNewRow();
            returnString += this.getIndentation(1) + "background-color: " + currentFEObjectStyle.color + ";" + this.getNewRow();

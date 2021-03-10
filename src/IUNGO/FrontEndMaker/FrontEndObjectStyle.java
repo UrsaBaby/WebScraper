@@ -28,7 +28,7 @@ public class FrontEndObjectStyle {
     int opacity;
     ArrayList<ArrayList<String>> gridTemplateArea;
     String linksTo;
-    String id;
+    String frontEndObjectStyleId;
     FrontEndObjectDisplayTypes displayType;
     String gridArea;
     FrontEndObjectTypes frontEndObjectType;
@@ -60,8 +60,8 @@ public class FrontEndObjectStyle {
         return displayType;
     }
 
-    public String getId() {
-        return id;
+    public String getFrontEndObjectId() {
+        return frontEndObjectStyleId;
     }
 
     public String getLinksTo() {
@@ -171,11 +171,11 @@ public class FrontEndObjectStyle {
         this.linksTo = linksTo;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String frontEndObjectStyleId) {
+        this.frontEndObjectStyleId = frontEndObjectStyleId;
     }
 
-    void setText(String text) {
+    public void setText(String text) {
         this.text = text;
     }
 
