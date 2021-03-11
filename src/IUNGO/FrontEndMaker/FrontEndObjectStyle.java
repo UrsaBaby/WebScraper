@@ -33,9 +33,26 @@ public class FrontEndObjectStyle {
     String gridArea;
     FrontEndObjectTypes frontEndObjectType;
     BackgroundImageRepeatEnum repeatRule;
+
     String text;
-    
-    public String getText(String text){
+    String textColor;
+    int textSize;
+    FrontEndLengthUnits textUnit;
+    String textFont;
+
+    public String getTextColor() {
+        return textColor;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public String getTextFont() {
+        return textFont;
+    }
+
+    public String getText(String text) {
         return text;
     }
 
@@ -46,7 +63,6 @@ public class FrontEndObjectStyle {
     public FrontEndObjectTypes getFrontEndObjectType() {
         return frontEndObjectType;
     }
-
 
     public String getGridArea() {
         return gridArea;
@@ -109,7 +125,19 @@ public class FrontEndObjectStyle {
     }
 
     /////////
-    
+    public void setTextFont(String textFont) {
+        this.textFont = textFont;
+    }
+
+    public void setTextSize(int textSize, FrontEndLengthUnits typeOfUnit) {
+        this.textUnit = typeOfUnit;
+        this.textSize = textSize;
+    }
+
+    public void setTextColor(String textColor) {
+        this.textColor = textColor;
+    }
+
     public void setRepeatRule(BackgroundImageRepeatEnum repeatRule) {
         this.repeatRule = repeatRule;
     }
@@ -117,11 +145,11 @@ public class FrontEndObjectStyle {
     public void setFrontEndObjectType(FrontEndObjectTypes frontEndObjectType) {
         this.frontEndObjectType = frontEndObjectType;
     }
-    
+
     public void setGridArea(String gridArea) {
         this.gridArea = gridArea;
     }
-      
+
     public void setGridTemplateArea(ArrayList<ArrayList<String>> gridTemplateArea) {
         this.gridTemplateArea = gridTemplateArea;
     }
@@ -165,7 +193,6 @@ public class FrontEndObjectStyle {
     public void setOpacity(int opacity) {
         this.opacity = opacity;
     }
-
 
     public void setLinksTo(String linksTo) {
         this.linksTo = linksTo;

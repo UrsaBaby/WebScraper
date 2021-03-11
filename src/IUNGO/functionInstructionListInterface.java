@@ -16,10 +16,10 @@ import java.awt.AWTException;
  *
  * @author Peter
  */
-public class helperConsole {
+public class functionInstructionListInterface {
  FileFunctionInstructionInterface FFI;
  WebFunctionInstructionInterface WFI;
-    public helperConsole() throws AWTException {
+    public functionInstructionListInterface() throws AWTException {
  FFI = new FileFunctionInstructionInterface();
  WFI = new WebFunctionInstructionInterface(); //TODO dont initialize here
     }
