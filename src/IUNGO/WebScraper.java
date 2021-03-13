@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import IUNGO.FrontEndMaker.FrontEndObjectStyle;
+import IUNGO.FrontEndMaker.StringFormatter1;
 
 /**
  *
@@ -74,7 +75,7 @@ public class WebScraper {
         mainScene.setOutputTo("C:\\\\Users\\\\Peter\\\\Documents\\\\NetBeansProjects\\\\WebScraper\\\\tes2t");
 
         // create the button
-        FrontEndObject button = FEOInterface.createButton("button 1", "https://www.google.com/", styleInterface.getButton(), "three");
+        FrontEndObject button = FEOInterface.createButton("button1", "https://www.google.com/", styleInterface.getButton(), "three");
 
         //button settings
         button.getFrontEndObjectStyle().setColor("red");
@@ -94,7 +95,7 @@ public class WebScraper {
         mainScene.addFrontEndObject(image);
 
         //Create stringformatter to convert the frontendobject mainscene to css and html
-        StringFormatter stringFormatter = new StringFormatter();
+        StringFormatter1 stringFormatter = new StringFormatter1();
 
         //puts the output of the stringformatter formatting mainscene to css and html in to a string.
         String outputString = stringFormatter.getCSS(mainScene) + "\n" + stringFormatter.getHTML(mainScene);

@@ -71,7 +71,7 @@ public class StringFormatter1 {
             if (currentHTMLObject.isListOfFEOsInitiated() && this.isThereAnUnprintedHtmlChild(currentHTMLObject.getListOfFeos())) { //If there is an unprinted child, add first one to currentfeos. Will be made current object on next iteration.
                 this.addToListOfCurrentFEOs(this.getFirstUnprintedHtmlChild(currentHTMLObject));                                   //making sure the full depth of all children have been printed before we start closing tags.
             } else { //If there is no unprinted child (either through beeing the deepest child object, or having all children printed). Start closing tags
-                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagEndString(currentHTMLObject.getFrontEndObjectType()) + this.getNewRow(); //print closing with right indentation ex: "</div>
+                returnString += this.getIndentation(listOfCurrentHTMLFrontEndObjects.size() - 1) + this.getTagEndString(currentHTMLObject.getFrontEndObjectStyle().getFrontEndObjectType()) + this.getNewRow(); //print closing with right indentation ex: "</div>
                 currentHTMLObject.setIsHtmlPrinted(true); //                                                                                                                           </div>               
                 listOfCurrentHTMLFrontEndObjects.remove(currentHTMLObject); //Removes the printedobject and goes back up to its parent to check for other nex unprinted child, if parent has no unprinted child it will be closed, and so on.
             }
@@ -107,7 +107,9 @@ public class StringFormatter1 {
             case VIDEO:
                 return "";
             case BUTTON:
-                return "<a";//TODO   
+                return "<a";//TODO
+            case SCENE:
+                 return "<body";
         }
         return null;
     }
@@ -123,7 +125,9 @@ public class StringFormatter1 {
             case VIDEO:
                 return "";
             case BUTTON:
-                return "</a>";//TODO   
+                return "</a>";
+            case SCENE:
+                return "</body>";//TODO   
         }
         return null;
     }

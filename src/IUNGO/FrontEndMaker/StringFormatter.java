@@ -282,7 +282,7 @@ public class StringFormatter {
         /* Same if (currentObject.getObjectStyle().getGridArea() != null) {
             returnString += this.getIndentation(1) + "grid-area: " + currentObject.getGridArea() + ";" + this.getNewRow();
         }*/
-        if (currentObject.getFrontEndObjectType().equals(FrontEndObjectTypes.BOXEDIMAGE)) { //TODO finish making alternative version using frontendobjectstyle.
+        if (currentObject.getFrontEndObjectStyle().getFrontEndObjectType() == FrontEndObjectTypes.BOXEDIMAGE ) { //TODO finish making alternative version using frontendobjectstyle.
             returnString += "background-image: url(" + currentObject.getLinksTo() + ");" + this.getNewRow();
             returnString += "background-size: " + currentObject.getBoxedImageSize() + currentObject.getBoxedImageSizeUnitType() + ";\n"
                     + "  background-repeat: no-repeat;\n"

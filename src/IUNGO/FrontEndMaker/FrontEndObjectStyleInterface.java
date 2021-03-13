@@ -41,7 +41,7 @@ int[] positionCoordinates;
     public void setToBoxedImage(FrontEndObjectStyle forThis){
          positionCoordinates = new int[2];
         positionCoordinates[0] = 50;
-        positionCoordinates[2] = 50;
+        positionCoordinates[1] = 50;
         forThis.setPositionCoordinates(positionCoordinates);
         forThis.setPositionCoordinatesUnits(FrontEndLengthUnits.PER);
         forThis.setRepeat(false);
@@ -50,6 +50,7 @@ int[] positionCoordinates;
         forThis.setWidth(100);
         forThis.setWidthUnit(FrontEndLengthUnits.PER);
         forThis.setColor("grey");
+        forThis.setFrontEndObjectType(FrontEndObjectTypes.BOXEDIMAGE);
     }
 
     public FrontEndObjectStyle getEmptyObject() {
@@ -70,6 +71,7 @@ int[] positionCoordinates;
         forThis.setHeightUnit(heightUnit);
         forThis.setGridTemplateArea(gridTemplateArea);
         forThis.setDisplayType(FrontEndObjectDisplayTypes.GRID);
+        forThis.setFrontEndObjectType(FrontEndObjectTypes.SCENE);
     }
 
 
