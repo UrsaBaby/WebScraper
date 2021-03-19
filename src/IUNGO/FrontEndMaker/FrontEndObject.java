@@ -154,10 +154,6 @@ public class FrontEndObject {
         this.isCssPrinted = toThis;
     }
     
-    public void setGridArea(String gridArea) {
-        this.gridArea = gridArea;
-    }
-    
     public void setLinksTo(String linkToThis) {
         this.linksTo = linkToThis;
     }

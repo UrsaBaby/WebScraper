@@ -37,6 +37,7 @@ public class FrontEndObjectInterface {
         style.setId(id);
         style.setGridArea(gridArea);
         returnObject.setObjectStyle(style);
+      
         return returnObject;
     }
     

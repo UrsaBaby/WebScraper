@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import IUNGO.FrontEndMaker.FrontEndObjectStyle;
-import IUNGO.FrontEndMaker.StringFormatter1;
+
 
 /**
  *
@@ -95,7 +95,7 @@ public class WebScraper {
         mainScene.addFrontEndObject(image);
 
         //Create stringformatter to convert the frontendobject mainscene to css and html
-        StringFormatter1 stringFormatter = new StringFormatter1();
+        StringFormatter stringFormatter = new StringFormatter();
 
         //puts the output of the stringformatter formatting mainscene to css and html in to a string.
         String outputString = stringFormatter.getCSS(mainScene) + "\n" + stringFormatter.getHTML(mainScene);
