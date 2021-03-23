@@ -296,8 +296,8 @@ public class StringFormatter {
             returnString += this.getIndentation(1) + "grid-area: " + currentObject.getGridArea() + ";" + this.getNewRow();
         }*/
         if (currentFEObjectStyle.getFrontEndObjectType().equals(FrontEndObjectTypes.BOXEDIMAGE)) { 
-            returnString += "background-image: url(" + currentFEObjectStyle.getLinksTo() + ");" + this.getNewRow();
-            returnString += "background-size: " + currentFEObjectStyle.height + currentFEObjectStyle.getHeightUnit() +" " + currentFEObjectStyle.getWidth() + currentFEObjectStyle.getWidthUnit() + ";\n"
+            returnString += "  background-image: url(" + currentFEObjectStyle.getLinksTo() + ");" + this.getNewRow();
+            returnString += "  background-size: " + currentFEObjectStyle.height + currentFEObjectStyle.getHeightUnit() +" " + currentFEObjectStyle.getWidth() + currentFEObjectStyle.getWidthUnit() + ";\n"
                     + "  background-repeat: " + currentFEObjectStyle.getRepeatRule()+ ";\n"
                     + "  background-position-x: " + currentFEObjectStyle.getPositionCoordinates()[0] + currentFEObjectStyle.getPositionCoordinatesUnits() + ";\n"
                     + "  background-position-y:" + currentFEObjectStyle.getPositionCoordinates()[1] + currentFEObjectStyle.getPositionCoordinatesUnits() + ";" + this.getNewRow();

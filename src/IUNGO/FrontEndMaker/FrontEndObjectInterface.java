@@ -31,8 +31,12 @@ public class FrontEndObjectInterface {
     public FrontEndObject createBoxedImage(String id, int imageSize, FrontEndLengthUnits imageSizeUnit, int[] imageCoordinates, FrontEndLengthUnits imageCoordinateUnit, String imagePath, FrontEndObjectStyle style, String gridArea) {
         FrontEndObject returnObject = new FrontEndObject();
         returnObject.setId(id);
-        returnObject.setBoxedImageSize(imageSize, imageSizeUnit);
-        returnObject.setBoxedImageCoordinates(imageCoordinates, imageCoordinateUnit);
+        style.setHeight(imageSize);
+        style.setHeightUnit(imageSizeUnit.PER);
+        style.setWidth(imageSize);
+        style.setWidthUnit(imageSizeUnit.PER);
+        style.setPositionCoordinates(imageCoordinates);
+        style.setPositionCoordinatesUnits(imageCoordinateUnit);
         returnObject.setLinksTo(imagePath);
         style.setId(id);
         style.setGridArea(gridArea);

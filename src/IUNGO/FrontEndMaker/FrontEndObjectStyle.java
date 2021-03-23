@@ -23,11 +23,10 @@ public class FrontEndObjectStyle {
     FrontEndLengthUnits heightUnit;
     int[] positionCoordinates;
     FrontEndLengthUnits positionCoordinatesUnits;
-    boolean repeat;
     String color;
     int opacity;
     ArrayList<ArrayList<String>> gridTemplateArea;
-    String linksTo;
+    String linksTo = "";
     String frontEndObjectStyleId;
     FrontEndObjectDisplayTypes displayType;
     String gridArea;
@@ -94,10 +93,6 @@ public class FrontEndObjectStyle {
 
     public String getColor() {
         return color;
-    }
-
-    public boolean getRepeat() {
-        return repeat;
     }
 
     public int getWidth() {
@@ -180,10 +175,6 @@ public class FrontEndObjectStyle {
 
     public void setPositionCoordinatesUnits(FrontEndLengthUnits positionCoordinatesUnits) {
         this.positionCoordinatesUnits = positionCoordinatesUnits;
-    }
-
-    public void setRepeat(boolean repeat) {
-        this.repeat = repeat;
     }
 
     public void setColor(String color) {

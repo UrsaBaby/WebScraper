@@ -5,6 +5,7 @@
  */
 package IUNGO.FrontEndMaker;
 
+import IUNGO.FrontEndMaker.FrontEndMakerEnums.BackgroundImageRepeatEnum;
 import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndLengthUnits;
 import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectDisplayTypes;
 import IUNGO.FrontEndMaker.FrontEndMakerEnums.FrontEndObjectTypes;
@@ -44,13 +45,13 @@ int[] positionCoordinates;
         positionCoordinates[1] = 50;
         forThis.setPositionCoordinates(positionCoordinates);
         forThis.setPositionCoordinatesUnits(FrontEndLengthUnits.PER);
-        forThis.setRepeat(false);
         forThis.setHeight(100);
         forThis.setHeightUnit(FrontEndLengthUnits.PER);
         forThis.setWidth(100);
         forThis.setWidthUnit(FrontEndLengthUnits.PER);
         forThis.setColor("grey");
         forThis.setFrontEndObjectType(FrontEndObjectTypes.BOXEDIMAGE);
+        forThis.setRepeatRule(BackgroundImageRepeatEnum.NOREPEAT);;
     }
 
     public FrontEndObjectStyle getEmptyObject() {
